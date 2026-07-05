@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smartlife — O'sish yo'li</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000A05;--sur:#030E06;--card:#071509;--ink:#FFF;--muted:#9A9AA0;--line:#2A2A2E;
+  --red:#008D4A;--rd:#006B38;--rs:rgba(0,141,74,.10);
+  --t-savdo:#008D4A;--t-moliya:#006635;--t-undiruv:#00A85A;
+  --t-cc:#005A30;--t-marketing:#3CB371;--t-tex:#4A4A52;--r:11px;}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1500px;margin:0 auto;padding:18px 16px 80px}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-bottom:10px;
+  border-bottom:1px solid var(--line);padding-bottom:14px}
+.logo-img{height:26px;width:auto}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;
+  font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;
+  gap:6px;transition:.14s;font-family:inherit}
+.chip:hover{color:var(--red);border-color:var(--red)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
+.sett-btn{background:var(--card);border:1px solid var(--line);border-radius:9px;
+  color:var(--muted);padding:6px 11px;font-size:15px;cursor:pointer;font-family:inherit;
+  display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;transition:.14s}
+.sett-btn:hover{color:var(--ink);border-color:#555}
+.controls{background:var(--sur);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px;margin:16px 0 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px;flex:1 1 220px;min-width:180px}
+.field label{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+select{font-family:inherit;font-size:13.5px;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:9px;padding:9px 32px 9px 10px;appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239A9AA0' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center}
+select option{background:#161618}
+select:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.btns{display:flex;gap:7px}
+button{font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;border-radius:9px;
+  padding:9px 15px;border:1px solid transparent;transition:.14s}
+.btn-primary{background:var(--red);color:#fff;border-color:var(--red)}
+.btn-primary:hover{background:var(--rd)}
+.btn-ghost{background:var(--card);color:var(--muted);border-color:var(--line)}
+.btn-ghost:hover{color:var(--ink);border-color:#555}
+/* Path summary */
+#pathSummary{display:none;background:var(--sur);border:1px solid var(--line);
+  border-radius:var(--r);padding:14px;margin-bottom:18px}
+#pathSummary.show{display:block}
+.ps-title{font-family:'Bricolage Grotesque';font-weight:800;font-size:15px;margin:0 0 2px}
+.ps-note{color:var(--muted);font-size:12.5px;margin:0 0 14px}
+.steps{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+.step{flex:1 1 160px;min-width:150px;max-width:280px;border:1px solid var(--line);
+  border-radius:10px;padding:11px 12px;background:var(--card)}
+.step .n{font-family:'Bricolage Grotesque';font-weight:800;font-size:11px;color:var(--red);
+  background:var(--rs);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;margin-bottom:7px}
+.step.own .n{color:#999;background:rgba(255,255,255,.07)}
+.step h4{margin:0 0 8px;font-size:13px;font-weight:700}
+.slvl-list{display:flex;flex-direction:column;gap:5px}
+.slvl-row{padding:5px 8px;background:rgba(255,255,255,.03);border-radius:7px;border-left:2px solid var(--line)}
+.slvl-row.top{border-left-color:var(--red)}
+.slvl-nm{font-weight:700;font-size:11.5px;display:block}
+.slvl-sal{font-size:11px;color:var(--red);font-weight:700;display:block;margin-top:1px}
+.slvl-tr{font-size:10.5px;color:var(--muted);line-height:1.4;margin-top:3px;display:block}
+.step-own-sal{font-size:12px;color:#888;font-weight:700}
+.arrow-i{align-self:center;color:var(--muted);font-size:20px;flex:none}
+/* Apex */
+.apex{border:1px solid rgba(0,141,74,.3);background:rgba(0,141,74,.04);border-radius:var(--r);padding:14px;margin-bottom:18px}
+.apex-hdr{margin-bottom:11px}
+.apex-badge{font-size:9.5px;font-weight:700;color:var(--red);background:var(--rs);
+  border:1px solid rgba(0,141,74,.4);border-radius:999px;padding:2px 9px;text-transform:uppercase;letter-spacing:.06em;margin-right:8px}
+.apex-sub{font-size:12px;color:var(--muted);margin-top:5px}
+.apex-cards{display:flex;gap:10px;flex-wrap:wrap}
+.apex .card{flex:1 1 200px}
+/* Map */
+.map-scroll{overflow-x:auto;padding-bottom:8px}
+.tracks{display:flex;gap:8px;min-width:1100px}
+.track[data-track='marketing']{flex:2.2}
+.track{flex:1 1 0;min-width:145px;display:flex;flex-direction:column}
+.track-head{display:flex;align-items:center;gap:6px;padding:0 2px 8px;font-weight:700;font-size:11px;color:var(--muted)}
+.track-head .tdot{width:7px;height:7px;border-radius:50%;flex:none}
+.col{display:flex;flex-direction:column}
+/* Card */
+.card{text-align:left;width:100%;padding:9px 10px;background:var(--card);
+  border:1px solid var(--line);border-left:3px solid var(--c,var(--red));border-radius:var(--r);
+  cursor:pointer;transition:.13s;position:relative;font-family:inherit}
+.card:hover{background:#1c1c1f;border-color:var(--c)}
+.cname{font-family:'Bricolage Grotesque';font-weight:800;font-size:13.5px;color:var(--ink);margin-bottom:4px}
+.clvls{display:flex;align-items:center;gap:3px;margin-bottom:4px;flex-wrap:wrap}
+.clvl{font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);background:rgba(255,255,255,.03)}
+.clvl.top{color:var(--red);border-color:rgba(0,141,74,.4);background:var(--rs)}
+.cmeta{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.csal{font-size:10.5px;font-weight:700;color:var(--red)}
+.card.own .csal{color:#888}
+.kpib{font-size:9px;font-weight:700;padding:1px 5px;border-radius:999px}
+.kpib.yes{color:var(--red);background:var(--rs)}
+.kpib.no{color:var(--muted);background:rgba(255,255,255,.04)}
+.etag{position:absolute;top:-6px;left:6px;font-size:7.5px;font-weight:700;
+  color:var(--red);background:var(--rs);border:1px solid rgba(0,141,74,.3);border-radius:999px;padding:1px 5px}
+.lat-tag{position:absolute;bottom:-6px;right:6px;font-size:7.5px;font-weight:700;
+  color:#666;background:var(--sur);border:1px solid var(--line);border-radius:999px;padding:1px 5px}
+/* Connectors — arrow UP */
+.connect{height:18px;width:2px;background:var(--line);margin:0 auto;position:relative}
+.connect::after{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid var(--line)}
+.connect.equity{background:repeating-linear-gradient(to bottom,var(--red),var(--red) 3px,transparent 3px,transparent 6px)}
+.connect.equity::after{border-bottom-color:var(--red)}
+/* Highlights */
+.map.filtering .card{opacity:.12;filter:grayscale(.8)}
+.map.filtering .card.hl{opacity:1;filter:none;box-shadow:0 0 0 2px var(--c,var(--red))}
+.map.filtering .connect{opacity:.08}
+.map.filtering .connect.hl{opacity:1;background:var(--red)}
+.map.filtering .connect.hl::after{border-bottom-color:var(--red)}
+.map.filtering .connect.equity.hl{background:var(--red)}
+/* Scrim */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.8);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+.scrim.show{opacity:1;pointer-events:auto}
+/* Detail drawer (right) */
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,94vw);background:var(--sur);z-index:50;
+  transform:translateX(102%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+  box-shadow:-6px 0 40px rgba(0,0,0,.8);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.show{transform:translateX(0)}
+.dr-head{padding:16px 20px 12px;border-bottom:1px solid var(--line);position:relative}
+.dr-track{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--c,var(--red))}
+.dr-head h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;margin:4px 0 6px}
+.dr-salary{font-size:14px;font-weight:700;color:var(--red)}
+.dr-salary.own{color:#888}
+.dr-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:7px;
+  border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:16px;
+  color:var(--muted);display:grid;place-items:center;font-family:inherit}
+.dr-close:hover{color:var(--ink)}
+.dr-body{padding:14px 20px 28px;overflow-y:auto;flex:1}
+.dr-sec{margin-bottom:14px}
+.lab{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px;display:block}
+.dr-list{margin:3px 0 0;padding-left:15px}
+.dr-list li{font-size:12.5px;margin-bottom:4px;line-height:1.4}
+.lvl-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.lvl-tbl th{padding:5px 7px;text-align:left;font-size:9.5px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+.lvl-tbl td{padding:7px;vertical-align:top;border-bottom:1px solid var(--line)}
+.lvl-tbl tr:last-child td{border-bottom:none}
+.lvl-tbl .nm{font-weight:700;font-size:12.5px}
+.lvl-tbl .nm.top{color:var(--red)}
+.lvl-tbl .sal{font-weight:700;color:var(--red);white-space:nowrap}
+.lvl-tbl .tr-txt{font-size:11px;color:var(--muted);line-height:1.4}
+.dr-cond-list{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.dr-cond-item{background:rgba(255,255,255,.03);border-radius:8px;padding:8px 10px;border-left:2px solid var(--line)}
+.dr-cond-role{font-size:11.5px;font-weight:700;display:block}
+.dr-cond-txt{font-size:11px;color:var(--muted);line-height:1.4;margin-top:2px;display:block}
+.linklist{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.linkitem{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:8px;
+  padding:7px 10px;cursor:pointer;background:var(--card);font-size:12.5px;font-weight:600;
+  text-align:left;width:100%;color:var(--ink);transition:.12s;font-family:inherit}
+.linkitem:hover{border-color:var(--red);background:#1c1c1f}
+.linkitem .ar{color:var(--muted);margin-left:auto}
+.linkitem.bridge{border-style:dashed}
+.linkitem.eq-link{border-color:rgba(0,141,74,.4);background:rgba(0,141,74,.04)}
+.ltype{font-size:9px;background:rgba(255,255,255,.06);border-radius:4px;padding:1px 5px;color:var(--muted)}
+.note-box{background:rgba(0,141,74,.04);border:1px solid rgba(0,141,74,.25);border-radius:9px;padding:11px 13px;font-size:12.5px;line-height:1.55;margin-top:4px}
+.note-box b{color:var(--red)}
+.info-box{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:9px;padding:11px;font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:4px}
+.info-box b{color:var(--ink)}
+.draft{font-size:8.5px;font-weight:700;color:var(--red);background:var(--rs);border-radius:4px;padding:1px 4px;margin-left:3px}
+/* KPI Calc */
+.kpi-calc{margin-top:2px}
+.kc-lab{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 5px;display:block}
+.kc-levels{display:flex;gap:5px;flex-wrap:wrap}
+.kc-lvl{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:4px 10px;font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:.12s;font-family:inherit}
+.kc-lvl.on{background:var(--red);color:#fff;border-color:var(--red)}
+.kc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.kc-f{display:flex;flex-direction:column;gap:3px}
+.kc-f label{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.kc-f input{font-family:inherit;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%}
+.kc-toggle{display:flex;gap:5px}
+.kc-tg{flex:1;border:1px solid var(--line);background:var(--card);border-radius:7px;padding:6px;font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+.kc-tg.on{background:var(--line);color:var(--ink)}
+.kc-tg.good.on{background:rgba(0,180,80,.12);color:#00c864;border-color:rgba(0,180,80,.35)}
+.kc-res{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.kc-card{background:var(--card);border-radius:8px;padding:8px 9px;border:1px solid var(--line)}
+.kc-card .t{font-size:9.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.kc-card .v{font-size:16px;font-weight:800;font-family:'Bricolage Grotesque';margin-top:2px}
+.kc-card .r{font-size:9.5px;color:var(--muted);margin-top:2px}
+.kc-card.tot{background:var(--rs);border-color:rgba(0,141,74,.3)}
+.kc-card.tot .v{color:var(--red)}
+.kc-card.grand{grid-column:1/-1;background:rgba(255,255,255,.03)}
+.kc-table{width:100%;border-collapse:collapse;font-size:10.5px;margin-top:5px}
+.kc-table th,.kc-table td{padding:4px 5px;border-bottom:1px solid var(--line);text-align:center}
+.kc-table th{color:var(--muted);font-weight:700;font-size:10px}
+.kc-table td:first-child,.kc-table th:first-child{text-align:left}
+/* Settings panel (LEFT) */
+.sett-panel{position:fixed;top:0;left:0;height:100%;width:min(520px,96vw);background:var(--sur);z-index:55;
+  transform:translateX(-102%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+  box-shadow:6px 0 40px rgba(0,0,0,.9);display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.sett-panel.show{transform:translateX(0)}
+.sett-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.sett-head h3{margin:0;font-family:'Bricolage Grotesque';font-weight:800;font-size:18px}
+.sett-body{flex:1;overflow-y:auto;padding:16px 20px 20px}
+.sett-sec{margin-bottom:22px}
+.sett-title{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:12px;display:block}
+.sett-lvl-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sett-field{display:flex;flex-direction:column;gap:4px}
+.sett-field label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.sett-inp{font-family:inherit;font-size:13px;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:100%}
+.sett-inp:focus-visible{outline:2px solid var(--red);outline-offset:1px}
+/* Salary table */
+.sett-sal-wrap{overflow-x:auto;margin-top:4px}
+.sett-tbl{width:100%;border-collapse:collapse;font-size:11px;min-width:380px}
+.sett-tbl th{padding:5px 6px;font-size:9.5px;font-weight:700;color:var(--muted);text-align:center;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--sur)}
+.sett-tbl th:first-child{text-align:left}
+.sett-tbl td{padding:4px 4px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+.sett-tbl .rname{font-weight:600;font-size:11.5px;padding-left:4px;white-space:nowrap}
+.sett-tbl .empty{text-align:center;color:var(--line);font-size:14px}
+.sett-tbl .trk-row td{background:var(--card);font-size:9px;font-weight:700;
+  text-transform:uppercase;color:var(--muted);letter-spacing:.05em;padding:5px 6px}
+.sal-inp{font-family:inherit;font-size:12px;color:var(--ink);background:rgba(255,255,255,.05);
+  border:1px solid var(--line);border-radius:6px;padding:4px 5px;width:68px;text-align:center}
+.sal-inp:focus-visible{outline:2px solid var(--red);outline-offset:1px}
+/* KPI settings */
+.sett-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.sett-kpi-field{display:flex;flex-direction:column;gap:3px}
+.sett-kpi-field label{font-size:9.5px;color:var(--muted);font-weight:700}
+.sett-actions{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:8px;flex-shrink:0}
+.sett-actions button{flex:1}
+/* Footer */
+.footnote{margin-top:20px;font-size:11.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:13px}
+.legend{display:flex;gap:14px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:6px;font-size:11px}
+.legend i{width:14px;height:0;border-top:2px solid var(--muted);display:inline-block}
+.legend i.dash{border-top-style:dashed}
+.legend i.eq{border-top-width:3px;border-top-color:var(--red)}
+@media(max-width:640px){.wrap{padding:12px 10px 70px}.hdr-right{margin-left:0}
+  .field{flex:1 1 100%}.btns{width:100%}.btns button{flex:1}.step{flex:1 1 100%;max-width:100%}}
+
+.lgc-note-sm{font-size:10px;color:var(--muted);margin-bottom:8px;font-style:italic}
+/* Parallel rows */
+.par-row{display:flex;gap:4px;align-items:stretch}
+.par-col{flex:1;min-width:0;display:flex;flex-direction:column}
+.par-div{width:1px;background:var(--line);flex-shrink:0;align-self:stretch}
+.par-col .card{padding:6px 5px;flex:1}
+.par-col .cname{font-size:10px;word-break:break-word;line-height:1.3;white-space:normal}
+.par-col .csal{font-size:8.5px}
+.par-col .clvl{font-size:7px}
+.par-row-4 .par-col .cname{font-size:9.5px}
+/* Life goal calc */
+.lgc{margin-top:6px}
+.lgc-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.lgc-f{display:flex;flex-direction:column;gap:3px}
+.lgc-f label{font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.lgc-inp{font-family:inherit;font-size:13px;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%}
+.lgc-result{display:flex;flex-direction:column;gap:5px;margin-top:2px}
+.lgc-lvl-row{display:flex;align-items:center;gap:8px;padding:7px 10px;
+  background:rgba(255,255,255,.03);border-radius:8px;border-left:2px solid var(--line)}
+.lgc-lvl-row.top{border-left-color:var(--red);background:rgba(0,141,74,.04)}
+.lgc-lvl-nm{font-weight:700;font-size:12px;color:var(--ink);min-width:80px}
+.lgc-lvl-sal{font-size:11px;color:var(--muted);min-width:65px}
+.lgc-mos{font-size:13px;font-weight:700;color:var(--ink);margin-left:auto}
+.lgc-faster{font-size:10px;font-weight:700;color:#00c864;background:rgba(0,200,100,.1);
+  border-radius:999px;padding:1px 7px;margin-left:6px;white-space:nowrap}
+.lgc-msg{font-size:12px;color:var(--muted);margin-top:8px;padding:8px 10px;
+  background:rgba(0,141,74,.04);border-radius:8px;border-left:2px solid rgba(0,141,74,.3)}
+.lgc-msg b{color:var(--red)}
+.lgc-empty{font-size:12px;color:var(--muted);text-align:center;padding:12px}
+</style></head><body>
+<div class="wrap">
+<header class="top">
+  <img class="logo-img" src="data:image/png;base64,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" alt="Smartlife">
+  <div class="hdr-right">
+    <div id="tayinlov"></div>
+    <button class="sett-btn" id="openSett">⚙ Sozlamalar</button>
+  </div>
+</header>
+<div class="controls">
+  <div class="field"><label>Hozirgi lavozimingiz</label>
+    <select id="cur"><option value="">— tanlang (ixtiyoriy) —</option></select></div>
+  <div class="field"><label>Maqsad lavozim</label>
+    <select id="goal"><option value="">— tanlang —</option></select></div>
+  <div class="btns">
+    <button class="btn-primary" id="showBtn">Yo'lni ko'rsat</button>
+    <button class="btn-ghost" id="resetBtn">Tozalash</button>
+  </div>
+</div>
+<div id="pathSummary">
+  <p class="ps-title" id="psTitle"></p>
+  <p class="ps-note" id="psNote"></p>
+  <div class="steps" id="psSteps"></div>
+</div>
+<div class="map" id="map">
+  <div class="apex">
+    <div class="apex-hdr">
+      <span class="apex-badge">Hamkorlik · Big 4 modeli</span>
+      <div class="apex-sub">Maosh emas — ulush. Ishlaydi, tikadi, foydadan ham oladi.
+        Faqat extraordinary natija → taklif → Partner. Kompaniya yangi dokon ochishni
+        <b style="color:var(--red)">6 oy oldin</b> Dostigatorlarga e'lon qiladi.</div>
+    </div>
+    <div class="apex-cards" id="apexCards"></div>
+  </div>
+  <div class="map-scroll"><div class="tracks" id="tracks"></div></div>
+</div>
+<div class="footnote">
+  <div class="legend">
+    <span><i></i> O'sish</span>
+    <span><i class="dash"></i> Ko'prik</span>
+    <span><i class="eq"></i> Ulush yo'li</span>
+  </div>
+  <p style="margin-top:8px">Maoshlar oyiga $ (fixed). <b style="color:var(--red)">Front office (Savdo/CC/Marketing): 6 oyda natija bo'lmasa suhbat.</b>
+  Back office (Moliya/Undiruv/Tex): 12 oy. Daraja ko'tarilmasa — CEO + Do'kon rahbari suhbati. Sozlamalar: maosh va daraja nomlarini o'zgartirish mumkin.</p>
+</div>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"></aside>
+<div class="sett-panel" id="settPanel" aria-hidden="true">
+  <div class="sett-head">
+    <h3>⚙ Sozlamalar</h3>
+    <button class="dr-close" id="closeSett">&#215;</button>
+  </div>
+  <div class="sett-body">
+    <div class="sett-sec">
+      <span class="sett-title">Daraja nomlari</span>
+      <div class="sett-lvl-grid" id="settLvlNames"></div>
+    </div>
+    <div class="sett-sec">
+      <span class="sett-title">Oylik maoshlar ($, faqat raqam)</span>
+      <div class="sett-sal-wrap">
+        <table class="sett-tbl">
+          <thead><tr><th>Lavozim</th><th id="sh0"></th><th id="sh1"></th><th id="sh2"></th><th></th></tr></thead>
+          <tbody id="settSalBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sett-sec">
+      <span class="sett-title">KPI foizlari — Sotuvchi</span>
+      <div class="sett-kpi-grid" id="settKpi"></div>
+    </div>
+  </div>
+  <div class="sett-actions">
+    <button class="btn-primary" id="applySettBtn">Saqlash va qo'llash</button>
+    <button class="btn-ghost" id="resetSettBtn">Aslga qaytarish</button>
+  </div>
+</div>
+<script>
+const TRACKS={savdo:{name:"Savdo",c:"var(--t-savdo)"},moliya:{name:"Moliya",c:"var(--t-moliya)"},undiruv:{name:"Undiruv",c:"var(--t-undiruv)"},cc:{name:"Call center",c:"var(--t-cc)"},marketing:{name:"Marketing",c:"var(--t-marketing)"},ecommerce:{name:"E-commerce",c:"var(--t-tex)"}};
+const P={
+sotuvchi:{name:"Sotuvchi",track:"savdo",roleRank:1,kpi:true,salRange:"$200 — $350",jd:{mas:["Mijozlarga mahsulot taqdim etish, ehtiyojni aniqlab mos yechim taklif qilish","Naqd va muddatli savdoni togri rasmiylashtirish","Mijozning tolov qobiliyatini dastlabki baholash — sifatli portfel uchun","Aksessuar va qoshimcha mahsulotlarni sotish","Dokon savdo rejasiga shaxsiy hissa qoshish"],kon:["Muloqot va ishontirish","Mahsulot bilim","Muddatli savdo jarayoni","CRM va kassa"],kor:["Oylik jami sotuv","Erta-overdue ulushi","Aksessuar sotuvi","Konversiya"]},levels:[{name:"Junior",sal:"$200",salNum:200,salSuffix:"",trans:"Kirish darajasi — boshlangich tayyorgarlik va sinov muddatidan otish.",draft:false},{name:"Pro",sal:"$250",salNum:250,salSuffix:"",trans:"6 oy davomida kamida 2 marta shaxsiy plan 120%+ bajarish · o'rtacha 95%+ dan tushmasligi · portfeldan overdue 8% dan oshmasligi · Instagram + Telegram da kuniga 2+ story · inventar kamomadi yo'q.",draft:true},{name:"Dostigator",sal:"$350",salNum:350,salSuffix:"",trans:"Pro da 6 oy davomida shaxsiy plan 100%+ barqaror bajarish · kamida 1 Junior muvaffaqiyatli o'qitish · overdue 6% dan oshmasligi · kuniga 3+ story · inventar kamomadi yo'q · 2 hayot maqsadiga erishish (nikoh, mashina, 2–3 davlatga sayohat yoki Direktor bilan kelishilgan custom maqsad). Bu daraja Partner yo'lini ochadi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+team_lead:{name:"Team Lead",track:"savdo",roleRank:2,kpi:true,salRange:"$400 — $500",jd:{mas:["Yuqori shaxsiy savdo natijasini saqlab Dostigator standarti boyicha otnak bolish","Yangi sotuvchilarni organatish va mentorlik qilish","Dokon rahbariga savdo boyicha yordam berish"],kon:["Dostigator darajada savdo mahorati","Mentorlik va organatish","Namuna bolish"],kor:["Shaxsiy savdo natijasi","Mentee sotuvchilar rejaga chiqishi","Portfel sifati"]},levels:[{name:"Junior",sal:"$400",salNum:400,salSuffix:"",trans:"Sotuvchi Dostigator · barqaror natija · mentorlik qobiliyati bahosi · 5 mentee 3 oy o'rtacha 95%+ bo'lsa investitsiya yo'li ochiladi.",draft:true},{name:"Pro",sal:"$500",salNum:500,salSuffix:"",trans:"Team Lead Junior da 6 oy · shaxsiy plan 100% barqaror · kamida 3 mentee o'z planini 95%+ barqaror bajarishi · filialda inventar kamomadi yo'q.",draft:true}],eqNote:null,invNote:null,tlNote:"Team Lead o'z KPI dan tashqari mentee sotuvchilari yig'gan KPIning 5% ni qo'shimcha bonus sifatida oladi. Masalan: 3 ta mentee × $3 000 KPI = $9 000 → Team Lead +$450/oy. Mentee rejaga chiqmagan oy — shu mentee dan 0.",partnerNote:null,lateralNote:null},
+dokon_rahbari:{name:"Do'kon rahbari",track:"savdo",roleRank:3,kpi:true,salRange:"$400 — $1000",jd:{mas:["Dokon jamoasini boshqarish, xodimlarni ishga olish va rivojlantirish","Savdo, undiruv va xizmat korsatkichlari boyicha reja bajarish","Dokon P&L (foyda-zarar) uchun toliq javobgarlik","Tovar zaxirasi, kassa intizomi va operatsion jarayonlarni nazorat qilish","Muddatli portfel sifati va undiruvni nazorat qilish"],kon:["Jamoa boshqaruvi va motivatsiya","P&L va birlik iqtisodi","Tezkor qaror qabul qilish"],kor:["Dokon foydasi (FCM)","Reja bajarilishi","Portfel sifati / bad debt","Xodim aylanmasi"]},levels:[{name:"Junior",sal:"$400",salNum:400,salSuffix:"",trans:"Kirish — ko'p yo'ldan kelish mumkin, har yo'lda o'z sharti bor.",draft:false},{name:"Pro",sal:"$600",salNum:600,salSuffix:"",trans:"3 oy davomida: FCM ≥$20k · sotuv reja ≥95% · overdue ≤21% · aksesuar foyda ≥$3,500.",draft:true},{name:"Dostigator",sal:"$1000",salNum:1000,salSuffix:"",trans:"4 oy davomida: FCM ≥$28k · sotuv reja ≥98% · overdue ≤18% · aksesuar foyda ≥$4,500 · kamida 2 hayot maqsadiga erishish (nikoh, mashina, 2–3 davlatga sayohat yoki Direktor bilan kelishilgan custom maqsad). Bu daraja Partner yo'lini ochadi. Partner yo'li shu yerdan boshlanadi. Successor sharti: Regional Partnerga o'tishdan oldin o'rniga yangi Do'kon rahbarini tayyorlab o'tish shart.",draft:true}],eqNote:"Do'kon rahbari IKKI XIL ULUSH TIZIMI. 1) KAPITAL ULUSHI — pul tikishi bilan darhol boshlanadi. HECH QACHON to'xtatilmaydi — RP yoki ROP bo'lsa ham keladi. Bu mulk, lavozimga bog'liq emas. 2) BOSHQARUV ULUSHI — dokon oxirgi 3 oy o'rtacha sof foydasi $10k ga chiqqanda boshlanadi. Regional Partner bo'lganda to'xtaydi. MEXANIZM: Dostigator 12+ oy → kompaniya yangi dokon ochadi → $10k+ kapital tikadi (kapital ulushi darhol boshlanadi) → dokon 3 oy o'rtacha $10k sof foyda ko'rsatganda boshqaruv ulushi ham boshlanadi. SUCCESSOR SHARTI: o'rniga yangi Do'kon rahbari tayyorlab o'tish shart.",invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+regional_partner:{name:"Regional Partner",track:"savdo",roleRank:4,kpi:true,salRange:"$1500 — $1750",jd:{mas:["2–3 ta dokonni nazorat qilish, regional reja va P&L uchun javobgarlik","Har bir dokon rahbarini rivojlantirish va baholash","Yangi dokon ochilishini boshqarish va ishga tushirish","Tikkan kapitaliga nisbatan oylik foyda oladi"],kon:["Kop dokon boshqaruvi","Investor fikrlash","Rahbarlarni rivojlantirish"],kor:["Regional umumiy foyda","Har bir dokonning FCM","Ulushdan daromad"]},levels:[{name:"Junior",sal:"$1500",salNum:1500,salSuffix:"",trans:"Do'kon rahbari Dostigator 12+ oy + yangi dokon + $10k kapital tikish + o'rniga yangi Do'kon rahbari tayyorlab o'tish (successor sharti).",draft:true},{name:"Pro",sal:"$1750",salNum:1750,salSuffix:"",trans:"Regional Partner Junior 12 oy · barcha do'kon 6 oy o'rtacha 95%+ bajarishi · region FCM 50% o'sish · kamida 1 yangilik joriy qilish · successor (yangi DR) tayyorlab o'tish. Kapital ulushi (tikkan puldan) davom etadi. Boshqaruv ulushi: qo'l ostidagi dokonlardan.",draft:true}],eqNote:"REGIONAL PARTNER ULUSH: Kapital ulushi (tikkan pul) — hech qachon to'xtatilmaydi. Boshqaruv ulushi (qo'l ostidagi dokonlar uchun) — ROP bo'lganda to'xtaydi. SUCCESSOR SHARTI: ROPga o'tishdan oldin o'rniga yangi Regional Partner tayyorlab o'tish shart.",invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+rop:{name:"ROP",track:"savdo",roleRank:5,kpi:true,salRange:"$2000 — $2200",jd:{mas:["Mintaqa boylab savdo strategiyasini ishlab chiqish va joriy etish","Regional Partnerlar faoliyatini boshqarish va baholash","Yangi mintaqalar va bozorlarni ochirishni rejalashtirish"],kon:["Keng miqyosda strategik boshqaruv","Savdo analitikasi","Rahbarlarni rivojlantirish"],kor:["Mintaqa boylab umumiy sotuv va foyda","Regional Partnerlar natijasi","Kengayish"]},levels:[{name:"Junior",sal:"$2000",salNum:2000,salSuffix:"",trans:"Regional Partner Pro 12 oy · region barqaror o\'sishda · qo\'shimcha foyda taklifi tayyorlangan · o\'rniga yangi Regional Partner tayyorlab o\'tish (successor sharti).",draft:true},{name:"Pro",sal:"$2200",salNum:2200,salSuffix:"",trans:"ROP Junior 12 oy · barcha regionlar 95%+ · kamida 1 yangi yo'nalish muvaffaqiyatli ishga tushirilgan · successor (yangi RP) tayyorlangan. Kapital ulushi barcha tikkan pullardan davom etadi. RP boshqaruv ulushi to\'xtaydi, yangi yo\'nalish ulushi boshlanadi.",draft:true}],eqNote:"ROP ULUSH TIZIMI: KAPITAL ULUSHI (barcha tikkan pullardan) — hech qachon to'xtatilmaydi. RP BOSHQARUV ULUSHI — to'xtaydi (endi Regional Partner boshqaradi). YANGI YO'NALISH ULUSHI — ROP sifatida yangi mahsulot/yo'nalish keltirgan qo'shimcha foydadan oladi, bu saqlanadi.",invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+kassir:{name:"Kassir",track:"moliya",roleRank:1,kpi:true,salRange:"$350 — $380",jd:{mas:["Kassa operatsiyalari: naqd va muddatli tolovlarni qabul qilish va rasmiylashtirish","Kunlik kassa hisoboti va inkassatsiya","Kassa intizomi va xatosiz balansni taminlash"],kon:["Aniqlik va intizom","Kassa va moliyaviy dasturda ishlash","Hujjat yuritish"],kor:["Kassa aniqligi — kamomadsiz","Hisobot oz vaqtida","Xizmat tezligi"]},levels:[{name:"Junior",sal:"$350",salNum:350,salSuffix:"",trans:"Kirish darajasi — kassa intizomi tayyorgarligi va sinov muddati.",draft:false},{name:"Pro",sal:"$380",salNum:380,salSuffix:"",trans:"Junior da 12 oy xatosiz ish. Keyin 2 yo'l: Analitik (tahlil) yoki Bosh kassir (operatsiya).",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+analitik:{name:"Analitik",track:"moliya",roleRank:2,kpi:true,salRange:"$500 — $650",jd:{mas:["Moliyaviy modellar, P&L va birlik iqtisodi tahlili","KPI va korsatkichlarni hisoblash, dashboard va hisobotlar tayyorlash","Byudjet va prognozlash, ogishlarni tahlil qilish"],kon:["Moliyaviy modellashtirish","Analitika va biznes mantiq","Excel / Sheets / SQL"],kor:["Tahlil aniqligi va oz vaqtidaligi","Prognoz xatosi","Qaror foydalilik bahosi"]},levels:[{name:"Junior",sal:"$500",salNum:500,salSuffix:"",trans:"Kassir Pro dan — tahlil yo'li. 12 oy + analitik qobiliyat namunasi.",draft:true},{name:"Pro",sal:"$650",salNum:650,salSuffix:"",trans:"Analitik Junior 12 oy + moliyaviy modellarni mustaqil yuritish.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+bosh_kassir:{name:"Bosh kassir",track:"moliya",roleRank:2,kpi:true,salRange:"$500 — $550",jd:{mas:["Kassirlar jamoasini va kunlik xazina oqimini boshqarish","Filiallar boylab naqd oqimni muvofiqlashtirish va nazorat qilish"],kon:["Xazina boshqaruvi","Jamoa boshqaruvi","Nazorat va hisobot"],kor:["Umumiy kassa aniqligi","Naqd oqim uzluksizligi","Kamomad darajasi"]},levels:[{name:"Junior",sal:"$500",salNum:500,salSuffix:"",trans:"Kassir Pro dan — operatsion yo'l. 12 oy + jamoani boshqarish tajribasi.",draft:false},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"Bosh kassir Junior 12 oy + filiallararo xazina boshqaruvida isbotlangan.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+finansist:{name:"Finansist",track:"moliya",roleRank:3,kpi:true,salRange:"$700 — $800",jd:{mas:["Tolovlar, hisob-kitoblar va bank operatsiyalarini yuritish","Debitorlik va kreditorlikni nazorat qilish, solishtirma (reconciliation)"],kon:["Buxgalteriya va moliya asoslari","Soliq qonunchiligi","Excel / 1C"],kor:["Hisobot torgiliqi","Reconciliation farqlari","Muddatlarga rioya"]},levels:[{name:"Junior",sal:"$700",salNum:700,salSuffix:"",trans:"Analitik Pro yoki Bosh kassir Pro dan — ikki yo'l birga qo'shiladi.",draft:true},{name:"Pro",sal:"$800",salNum:800,salSuffix:"",trans:"Finansist Junior 12 oy + mustaqil hisobot va solishtirmalar xatosiz.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+cfo:{name:"CFO",track:"moliya",roleRank:4,kpi:true,salRange:"$1000",jd:{mas:["Kompaniyaning moliyaviy strategiyasini ishlab chiqish va amalga oshirish","Barcha moliyaviy hisobot, audit va byudjet jarayonlarini nazorat qilish","Tavakkalchilik boshqaruvi va moliyaviy intizomni taminlash"],kon:["Korporativ moliya va strategiya","Buxgalteriya va audit","Rahbarlik va muloqot"],kor:["Kompaniya rentabelligi","Moliyaviy hisobot sifati","Xarajat nazorati"]},levels:[{name:"CFO",sal:"$1000",salNum:1000,salSuffix:"",trans:"Finansist Pro dan taklif. Partner yo'li: kompaniya profit-pool, CEO nazoratida.",draft:false}],eqNote:null,invNote:null,tlNote:null,partnerNote:"CFO uchun Dostigator darajasi yo'q — lekin Partner bo'lish uchun hayot maqsadlari sharti baribir amal qiladi: kamida 2 maqsad (nikoh, mashina, sayohat). Partner yo'li: kompaniya foydasi profit-pool, CEO nazoratida. Foydani CFO o'zi hisoblaydi — shuning uchun tashqi tasdiqlash (CEO nazorati) majburiy.",lateralNote:null},
+unduruvchi:{name:"Unduruvchi",track:"undiruv",roleRank:1,kpi:true,salRange:"$250 — $275",jd:{mas:["Muddati kelgan tolovlarni eslatish va undirish — erta bosqich, past DPD","Mijoz bilan tolov jadvali boyicha aloqa qilish"],kon:["Muloqot va sabr","Qatiyat va muzokara","CRM da ishlash"],kor:["Erta DPD undiruv foizi","Undirilgan summa","Aloqa sifati"]},levels:[{name:"Junior",sal:"$250",salNum:250,salSuffix:"",trans:"Kirish darajasi.",draft:false},{name:"Pro",sal:"$275",salNum:275,salSuffix:"",trans:"Junior da 6 oy + erta DPD undiruv rejasi 95%+ barqaror.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+kollektor:{name:"Kollektor",track:"undiruv",roleRank:2,kpi:true,salRange:"$500 — $550",jd:{mas:["Murakkab va kechikkan qarzlarni undirish — yuqori DPD","Dala ishi, qayta tuzilgan tolov rejalari, huquqiy jarayonga tayyorlash"],kon:["Yuqori darajali muzokara","Huquqiy asoslar","Bosim ostida samarali ishlash"],kor:["Yuqori DPD undiruv foizi","Qaytarilgan summa","Huquqiy keyslar natijasi"]},levels:[{name:"Junior",sal:"$500",salNum:500,salSuffix:"",trans:"Unduruvchi Pro 6 oy + undiruv samaradorligi korsatkichi.",draft:false},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"Kollektor Junior 6 oy + yuqori DPD boyicha barqaror yuqori natija.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+undiruv_rahbar:{name:"Undiruv rahbari",track:"undiruv",roleRank:3,kpi:true,salRange:"$700 — $800",jd:{mas:["Undiruv bolimini boshqarish, strategiya va jarayonni belgilash","Portfel sifati va bad debt darajasini nazorat qilish","Kollektor va unduruvchilarni rivojlantirish va baholash"],kon:["Bolim boshqaruvi","Undiruv strategiyasi","Analitika","Huquq asoslari"],kor:["Umumiy undiruv foizi","Bad debt darajasi","DPD migratsiya","Jamoa natijasi"]},levels:[{name:"Junior",sal:"$700",salNum:700,salSuffix:"",trans:"Kollektor Pro 6 oy + jamoa boshqaruvi bahosi.",draft:true},{name:"Pro",sal:"$800",salNum:800,salSuffix:"",trans:"Undiruv rahbari Junior 6 oy + bolim korsatkichlarini barqaror yaxshilash.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+cc_operator:{name:"CC operatori",track:"cc",roleRank:1,kpi:true,salRange:"$200 — $350",jd:{mas:["Mijoz qongiroqlarini qabul qilish va sorovlarni hal qilish","Skript boyicha sotuvga yordam berish va leadlarni malakalashtirish"],kon:["Silliq muloqot va tinglovchilik","Skript boyicha ishlay olish","CRM"],kor:["Qongiroq sifati (QA ball)","Konversiya","Javob vaqti"]},levels:[{name:"Junior",sal:"$250",salNum:250,salSuffix:"",trans:"Kirish darajasi.",draft:false},{name:"Pro",sal:"$265",salNum:265,salSuffix:"",trans:"Sotuvchi Pro+ tajribasi bilan kirish · yoki CC Junior 6 oy, konversiya rejasi 80%+.",draft:true},{name:"Dostigator",sal:"$285",salNum:285,salSuffix:"",trans:"Sotuvchi Dostigator tajribasi bilan kirish · yoki CC Pro 6 oy, konversiya rejasi 90%+. · Kamida 2 hayot maqsadiga erishish (nikoh, mashina, 2–3 davlatga sayohat yoki Direktor bilan kelishilgan custom maqsad). Bu daraja Partner yo'lini ochadi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+cc_teamlead:{name:"CC Team Lead",track:"cc",roleRank:2,kpi:true,salRange:"$400 — $500",jd:{mas:["CC operatorlari ichida yuqori shaxsiy natijani saqlab otnak bolish","Yangi operatorlarni organatish va qongiroq sifatini oshirish"],kon:["Dostigator darajada qongiroq mahorati","Mentorlik","Standart organatish"],kor:["Shaxsiy konversiya","Mentee operatorlar natijasi","Qongiroq sifati"]},levels:[{name:"Junior",sal:"$300",salNum:300,salSuffix:"",trans:"CC operatori Dostigator 6 oy + mentorlik qobiliyati bahosi.",draft:true},{name:"Pro",sal:"$325",salNum:325,salSuffix:"",trans:"CC Team Lead Junior 6 oy + kamida 2 mentee operator natijasi barqaror.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+cc_rahbar:{name:"CC rahbar",track:"cc",roleRank:3,kpi:true,salRange:"$500 — $550",jd:{mas:["Call center jamoasini boshqarish, smena va yuklamani rejalashtirish","Xizmat sifatini (QA), skript va konversiyani nazorat qilish","Operatorlarni organatish, rivojlantirish va baholash"],kon:["Jamoa boshqaruvi","QA va sifat nazorati","Analitika","Treyning"],kor:["Jamoa konversiya darajasi","Xizmat sifati (QA ball)","Javob vaqti"]},levels:[{name:"Junior",sal:"$500",salNum:500,salSuffix:"",trans:"CC operatori Dostigator yoki CC Team Lead Pro + 6 oy + vakansiya.",draft:true},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"CC rahbar Junior 6 oy + CC bo'limi savdo plani 6 oy 95%+ ketma-ket.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+videograf:{name:"Videograf",track:"marketing",roleRank:1,kpi:true,salRange:"$400 — $550",jd:{mas:["Mahsulot va kampaniyalar uchun video kontent yaratish","Montaj, post-prodakshn va kanal uchun optimallashtirish"],kon:["Video prodakshn (shooting, editing)","Adobe Premiere / CapCut","Vizual fikrlash"],kor:["Video ko'rishlar va engagement","Kontent delivery muddati","Konversiya ta'siri"]},levels:[{name:"Junior",sal:"$400",salNum:400,salSuffix:"",trans:"Kirish darajasi — texnik ko'nikmalar va birinchi kampaniya.",draft:false},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"Junior 6 oy + kamida 1 muvaffaqiyatli kampaniya + barqaror delivery.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"Videograf, Targetolog, SMM menejer va Brand Face bir xil darajada — ular o'rtasida lateral o'tish mumkin (biri-biriga). Marketologga o'tish uchun istalgan spetsializatsiyadan kelsa bo'ladi."},
+targetolog:{name:"Targetolog",track:"marketing",roleRank:1,kpi:true,salRange:"$400 — $550",jd:{mas:["Digital kanallar uchun targetlangan reklama kampaniyalari","Auditoriya segmentatsiyasi, A/B test va optimizatsiya"],kon:["Meta Ads / Google Ads","Auditoriya tahlili","A/B testing"],kor:["ROAS","CAC","Lead soni va sifati"]},levels:[{name:"Junior",sal:"$400",salNum:400,salSuffix:"",trans:"Kirish darajasi — reklama kabineti va birinchi kampaniyalar.",draft:false},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"Junior 6 oy + ROAS va CAC korsatkichlari barqaror yaxshi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"Videograf, Targetolog, SMM menejer va Brand Face bir xil darajada — lateral o'tish mumkin. Marketologga istalgan spetsializatsiyadan o'tsa bo'ladi."},
+smm_menejer:{name:"SMM menejer",track:"marketing",roleRank:1,kpi:true,salRange:"$400 — $550",jd:{mas:["Ijtimoiy tarmoq sahifalarini boshqarish va kontent rejalashtirish","Hamjamiyat bilan muloqot va brendni rivojlantirish"],kon:["Kontent strategiyasi","Instagram, Telegram","Kreativlik"],kor:["Follower o'sishi","Engagement rate","Brend mention soni"]},levels:[{name:"Junior",sal:"$400",salNum:400,salSuffix:"",trans:"Kirish darajasi — kanal boshqaruvi va kontent taqvimi.",draft:false},{name:"Pro",sal:"$550",salNum:550,salSuffix:"",trans:"Junior 6 oy + follower o'sishi va engagement barqaror yaxshi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"Videograf, Targetolog, SMM menejer va Brand Face bir xil darajada — lateral o'tish mumkin. Marketologga istalgan spetsializatsiyadan o'tsa bo'ladi."},
+brand_face:{name:"Brand Face",track:"marketing",roleRank:1,kpi:true,isNew:true,salRange:"$300 — $450",jd:{mas:["Kompaniya brendini yuzida ifodalash — reklama roliklarida, poster va SMM kontentda qatnashish","Brendga muvofiqligi va tasviri orqali Smartlife qiymatlarini aks ettirish","Marketing jamoasi bilan hamkorlikda kontent yaratish"],kon:["Kommunikatsion ko'nikmalar","Brendga moslik","Kamera va sahnada erkin his qilish"],kor:["Kontent engagement","Brend tasvirini saqlash","Kampaniya ta'sirchanligiga hissa"]},levels:[{name:"Junior",sal:"$300",salNum:300,salSuffix:"",trans:"Kirish darajasi — brendga mos ekanligini isbotlash va birinchi kontentlarda qatnashish.",draft:false},{name:"Pro",sal:"$450",salNum:450,salSuffix:"",trans:"Junior 6 oy + barqaror kontent sifati + brend standartlariga muvofiqligi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"Brand Face, Videograf, Targetolog va SMM menejer bir xil darajada — lateral o'tish mumkin. Marketologga istalgan yo'ldan o'tsa bo'ladi."},
+marketolog:{name:"Marketolog",track:"marketing",roleRank:2,kpi:true,salRange:"$700 — $1100",jd:{mas:["Marketing strategiyasini ishlab chiqish va byudjetni boshqarish","Barcha kanallarni (video, target, SMM) muvofiqlashtirish","Savdo va boshqa bolimlar bilan hamkorlikni taminlash"],kon:["Marketing strategiyasi","Jamoa boshqaruvi","Analitika va prognozlash"],kor:["Umumiy marketing ROI","Lead sifati va konversiya","Brend korsatkichlari"]},levels:[{name:"Junior",sal:"$700",salNum:700,salSuffix:"",trans:"Videograf/Targetolog/SMM Pro 6 oy + strategik ko'nikma + baho ≥ 3/5.",draft:true},{name:"Pro",sal:"$900",salNum:900,salSuffix:"",trans:"Marketolog Junior 6 oy + ROI va jamoa natijalarida isbotlangan + baho ≥ 3/5.",draft:true},{name:"Dostigator",sal:"$1100",salNum:1100,salSuffix:"",trans:"Pro 6 oy + kanallar kompleks boshqaruvi + baho ≥ 4/5. · Kamida 2 hayot maqsadiga erishish (nikoh, mashina, 2–3 davlatga sayohat yoki Direktor bilan kelishilgan custom maqsad). Bu daraja Partner yo'lini ochadi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:null},
+cmo:{name:"CMO",track:"marketing",roleRank:3,kpi:true,salRange:"$1500",jd:{mas:["Kompaniya marketing va brend strategiyasini belgilash","Barcha kanallar va kampaniyalarni nazorat qilish"],kon:["Korporativ marketing","Brend boshqaruvi","C-level muloqot"],kor:["Umumiy CAC va CLV","Brend tanilish","Marketing kanali ROI"]},levels:[{name:"CMO",sal:"$1500",salNum:1500,salSuffix:"",trans:"Marketolog Dostigator dan taklif. Baho: CFO + CEO. Partner yo'li ochiq.",draft:false}],eqNote:null,invNote:null,tlNote:null,partnerNote:"CMO uchun Dostigator darajasi yo'q — lekin Partner bo'lish uchun hayot maqsadlari sharti baribir amal qiladi: kamida 2 maqsad (nikoh, mashina, sayohat). Partner yo'li: kompaniya foydasi profit-pool, CEO nazoratida.",lateralNote:null},
+dasturchi:{name:"Dasturchi",track:"ecommerce",roleRank:1,kpi:false,salRange:"$650 — $1000",jd:{mas:["Smartlife platformasi va botlarini ishlab chiqish va qollab-quvvatlash","Yangi funksiyalar va integratsiyalar — Supabase, Telegram, Claude API","Xatolarni tuzatish, barqarorlik va xavfsizlikni taminlash"],kon:["Full-stack / JavaScript","Malumotlar bazasi va API","Muammoni mustaqil hal qilish"],kor:["Loyiha oz vaqtida yetkazilishi","Kod barqarorligi","Biznesga texnik tasir"]},levels:[{name:"Junior",sal:"$650",salNum:650,salSuffix:"",trans:"Kirish darajasi. Baho: CFO + CEO, choraklik. O'rtacha baho < 3 → suhbat.",draft:false},{name:"Pro",sal:"$800",salNum:800,salSuffix:"",trans:"Junior 12 oy + mustaqil topshiriqlar sifatli + o'rtacha baho ≥ 3/5.",draft:true},{name:"Dostigator",sal:"$1000",salNum:1000,salSuffix:"",trans:"Pro 12 oy + murakkab modullar mustaqil + o'rtacha baho ≥ 4/5. · Kamida 2 hayot maqsadiga erishish (nikoh, mashina, 2–3 davlatga sayohat yoki Direktor bilan kelishilgan custom maqsad). Bu daraja Partner yo'lini ochadi.",draft:true}],eqNote:null,invNote:"Standart Partner yo'li yo'q. Maxsus yo'l: kompaniyaga oyiga $5k+ qo'shimcha foyda keltiradigan innovatsiya taklif va realizatsiya qiladi → amalga oshgani isbotlangach → shaxsiy kapital tikish huquqi → o'sha innovatsiyadan keladigan qo'shimcha foydaning ~15% royalty. Baholash: CFO + CEO, choraklik, yozma, xodim imzolaydi.",tlNote:null,partnerNote:null,lateralNote:null},
+ec_junior:{name:"EC Junior",track:"ecommerce",roleRank:1,kpi:false,salRange:"$300 — $450",jd:{mas:["E-commerce bo'limi uchun umumiy yordamchi funksiyalarni bajarish","Online savdo yoki texnik yo'nalish bo'yicha asosiy ko'nikmalarni o'rganish","Rahbar ko'rsatmasi ostida loyihalarda qatnashish"],kon:["Ijobiy munosabat","O'rganishga tayyor","Kompyuter savodxonligi"],kor:["Vazifalarni o'z vaqtida bajarish","O'rganish tezligi","Rahbardan ijobiy baho"]},levels:[{name:"Junior",sal:"$300",salNum:300,salSuffix:"",trans:"Kirish darajasi — yo'nalish tanlash va asosiy ko'nikmalarni egallash.",draft:false},{name:"Pro",sal:"$450",salNum:450,salSuffix:"",trans:"Junior 12 oy + yo'nalish aniqlanib, Online Savdo yoki Dasturchi sifatida o'tish.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"12 oy ichida Online Savdo Menejer yoki Dasturchi yo'nalishini tanlaydi."},
+online_savdo:{name:"Online Savdo",track:"ecommerce",roleRank:2,kpi:true,salRange:"$500 — $900",jd:{mas:["Online kanallar orqali savdoni boshqarish (website, Telegram, Instagram)","Mijozlar bilan onlayn muloqot va bitim yopish","Reklama kampaniyalari bilan hamkorlikda savdo oqimini oshirish","Buyurtmalar, yetkazib berish va qaytarishlarni nazorat qilish"],kon:["Savdo ko'nikmalari","Onlayn marketing asoslari","CRM tizimlarini bilish"],kor:["Oylik online sotuv hajmi","Konversiya foizi","Mijoz qaytish ko'rsatkichi"]},levels:[{name:"Junior",sal:"$500",salNum:500,salSuffix:"",trans:"EC Junior Pro + online savdo bo'yicha asosiy ko'nikmalar.",draft:false},{name:"Pro",sal:"$700",salNum:700,salSuffix:"",trans:"Junior 12 oy + oylik online sotuv rejasi barqaror bajarilishi.",draft:true},{name:"Dostigator",sal:"$900",salNum:900,salSuffix:"",trans:"Pro 12 oy + onlayn kanal bo'yicha natijalar va hayot maqsadi.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:null,lateralNote:"Dasturchi bilan lateral o'tish mumkin. E-commerce rahbarlik uchun Dostigator darajasi shart."},
+ec_rahbar:{name:"E-commerce Rahbari",track:"ecommerce",roleRank:3,kpi:true,salRange:"$1 200 — $2 000",jd:{mas:["E-commerce bo'limini strategik boshqarish","Online savdo va texnik rivojlanish yo'nalishlarini muvofiqlashtirish","Yangi online kanallar va mahsulotlar qo'shish","Savdo, marketing va texnik jamoa bilan hamkorlik"],kon:["E-commerce strategiyasi","Jamoani boshqarish","Tahlil va KPI nazorati"],kor:["Online savdo o'sishi","Bo'lim rentabelligi","Kanal diversifikatsiyasi"]},levels:[{name:"Junior",sal:"$1200",salNum:1200,salSuffix:"",trans:"Online Savdo Dostigator yoki Dasturchi (senior) + bo'lim natijalariga mas'uliyat olish.",draft:true},{name:"Pro",sal:"$1500",salNum:1500,salSuffix:"",trans:"E-commerce rahbari Junior 12 oy + bo'lim barqaror o'sishi.",draft:true},{name:"Dostigator",sal:"$2000",salNum:2000,salSuffix:"",trans:"Pro 12 oy + bo'lim strategik natijalar isbotlangan.",draft:true}],eqNote:null,invNote:null,tlNote:null,partnerNote:"E-commerce rahbari Dostigator darajasida Partner yo'li ochiladi — CFO/CMO kabi kompaniya foydasidan ulush modeli.",lateralNote:null}
+};
+const E=[
+["sotuvchi","team_lead","promo"],
+["sotuvchi","dokon_rahbari","promo"],
+["team_lead","dokon_rahbari","bridge"],
+["dokon_rahbari","regional_partner","equity"],
+["regional_partner","rop","promo"],
+["kassir","analitik","promo"],
+["kassir","bosh_kassir","promo"],
+["analitik","finansist","promo"],
+["bosh_kassir","finansist","promo"],
+["finansist","cfo","promo"],
+["kassir","dokon_rahbari","bridge"],
+["kassir","unduruvchi","bridge"],
+["unduruvchi","dokon_rahbari","bridge"],
+["kollektor","dokon_rahbari","bridge"],
+["undiruv_rahbar","dokon_rahbari","bridge"],
+["cc_rahbar","dokon_rahbari","bridge"],
+["unduruvchi","kollektor","promo"],
+["kollektor","undiruv_rahbar","promo"],
+["cc_operator","cc_teamlead","promo"],
+["cc_operator","cc_rahbar","promo"],
+["cc_teamlead","cc_rahbar","bridge"],
+["sotuvchi","cc_operator","lateral"],
+["videograf","targetolog","lateral"],
+["targetolog","videograf","lateral"],
+["targetolog","smm_menejer","lateral"],
+["smm_menejer","targetolog","lateral"],
+["videograf","smm_menejer","lateral"],
+["smm_menejer","videograf","lateral"],
+["videograf","marketolog","promo"],
+["targetolog","marketolog","promo"],
+["smm_menejer","brand_face","marketolog","promo"],
+["marketolog","cmo","promo"],
+["regional_partner","partner","capital"],
+["rop","partner","capital"],
+["cfo","partner","capital"],
+["brand_face","marketolog","promo"],
+["brand_face","videograf","lateral"],["videograf","brand_face","lateral"],
+["brand_face","targetolog","lateral"],["targetolog","brand_face","lateral"],
+["brand_face","smm_menejer","lateral"],["smm_menejer","brand_face","lateral"],
+["ec_junior","online_savdo","promo"],["ec_junior","dasturchi","promo"],
+["online_savdo","ec_rahbar","promo"],["dasturchi","ec_rahbar","promo"],
+["online_savdo","dasturchi","lateral"],["dasturchi","online_savdo","lateral"],
+["ec_rahbar","partner","capital"],
+["cmo","partner","capital"],
+];
+const DR_COND=[
+["sotuvchi","Sotuvchi Dostigator · Shaxsiy sotuv filial planining 70%+ ni tashkil qilgan 12 oy"],
+["team_lead","Team Lead Pro · mentee-lar rejada · 12 oy"],
+["kassir","Kassir Pro · $1 500/oy aksessuar+referral × 3 oy ketma-ket · 12 oy 0 kamomad · 1 Kassir o'qitgan · P&L test"],
+["kollektor","Kollektor Pro only · Oylik sotuv $70k+ × 3 oy ketma-ket · Shu vaqtda undiruv rejasi 95%+ · P&L test"],
+["unduruvchi","Unduruvchi Pro only · Oylik sotuv $70k+ × 3 oy ketma-ket · Shu vaqtda undiruv rejasi 95%+ · P&L test"],
+["undiruv_rahbar","Undiruv rahbari Pro · Jamoa qayta sotuv+undiruv plani 6 oy: o'rtacha 95%+, hech kim 80% pastga tushmagan · P&L test"],
+["cc_rahbar","CC rahbar Pro · CC savdo plani 6 oy 95%+ ketma-ket · P&L test"]
+];
+const TRACK_LAYOUT={"savdo": ["rop", "regional_partner", "dokon_rahbari", "team_lead", "sotuvchi"], "moliya": ["cfo", "finansist", ["analitik", "bosh_kassir"], "kassir"], "undiruv": ["undiruv_rahbar", "kollektor", "unduruvchi"], "cc": ["cc_rahbar", "cc_teamlead", "cc_operator"], "marketing": ["cmo", "marketolog", ["videograf", "targetolog", "smm_menejer", "brand_face"]], "ecommerce": ["ec_rahbar", ["online_savdo", "dasturchi"], "ec_junior"]};
+const ROLE_ORDER=["sotuvchi", "team_lead", "dokon_rahbari", "regional_partner", "rop", "kassir", "analitik", "bosh_kassir", "finansist", "cfo", "unduruvchi", "kollektor", "undiruv_rahbar", "cc_operator", "cc_teamlead", "cc_rahbar", "videograf", "targetolog", "smm_menejer", "brand_face", "marketolog", "cmo", "ec_junior", "online_savdo", "dasturchi", "ec_rahbar"];
+const SAL_DEFAULTS={"sotuvchi": [200, 250, 350], "team_lead": [400, 500], "dokon_rahbari": [400, 600, 1000], "regional_partner": [1500, 1750], "rop": [2000, 2200], "kassir": [350, 380], "analitik": [500, 650], "bosh_kassir": [500, 550], "finansist": [700, 800], "cfo": [1000], "unduruvchi": [250, 275], "kollektor": [500, 550], "undiruv_rahbar": [700, 800], "cc_operator": [250, 265, 285], "cc_teamlead": [300, 325], "cc_rahbar": [500, 550], "videograf": [400, 550], "targetolog": [400, 550], "smm_menejer": [400, 550], "brand_face": [300, 450], "marketolog": [700, 900, 1100], "cmo": [1500], "dasturchi": [650, 800, 1000], "ec_junior": [300, 450], "online_savdo": [500, 700, 900], "ec_rahbar": [1200, 1500, 2000]};
+const OWN={
+  partner:{name:"Partner",sal:"Ish haqi + ulushdan foyda",isOwn:true,
+    desc:"Big 4 modeli. Ishlaydi VA hissador. Daromad = oylik maosh + tikkan kapitaliga nisbatan oylik foyda. Faqat extraordinary natija → kompaniya taklifi.",
+    req:"Do'kon rahbari/CFO/CMO Dostigator darajasida 12+ oy · Kamida 2 hayot maqsadi · Kompaniya taklifi · $10 000 kapital tikish · Filial yopilsa — kapital to'liq qaytariladi."},
+};
+const APPOINT={ceo:{name:"CEO",sal:"$2 500",note:"Bosh direktor — tayinlov / egalik lavozimi."}};
+const ALL=Object.assign({},P,OWN);
+const adj={},radj={};
+E.forEach(([a,b])=>{(adj[a]=adj[a]||[]).push(b);(radj[b]=radj[b]||[]).push(a);});
+const tCol=id=>P[id]?TRACKS[P[id].track]?.c||'#555':'#555';
+
+// ── SETTINGS ─────────────────────────────────────────────────────────────────
+const BAND_LABELS=['$0–25k','$25–40k','$40–60k','$60–80k','$80–100k','$100k+'];
+let S={};
+function defaultS(){return{lvlNames:['Junior','Pro','Dostigator'],
+  salaries:JSON.parse(JSON.stringify(SAL_DEFAULTS)),
+  kpiBase:[0.20,0.25,0.30,0.35,0.40,0.50],kpiInc:[0,0.05,0.10,0.15],
+  kpiSpread:0.05,kpiBonus:0.10,kpiAcc:5};}
+function loadS(){try{const v=localStorage.getItem('sl_s5c');S=v?JSON.parse(v):defaultS();}catch{S=defaultS();}}
+function saveS(){try{localStorage.setItem('sl_s5c',JSON.stringify(S));}catch{}}
+function getLvl(i){return S.lvlNames[i]||`Daraja ${i+1}`;}
+function fmtN(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+function getSal(roleId,li){
+  const num=S.salaries[roleId]?.[li]??0,suf=P[roleId]?.levels[li]?.salSuffix||'';
+  return num?'$'+fmtN(num)+(suf?' '+suf:''):'—';}
+function getSalRange(roleId){
+  const lvs=P[roleId].levels;
+  return lvs.length===1?getSal(roleId,0):getSal(roleId,0)+' — '+getSal(roleId,lvs.length-1);}
+function syncSK(){
+  SK.bands.forEach((b,i)=>b.b=S.kpiBase[i]||b.b);
+  Object.assign(SK.inc,{Junior:S.kpiInc[0]||0,Pro:S.kpiInc[1]||0.05,Dostigator:S.kpiInc[2]||0.10,TL:S.kpiInc[3]||0.15});
+  SK.spread=S.kpiSpread||0.05;SK.bonus=S.kpiBonus||0.10;SK.acc=S.kpiAcc||5;}
+
+// ── Life goal calc ────────────────────────────────────────────────────────────
+function loadGoal(roleId){
+  try{const g=JSON.parse(localStorage.getItem('sl_goals')||'{}');return g[roleId]||{name:'',goal:'',pct:30,kpi:''};}catch{return{name:'',goal:'',pct:30,kpi:''};}}
+function saveGoal(roleId,name,goal,pct,kpi){
+  try{const g=JSON.parse(localStorage.getItem('sl_goals')||'{}');g[roleId]={name,goal,pct,kpi};localStorage.setItem('sl_goals',JSON.stringify(g));}catch{}}
+function lgcHtml(roleId){
+  const saved=loadGoal(roleId);
+  const d=P[roleId];
+  const fo=['savdo','cc','marketing','undiruv'].includes(d?.track);
+  const minMosNote=roleId==='regional_partner'||roleId==='rop'?'Har darajada kamida 12 oy':fo?'Har darajada kamida 6 oy':'Har darajada kamida 12 oy';
+  return `<div class="dr-sec"><span class="lab">🎯 Hayot maqsadi kalkulyatori</span>
+  <div class="lgc">
+    <div class="lgc-f" style="margin-bottom:8px"><label>Maqsad nomi (ixtiyoriy)</label>
+      <input class="lgc-inp" type="text" id="lgc-name" placeholder="masalan: Mashina — Nexia 3" value="${saved.name||''}"></div>
+    <div class="lgc-row">
+      <div class="lgc-f"><label>Narxi ($)</label>
+        <input class="lgc-inp" type="number" id="lgc-goal" placeholder="8 000" value="${saved.goal}" min="0" step="100"></div>
+      <div class="lgc-f"><label>O'rtacha KPI ($)</label>
+        <input class="lgc-inp" type="number" id="lgc-kpi" placeholder="1 500" value="${saved.kpi||''}" min="0" step="100"></div>
+    </div>
+    <div class="lgc-f" style="margin-bottom:10px"><label>Oylik jamg'arish %</label>
+      <input class="lgc-inp" type="number" id="lgc-pct" value="${saved.pct}" min="1" max="90" style="max-width:130px"></div>
+    <div class="lgc-note-sm">${minMosNote} — progressiv hisob</div>
+    <div id="lgc-result" class="lgc-result"><div class="lgc-empty">Maqsad narxini kiriting →</div></div>
+  </div></div>`;}
+function lgcWire(roleId){
+  const calc=()=>{
+    const goalName=document.getElementById('lgc-name')?.value.trim()||'';
+    const goal=parseFloat(document.getElementById('lgc-goal')?.value)||0;
+    const kpiAvg=parseFloat(document.getElementById('lgc-kpi')?.value)||0;
+    const pct=parseFloat(document.getElementById('lgc-pct')?.value)||30;
+    saveGoal(roleId,goalName,goal||'',pct,kpiAvg||'');
+    const el=document.getElementById('lgc-result');if(!el)return;
+    if(!goal){el.innerHTML='<div class="lgc-empty">Maqsad narxini kiriting →</div>';return;}
+    const d=P[roleId];if(!d)return;
+    // Front office: 6 oy, Back office: 12 oy per level
+    const fo=['savdo','cc','marketing','undiruv'].includes(d.track);
+    const minMos=(roleId==='regional_partner'||roleId==='rop')?12:fo?6:12;
+    let totalSaved=0,totalMonths=0,breakdown=[],goalReached=false;
+    for(let i=0;i<d.levels.length&&!goalReached;i++){
+      const num=S.salaries[roleId]?.[i]||d.levels[i].salNum||0;
+      const monthly=(num+kpiAvg)*(pct/100);
+      if(i<d.levels.length-1){
+        const periodSave=monthly*minMos;
+        if(totalSaved+periodSave>=goal){
+          const needed=Math.ceil((goal-totalSaved)/monthly);
+          totalMonths+=needed;breakdown.push({i,months:needed});goalReached=true;
+        }else{totalSaved+=periodSave;totalMonths+=minMos;breakdown.push({i,months:minMos});}
+      }else{
+        const needed=Math.ceil((goal-totalSaved)/monthly);
+        totalMonths+=needed;breakdown.push({i,months:needed});goalReached=true;
+      }
+    }
+    const rows=breakdown.map(({i,months})=>{
+      const num=S.salaries[roleId]?.[i]||d.levels[i].salNum||0;
+      const incStr=kpiAvg?`$${fmtN(num)} + $${fmtN(kpiAvg)}`:getSal(roleId,i);
+      return `<div class="lgc-lvl-row${i===d.levels.length-1?' top':''}">
+        <span class="lgc-lvl-nm">${getLvl(i)}</span>
+        <span class="lgc-lvl-sal">${incStr}</span>
+        <span class="lgc-mos">${months} oy</span></div>`;}).join('');
+    const breakStr=breakdown.map(({i,months})=>`${months} oy ${getLvl(i)}`).join(' + ');
+    const nameStr=goalName?`<b>${goalName}</b>`:"maqsadingga";
+    el.innerHTML=rows+`<div class="lgc-msg">Jami <b>${totalMonths} oy</b> da ${nameStr} yetasan.<br>
+      <span style="font-size:11px;opacity:.8">${breakStr}</span></div>`;};
+  ['lgc-name','lgc-goal','lgc-kpi','lgc-pct'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+  calc();}
+
+// ── KPI Calc ──────────────────────────────────────────────────────────────────
+const SK={bands:[{max:25000,b:.20},{max:40000,b:.25},{max:60000,b:.30},
+  {max:80000,b:.35},{max:100000,b:.40},{max:1e9,b:.50}],
+  inc:{Junior:0,Pro:.05,Dostigator:.10,TL:.15},spread:.05,bonus:.10,acc:5};
+let kcLv='Junior',kcClean=true;
+const kn=id=>{const x=parseFloat(document.getElementById(id)?.value);return isNaN(x)?0:x;};
+const km=x=>"$"+Math.round(x).toLocaleString("en-US");
+const kb=v=>{for(let b of SK.bands)if(v<b.max)return b;return SK.bands.at(-1);};
+function kcTable(){
+  const tb=document.getElementById("kc-tb");if(!tb)return;
+  const BLABS=['$0–25k','$25–40k','$40–60k','$60–80k','$80–100k','$100k+'];
+  tb.innerHTML=SK.bands.map((b,i)=>{const c=b.b+(SK.inc[kcLv]||0),bs=c+SK.spread,mx=bs+SK.bonus;
+    return `<tr><td>${BLABS[i]}</td><td>${c.toFixed(2)}%</td><td>${bs.toFixed(2)}%</td><td>${mx.toFixed(2)}%</td></tr>`;}).join('');
+  const ln=document.getElementById("kc-ln");if(ln)ln.textContent=kcLv;}
+function kcCalc(){
+  const inc=SK.inc[kcLv]||0,nq=kn("kc-nq"),md=kn("kc-md"),ak=kn("kc-ak"),fk=kn("kc-fk");
+  const cr=kb(nq).b+inc,br=kb(md).b+inc+SK.spread,mr=br+(kcClean?SK.bonus:0);
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  set("kc-rn",km(nq*cr/100));set("kc-rn-r",cr.toFixed(2)+"%");
+  set("kc-rm",km(md*mr/100));set("kc-rm-r",br.toFixed(2)+"%"+(kcClean?` + ${SK.bonus.toFixed(2)}%`:" (bonus yo'q)"));
+  set("kc-ra",km(ak*SK.acc/100));
+  const kpi=nq*cr/100+md*mr/100+ak*SK.acc/100;set("kc-rk",km(kpi));set("kc-rt",km(kpi+fk));}
+function kcHtml(){
+  const btns=S.lvlNames.map((nm,i)=>`<button class="kc-lvl${i===0?' on':''}" data-lv="${nm}">${nm}</button>`).join('');
+  return `<div class="dr-sec"><span class="lab">KPI Kalkulyatori <span class="draft">jonli</span></span>
+  <div class="kpi-calc">
+    <span class="kc-lab">Daraja</span>
+    <div class="kc-levels" id="kc-levels">${btns}<button class="kc-lvl" data-lv="TL">TL</button></div>
+    <div class="kc-grid" style="margin-top:9px">
+      <div class="kc-f"><label>Naqd ($)</label><input type="number" id="kc-nq" value="50000" min="0" step="1000"></div>
+      <div class="kc-f"><label>Muddatli ($)</label><input type="number" id="kc-md" value="50000" min="0" step="1000"></div>
+      <div class="kc-f"><label>Aksessuar ($)</label><input type="number" id="kc-ak" value="3000" min="0" step="500"></div>
+      <div class="kc-f"><label>Fiksa ($)</label><input type="number" id="kc-fk" value="400" min="0" step="50"></div>
+    </div>
+    <span class="kc-lab">Portfel sifati</span>
+    <div class="kc-toggle">
+      <button class="kc-tg good on" data-q="clean">Toza (bonus bor)</button>
+      <button class="kc-tg" data-q="bad">Buzilgan (bonus yo'q)</button>
+    </div>
+    <div class="kc-res">
+      <div class="kc-card"><div class="t">Naqd KPI</div><div class="v" id="kc-rn"></div><div class="r" id="kc-rn-r"></div></div>
+      <div class="kc-card"><div class="t">Muddatli KPI</div><div class="v" id="kc-rm"></div><div class="r" id="kc-rm-r"></div></div>
+      <div class="kc-card"><div class="t">Aksessuar KPI</div><div class="v" id="kc-ra"></div><div class="r">${SK.acc}%</div></div>
+      <div class="kc-card tot"><div class="t">Jami KPI</div><div class="v" id="kc-rk"></div></div>
+      <div class="kc-card grand"><div class="t">Jami daromad (KPI + fiksa)</div><div class="v" id="kc-rt"></div></div>
+    </div>
+    <span class="kc-lab">Foiz zinapoyasi — <span id="kc-ln">Junior</span></span>
+    <table class="kc-table"><thead><tr><th>Band</th><th>Naqd</th><th>Mud. baza</th><th>Max</th></tr></thead><tbody id="kc-tb"></tbody></table>
+  </div></div>`;}
+function kcWire(){
+  document.querySelectorAll("#kc-levels .kc-lvl").forEach(b=>{
+    b.onclick=()=>{kcLv=b.dataset.lv;document.querySelectorAll("#kc-levels .kc-lvl").forEach(x=>x.classList.toggle("on",x===b));kcTable();kcCalc();};});
+  document.querySelectorAll(".kc-toggle .kc-tg").forEach(b=>{
+    b.onclick=()=>{kcClean=b.dataset.q==="clean";document.querySelectorAll(".kc-toggle .kc-tg").forEach(x=>x.classList.toggle("on",x===b));kcCalc();};});
+  ["kc-nq","kc-md","kc-ak","kc-fk"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener("input",kcCalc);});
+  kcLv=getLvl(0);document.querySelectorAll("#kc-levels .kc-lvl").forEach(x=>x.classList.toggle("on",x.dataset.lv===kcLv));
+  kcTable();kcCalc();}
+
+// ── DR KPI Data ───────────────────────────────────────────────────────────────
+const DR_LV={
+  Junior:{rate:.03,
+    fp:[{v:15000,s:0},{v:20000,s:15},{v:26000,s:25},{v:33000,s:40},{v:1e9,s:60}],
+    rp:[{v:80,s:0},{v:89,s:15},{v:95,s:25},{v:105,s:40},{v:999,s:60}],
+    op:[{v:21,s:0},{v:15,s:15},{v:8,s:25},{v:4,s:40},{v:0,s:60}],
+    ap:[{v:2500,s:0},{v:3500,s:10},{v:5000,s:18},{v:7000,s:24},{v:1e9,s:30}],
+    mp:[{v:0,s:0},{v:5,s:8},{v:10,s:16},{v:20,s:24},{v:1e9,s:30}]},
+  Pro:{rate:.05,
+    fp:[{v:22000,s:0},{v:28000,s:15},{v:35000,s:25},{v:47000,s:40},{v:1e9,s:60}],
+    rp:[{v:85,s:0},{v:91,s:15},{v:98,s:25},{v:108,s:40},{v:999,s:60}],
+    op:[{v:18,s:0},{v:12,s:15},{v:6,s:25},{v:3,s:40},{v:0,s:60}],
+    ap:[{v:3000,s:0},{v:4500,s:10},{v:6000,s:18},{v:9000,s:24},{v:1e9,s:30}],
+    mp:[{v:0,s:0},{v:8,s:8},{v:15,s:16},{v:25,s:24},{v:1e9,s:30}]},
+  Dostigator:{rate:.08,
+    fp:[{v:30000,s:0},{v:36000,s:15},{v:46000,s:25},{v:60000,s:40},{v:1e9,s:60}],
+    rp:[{v:90,s:0},{v:95,s:15},{v:100,s:25},{v:110,s:40},{v:999,s:60}],
+    op:[{v:15,s:0},{v:10,s:15},{v:5,s:25},{v:2,s:40},{v:0,s:60}],
+    ap:[{v:4000,s:0},{v:5500,s:10},{v:8000,s:18},{v:12000,s:24},{v:1e9,s:30}],
+    mp:[{v:0,s:0},{v:10,s:8},{v:20,s:16},{v:30,s:24},{v:1e9,s:30}]}};
+const DR_MB=[{v:39,m:.3},{v:59,m:.5},{v:80,m:.75},{v:90,m:.85},{v:100,m:1.0},{v:120,m:1.15},{v:150,m:1.3},{v:180,m:1.5},{v:240,m:2.0}];
+const drMult=s=>{for(const b of DR_MB)if(s<=b.v)return b.m;return 2.0;};
+const drSc=(val,bands,desc=false)=>{
+  if(desc){for(const b of bands)if(val>=b.v)return b.s;return 60;}
+  for(const b of bands)if(val<b.v)return b.s;return bands.at(-1).s;};
+const drMc=t=>t<=39?'#F05252':t<=80?'#F0A03A':t<=100?'#4F80FF':t<=150?'#3DD68C':'#9F7AFF';
+let drLv='Junior';
+
+function drCalcHtml(){
+  const lvBtns=['Junior','Pro','Dostigator'].map((nm,i)=>
+    `<button class="kc-lvl${i===0?' on':''}" data-drlv="${nm}">${nm}</button>`).join('');
+  return `<div class="dr-sec"><span class="lab">KPI Kalkulyatori <span class="draft">jonli</span></span>
+  <div class="kpi-calc">
+    <span class="kc-lab">Daraja</span>
+    <div class="kc-levels" id="dr-levels">${lvBtns}</div>
+    <div class="kc-grid" style="margin-top:9px">
+      <div class="kc-f"><label>FCM — Sof foyda ($)</label><input type="number" id="dr-fp" value="22000" min="0" step="1000"></div>
+      <div class="kc-f"><label>Sotuv rejasi (%)</label><input type="number" id="dr-rp" value="95" min="0" step="1"></div>
+      <div class="kc-f"><label>Overdue (%)</label><input type="number" id="dr-op" value="12" min="0" step="0.5"></div>
+      <div class="kc-f"><label>Aksesuar foyda ($)</label><input type="number" id="dr-ap" value="3500" min="0" step="500"></div>
+      <div class="kc-f"><label>MoM o’sish (%)</label><input type="number" id="dr-mp" value="8" min="-50" step="1"></div>
+      <div class="kc-f"><label>Sotuvchilar reja (%)</label><input type="number" id="dr-sp" value="90" min="0" step="1"></div>
+    </div>
+    <div class="kc-res" id="dr-res">
+      <div class="kc-card"><div class="t">Ball</div><div class="v" id="dr-score"></div><div class="r">/ 240</div></div>
+      <div class="kc-card"><div class="t">Multiplier</div><div class="v" id="dr-mult"></div></div>
+      <div class="kc-card"><div class="t">Sotuvchi K</div><div class="v" id="dr-sk"></div></div>
+      <div class="kc-card tot"><div class="t">Stavka</div><div class="v" id="dr-rate"></div></div>
+      <div class="kc-card grand"><div class="t">KPI Bonus</div><div class="v" id="dr-bonus"></div></div>
+    </div>
+  </div></div>`;}
+
+function drCalcWire(){
+  document.querySelectorAll('#dr-levels .kc-lvl').forEach(b=>{
+    b.onclick=()=>{drLv=b.dataset.drlv;
+      document.querySelectorAll('#dr-levels .kc-lvl').forEach(x=>x.classList.toggle('on',x===b));
+      drCalc();};});
+  ['dr-fp','dr-rp','dr-op','dr-ap','dr-mp','dr-sp'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.addEventListener('input',drCalc);});
+  drCalc();}
+
+function drCalc(){
+  const lv=DR_LV[drLv];if(!lv)return;
+  const n=id=>parseFloat(document.getElementById(id)?.value)||0;
+  const fp=n('dr-fp'),rp=n('dr-rp'),op=n('dr-op'),ap=n('dr-ap'),mp=n('dr-mp'),sp=n('dr-sp');
+  const b1=drSc(fp,lv.fp),b2=drSc(rp,lv.rp),b3=drSc(op,lv.op,true),b4=drSc(ap,lv.ap),b5=drSc(mp,lv.mp);
+  const total=b1+b2+b3+b4+b5,mult=drMult(total),mc=drMc(total);
+  const sk=sp>=90?1.0:sp>=80?0.85:0.7;
+  const bonus=Math.round(fp*lv.rate*mult*sk);
+  const set=(id,v,c)=>{const el=document.getElementById(id);if(el){el.textContent=v;if(c)el.style.color=c;}};
+  set('dr-score',total+' ball',mc);set('dr-mult',mult+'x',mc);
+  set('dr-sk',sk===1.0?'1.0x (≥90%)':sk===0.85?'0.85x (80–89%)':'0.7x (<80%)',sk===1.0?'#3DD68C':sk===0.85?'#F0A03A':'#F05252');
+  set('dr-rate',(lv.rate*100)+'%','var(--red)');
+  set('dr-bonus','$'+bonus.toLocaleString('en-US'),mc);}
+
+// ── Regional Partner Calc ─────────────────────────────────────────────────────
+let rpLv='Junior';
+function rpCalcHtml(){
+  const lvBtns=['Junior','Pro'].map((nm,i)=>
+    `<button class="kc-lvl${i===0?' on':''}" data-rplv="${nm}">${nm}</button>`).join('');
+  return `<div class="dr-sec"><span class="lab">KPI Kalkulyatori <span class="draft">jonli</span></span>
+  <div class="kpi-calc">
+    <span class="kc-lab">Daraja</span>
+    <div class="kc-levels" id="rp-levels">${lvBtns}</div>
+    <div class="kc-grid" style="margin-top:9px">
+      <div class="kc-f" style="grid-column:1/-1"><label>Region umumiy FCM — sof foyda ($)</label>
+        <input type="number" id="rp-fcm" value="80000" min="0" step="5000"></div>
+    </div>
+    <div class="kc-res">
+      <div class="kc-card"><div class="t">Stavka</div><div class="v" id="rp-rate" style="color:var(--red)"></div></div>
+      <div class="kc-card grand"><div class="t">Oylik boshqaruv bonusi</div><div class="v" id="rp-bonus"></div></div>
+    </div>
+    <div class="lgc-note-sm">Kapital ulushi va boshqaruv ulushi alohida hisoblanadi</div>
+  </div></div>`;}
+
+function rpCalcWire(){
+  document.querySelectorAll('#rp-levels .kc-lvl').forEach(b=>{
+    b.onclick=()=>{rpLv=b.dataset.rplv;
+      document.querySelectorAll('#rp-levels .kc-lvl').forEach(x=>x.classList.toggle('on',x===b));
+      rpCalc();};});
+  const el=document.getElementById('rp-fcm');if(el)el.addEventListener('input',rpCalc);
+  rpCalc();}
+
+function rpCalc(){
+  const fcm=parseFloat(document.getElementById('rp-fcm')?.value)||0;
+  const rate=rpLv==='Junior'?0.015:0.025;
+  const bonus=Math.round(fcm*rate);
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  set('rp-rate',(rate*100)+'%');set('rp-bonus','$'+bonus.toLocaleString('en-US'));}
+
+// ── ROP Calc ──────────────────────────────────────────────────────────────────
+function ropCalcHtml(){
+  return `<div class="dr-sec"><span class="lab">KPI Kalkulyatori <span class="draft">jonli</span></span>
+  <div class="kpi-calc">
+    <div class="kc-grid">
+      <div class="kc-f" style="grid-column:1/-1"><label>Yangi yoʼnalish qoʼshimcha foyda ($)</label>
+        <input type="number" id="rop-profit" value="50000" min="0" step="5000"></div>
+    </div>
+    <div class="kc-res">
+      <div class="kc-card"><div class="t">Stavka</div><div class="v" style="color:var(--red)">5%</div></div>
+      <div class="kc-card grand"><div class="t">Oylik yoʼnalish ulushi</div><div class="v" id="rop-bonus"></div></div>
+    </div>
+    <div class="lgc-note-sm">Kapital ulushi barcha tikkan pullardan alohida davom etadi</div>
+  </div></div>`;}
+
+function ropCalcWire(){
+  const el=document.getElementById('rop-profit');if(el)el.addEventListener('input',ropCalc);
+  ropCalc();}
+
+function ropCalc(){
+  const profit=parseFloat(document.getElementById('rop-profit')?.value)||0;
+  const el=document.getElementById('rop-bonus');
+  if(el)el.textContent='$'+Math.round(profit*0.05).toLocaleString('en-US');}
+
+// ── Team Lead Mentee Calc ─────────────────────────────────────────────────────
+function tlCalcHtml(){
+  return `<div class="dr-sec"><span class="lab">Mentee Bonus Kalkulyatori <span class="draft">jonli</span></span>
+  <div class="kpi-calc">
+    <div class="kc-grid">
+      <div class="kc-f"><label>Birinchi 6 oy mentee soni</label>
+        <input type="number" id="tl-m1" value="2" min="0" max="20" step="1"></div>
+      <div class="kc-f"><label>6 oydan keyin mentee soni</label>
+        <input type="number" id="tl-m2" value="1" min="0" max="20" step="1"></div>
+    </div>
+    <div class="kc-res">
+      <div class="kc-card"><div class="t">1–6 oy</div><div class="v" id="tl-b1"></div><div class="r">×$150</div></div>
+      <div class="kc-card"><div class="t">6+ oy</div><div class="v" id="tl-b2"></div><div class="r">×$50</div></div>
+      <div class="kc-card grand"><div class="t">Jami mentee bonus</div><div class="v" id="tl-total"></div></div>
+    </div>
+    <div class="lgc-note-sm">Shart: har bir mentee oʼz planini bajarganda hisoblanadi</div>
+  </div></div>`;}
+
+function tlCalcWire(){
+  ['tl-m1','tl-m2'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.addEventListener('input',tlCalc);});
+  tlCalc();}
+
+function tlCalc(){
+  const m1=parseFloat(document.getElementById('tl-m1')?.value)||0;
+  const m2=parseFloat(document.getElementById('tl-m2')?.value)||0;
+  const b1=m1*150,b2=m2*50,total=b1+b2;
+  const fmt=v=>'$'+v.toLocaleString('en-US');
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=fmt(v);};
+  set('tl-b1',b1);set('tl-b2',b2);set('tl-total',total);}
+
+
+// ── BUILD MAP ─────────────────────────────────────────────────────────────────
+const tracksEl=document.getElementById("tracks"),apexEl=document.getElementById("apexCards");
+function buildMap(){
+  tracksEl.innerHTML='';apexEl.innerHTML='';
+  Object.keys(TRACKS).forEach(tk=>{
+    const tDiv=document.createElement("div");tDiv.className="track";
+    tDiv.innerHTML=`<div class="track-head"><span class="tdot" style="background:${TRACKS[tk].c}"></span>${TRACKS[tk].name}</div>`;
+    const layout=TRACK_LAYOUT[tk]||[];
+    const col=document.createElement("div");col.className="col";
+    let prevItem=null;
+    layout.forEach((item,idx)=>{
+      const isPar=Array.isArray(item);
+      // Connector
+      if(idx>0){
+        const rc=document.createElement("div");
+        const prevPar=Array.isArray(prevItem);
+        if(!isPar&&!prevPar){
+          const edge=E.find(([a,b])=>a===item&&b===prevItem);
+          const et=edge?edge[2]:'promo';
+          rc.className="connect"+(et==='equity'?' equity':'');
+          rc.dataset.between=item+">"+prevItem;
+        }else if(isPar&&!prevPar){
+          rc.className="connect";
+          rc.dataset.upperNode=prevItem;
+          rc.dataset.parNodes=item.join(',');
+        }else if(!isPar&&prevPar){
+          rc.className="connect";
+          rc.dataset.lowerNode=item;
+          rc.dataset.parNodes=prevItem.join(',');
+        }else{rc.className="connect";}
+        col.appendChild(rc);
+      }
+      // Item(s)
+      if(isPar){
+        const row=document.createElement("div");row.className="par-row"+(item.length>=4?" par-row-4":"");
+        item.forEach((id,j)=>{
+          if(j>0){const d=document.createElement("div");d.className="par-div";row.appendChild(d);}
+          const pc=document.createElement("div");pc.className="par-col";
+          pc.appendChild(mkCard(id,true));row.appendChild(pc);});
+        col.appendChild(row);
+      }else{col.appendChild(mkCard(item,false));}
+      prevItem=item;
+    });
+    tDiv.appendChild(col);tracksEl.appendChild(tDiv);
+  });
+  Object.keys(OWN).forEach(id=>{
+    const btn=document.createElement("button");btn.className="card own";btn.dataset.id=id;
+    btn.innerHTML=`<div class="cname">${OWN[id].name}</div><div class="cmeta"><span class="csal">${OWN[id].sal}</span></div>`;
+    btn.onclick=()=>openOwn(id);apexEl.appendChild(btn);});
+  rebuildSelects();}
+
+function mkCard(id,inPar=false){
+  const d=P[id];const c=tCol(id);
+  const btn=document.createElement("button");
+  btn.className="card";btn.dataset.id=id;btn.style.setProperty("--c",c);
+  const chips=d.levels.map((lv,i)=>`<span class="clvl${i===d.levels.length-1?' top':''}">${getLvl(i)}</span>`).join('');
+  const hasLat=E.some(([a,b,t])=>a===id&&t==='lateral');
+  btn.innerHTML=`${d.eqNote?'<span class="etag">ulush</span>':''}
+    <div class="cname">${d.name}</div>
+    ${d.levels.length>1?`<div class="clvls">${chips}</div>`:''}
+    <div class="cmeta"><span class="csal">${getSalRange(id)}</span>
+    <span class="kpib ${d.kpi?'yes':'no'}">${d.kpi?'KPI':'KPIsiz'}</span></div>`;
+  btn.onclick=()=>openDetail(id);return btn;}
+
+// ── Drawers ───────────────────────────────────────────────────────────────────
+const bul=arr=>`<ul class="dr-list">${arr.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const jdH=jd=>`<div class="dr-sec"><span class="lab">Masuliyatlar</span>${bul(jd.mas)}</div>
+  <div class="dr-sec"><span class="lab">Konikmalar</span>${bul(jd.kon)}</div>
+  <div class="dr-sec"><span class="lab">Korsatkichlar</span>${bul(jd.kor)}</div>`;
+function lvlTbl(id){
+  const d=P[id];if(!d.levels||d.levels.length<2)return '';
+  const fo=['savdo','cc','marketing','undiruv'].includes(d.track);
+  const mos=fo?'6':'12';
+  return `<div class="dr-sec"><span class="lab">Daraja zinapoyasi</span>
+    <table class="lvl-tbl"><thead><tr><th>Daraja</th><th>Maosh</th><th>Shart · ${mos} oy <span class="draft">namuna</span></th></tr></thead>
+    <tbody>${d.levels.map((lv,i)=>`<tr>
+      <td><span class="nm${i===d.levels.length-1?' top':''}">${getLvl(i)}</span></td>
+      <td class="sal">${getSal(id,i)}</td>
+      <td class="tr-txt">${lv.trans}</td></tr>`).join('')}</tbody></table></div>`;}
+function edgeType(a,b){const e=E.find(x=>x[0]===a&&x[1]===b);return e?e[2]:'promo';}
+const nextLks=id=>(adj[id]||[]).filter(to=>edgeType(id,to)!=='lateral'||true).map(to=>({to,type:edgeType(id,to)}));
+const prevLks=id=>(radj[id]||[]).map(fr=>({fr,type:edgeType(fr,id)}));
+function lnkRow(id,type){
+  const d=ALL[id];const nm=d?d.name:id;
+  const lbl={bridge:'koprik',lateral:'lateral',capital:'hamkorlik',equity:'ulush yoli',promo:'osish'}[type]||'osish';
+  const cls='linkitem'+(type==='bridge'||type==='lateral'?' bridge':type==='equity'?' eq-link':'');
+  return `<button class="${cls}" data-go="${id}"><span>${nm}</span><span class="ltype">${lbl}</span><span class="ar">›</span></button>`;}
+
+const drawer=document.getElementById("drawer"),scrim=document.getElementById("scrim");
+function openDetail(id){
+  const d=P[id];if(!d)return;
+  drawer.style.setProperty("--c",tCol(id));
+  const nexts=nextLks(id).filter(n=>n.type!=='level'),prevs=prevLks(id).filter(p=>p.type!=='level');
+  const isDR=id==='dokon_rahbari',isSot=id==='sotuvchi',isTL=id==='team_lead',isRP=id==='regional_partner',isROP=id==='rop';
+  drawer.innerHTML=`
+    <div class="dr-head"><button class="dr-close" id="drClose">&#215;</button>
+      <div class="dr-track">${TRACKS[d.track]?.name||d.track}</div>
+      <h2>${d.name}</h2><div class="dr-salary">${getSalRange(id)}</div></div>
+    <div class="dr-body">
+      ${jdH(d.jd)}
+      ${lvlTbl(id)}
+      ${lgcHtml(id)}
+      ${isSot?kcHtml():''}
+      ${isTL?kcHtml()+''+tlCalcHtml():''}
+      ${isDR?drCalcHtml():''}
+      ${isRP?rpCalcHtml():''}
+      ${isROP?ropCalcHtml():''}
+      ${d.tlNote?`<div class="dr-sec"><span class="lab">Team Lead bonus mexanizmi</span><div class="note-box">${d.tlNote}</div></div>`:''}
+      ${d.eqNote?`<div class="dr-sec"><span class="lab">Ulush yo'li — Partner mexanizmi</span><div class="note-box">${d.eqNote}</div></div>`:''}
+      ${d.invNote?`<div class="dr-sec"><span class="lab">Maxsus yo'l — Innovation Royalty</span><div class="info-box">${d.invNote}</div></div>`:''}
+      ${d.partnerNote?`<div class="dr-sec"><span class="lab">Partner yo'li</span><div class="note-box">${d.partnerNote}</div></div>`:''}
+      ${d.lateralNote?`<div class="dr-sec"><span class="lab">Lateral o'tish</span><div class="info-box">${d.lateralNote}</div></div>`:''}
+      ${isDR?`<div class="dr-sec"><span class="lab">Kim bo'la oladi — kirish shartlari</span>
+        <div class="dr-cond-list">${DR_COND.map(([r,c])=>`<div class="dr-cond-item">
+          <span class="dr-cond-role">${P[r]?.name||r}</span><span class="dr-cond-txt">${c}</span></div>`).join('')}</div></div>`:''}
+      ${prevs.length?`<div class="dr-sec"><span class="lab">Bu yerga kelish mumkin</span>
+        <div class="linklist">${prevs.map(p=>lnkRow(p.fr,p.type)).join('')}</div></div>`:''}
+      ${nexts.length?`<div class="dr-sec"><span class="lab">Bu yerdan o'sadi</span>
+        <div class="linklist">${nexts.map(n=>lnkRow(n.to,n.type)).join('')}</div></div>`:''}
+    </div>`;
+  document.getElementById("drClose").onclick=closeDrawer;
+  drawer.querySelectorAll(".linkitem").forEach(el=>el.onclick=()=>{const tid=el.dataset.go;OWN[tid]?openOwn(tid):openDetail(tid);});
+  lgcWire(id);
+  if(isSot)kcWire();
+  if(isTL){kcWire();
+    // Pre-select TL level
+    kcLv='TL';
+    document.querySelectorAll('#kc-levels .kc-lvl').forEach(x=>x.classList.toggle('on',x.dataset.lv==='TL'));
+    kcTable();kcCalc();
+    tlCalcWire();}
+  if(isDR)drCalcWire();
+  if(isRP)rpCalcWire();
+  if(isROP)ropCalcWire();
+  drawer.classList.add("show");scrim.classList.add("show");drawer.setAttribute("aria-hidden","false");}
+
+function openOwn(id){
+  const d=OWN[id];drawer.style.setProperty("--c","var(--red)");
+  const nexts=(adj[id]||[]).map(to=>({to,type:edgeType(id,to)}));
+  drawer.innerHTML=`<div class="dr-head"><button class="dr-close" id="drClose">&#215;</button>
+    <div class="dr-track" style="color:var(--red)">Hamkorlik treki</div>
+    <h2>${d.name}</h2><div class="dr-salary own">${d.sal}</div></div>
+    <div class="dr-body">
+      <div class="dr-sec"><span class="lab">Nima bu?</span><div class="note-box">${d.desc}</div></div>
+      <div class="dr-sec"><span class="lab">Kirish sharti</span><div class="info-box">${d.req}</div></div>
+      ${nexts.length?`<div class="dr-sec"><span class="lab">Keyingi bosqich</span>
+        <div class="linklist">${nexts.map(n=>lnkRow(n.to,n.type)).join('')}</div></div>`:''}
+    </div>`;
+  document.getElementById("drClose").onclick=closeDrawer;
+  drawer.querySelectorAll(".linkitem").forEach(el=>el.onclick=()=>{const tid=el.dataset.go;OWN[tid]?openOwn(tid):openDetail(tid);});
+  drawer.classList.add("show");scrim.classList.add("show");drawer.setAttribute("aria-hidden","false");}
+
+function openAppoint(id){
+  const d=APPOINT[id];drawer.style.setProperty("--c","var(--red)");
+  drawer.innerHTML=`<div class="dr-head"><button class="dr-close" id="drClose">&#215;</button>
+    <div class="dr-track">Tayinlov</div><h2>${d.name}</h2><div class="dr-salary">${d.sal}</div></div>
+    <div class="dr-body"><div class="info-box">${d.note}</div></div>`;
+  document.getElementById("drClose").onclick=closeDrawer;
+  drawer.classList.add("show");scrim.classList.add("show");}
+
+function closeDrawer(){drawer.classList.remove("show");scrim.classList.remove("show");drawer.setAttribute("aria-hidden","true");}
+scrim.onclick=()=>{closeDrawer();closeSettings();};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();closeSettings();}});
+
+// ── Selects ───────────────────────────────────────────────────────────────────
+const curSel=document.getElementById("cur"),goalSel=document.getElementById("goal");
+function rebuildSelects(){
+  const cv=curSel.value,gv=goalSel.value;
+  curSel.innerHTML='<option value="">— tanlang (ixtiyoriy) —</option>';
+  goalSel.innerHTML='<option value="">— tanlang —</option>';
+  ROLE_ORDER.forEach(k=>{if(!P[k])return;
+    const o=document.createElement("option");o.value=k;o.textContent=P[k].name;
+    curSel.appendChild(o.cloneNode(true));goalSel.appendChild(o);});
+  Object.keys(OWN).forEach(id=>{goalSel.insertAdjacentHTML("beforeend",`<option value="${id}">${OWN[id].name}</option>`);});
+  curSel.value=cv;goalSel.value=gv;}
+
+// ── Pathfinding ───────────────────────────────────────────────────────────────
+function allPaths(start,goal){
+  const out=[];const stack=[[start]];
+  while(stack.length){const path=stack.pop();const last=path.at(-1);
+    if(last===goal){out.push(path);continue;}
+    (adj[last]||[]).filter(n=>!path.includes(n)).forEach(n=>{if(path.length<12)stack.push([...path,n]);});}
+  return out.sort((a,b)=>a.length-b.length);}
+function nodesReaching(goal){
+  const seen=new Set([goal]);const st=[goal];
+  while(st.length){const x=st.pop();(radj[x]||[]).forEach(p=>{if(!seen.has(p)){seen.add(p);st.push(p);}});}return seen;}
+function pathSpine(goal){
+  let chain=[goal],cur=goal,guard=0;const seen=new Set([goal]);
+  while((radj[cur]||[]).length&&guard++<15){
+    const cands=(radj[cur]).filter(p=>!seen.has(p));if(!cands.length)break;
+    const best=cands.find(p=>{const et=edgeType(p,cur);return et==='promo'||et==='equity';})||cands[0];
+    chain.unshift(best);seen.add(best);cur=best;}return chain;}
+
+const map=document.getElementById("map");
+document.getElementById("showBtn").onclick=showPath;
+document.getElementById("resetBtn").onclick=reset;
+
+function showPath(){
+  const goal=goalSel.value,cur=curSel.value;if(!goal)return goalSel.focus();
+  clearHl();let hlNodes=new Set(),steps=null,note="";
+  if(cur){const paths=allPaths(cur,goal);
+    if(paths.length){steps=paths[0];steps.forEach(n=>hlNodes.add(n));note=`Eng qisqa yo'l · ${steps.length-1} qadam`;}
+    else{hlNodes=nodesReaching(goal);note="To'g'ri yo'l topilmadi — unga olib boruvchi barcha yo'nalishlar ko'rsatildi.";}}
+  else{hlNodes=nodesReaching(goal);note="Bu maqsadga olib boruvchi barcha yo'nalishlar.";}
+  map.classList.add("filtering");
+  hlNodes.forEach(id=>{const c=map.querySelector(`.card[data-id="${id}"]`);if(c)c.classList.add("hl");});
+  map.querySelectorAll(".connect[data-between]").forEach(rc=>{
+    const [a,b]=rc.dataset.between.split(">");if(hlNodes.has(a)&&hlNodes.has(b))rc.classList.add("hl");});
+  map.querySelectorAll(".connect[data-upper-node]").forEach(rc=>{
+    const upper=rc.dataset.upperNode,pars=rc.dataset.parNodes.split(',');
+    if(hlNodes.has(upper)&&pars.some(n=>hlNodes.has(n)))rc.classList.add("hl");});
+  map.querySelectorAll(".connect[data-lower-node]").forEach(rc=>{
+    const lower=rc.dataset.lowerNode,pars=rc.dataset.parNodes.split(',');
+    if(hlNodes.has(lower)&&pars.some(n=>hlNodes.has(n)))rc.classList.add("hl");});
+  renderSummary(goal,cur,steps,note);}
+
+function renderSummary(goal,cur,steps,note){
+  const dn=id=>{const d=ALL[id];return d?d.name:id;};
+  document.getElementById("psTitle").textContent=(cur?dn(cur)+" > ":"")+dn(goal)+" bo'lish yo'li";
+  document.getElementById("psNote").textContent=note;
+  const wrap=document.getElementById("psSteps");wrap.innerHTML="";
+  const seq=steps||pathSpine(goal);
+  seq.forEach((id,i)=>{
+    const d=ALL[id];if(!d)return;
+    let inner='';
+    if(d.levels&&d.levels.length>1){
+      inner='<div class="slvl-list">'+d.levels.map((lv,li)=>`
+        <div class="slvl-row${li===d.levels.length-1?' top':''}">
+          <span class="slvl-nm">${getLvl(li)}</span>
+          <span class="slvl-sal">${getSal(id,li)}</span>
+          <span class="slvl-tr">${lv.trans.length>100?lv.trans.slice(0,100)+'…':lv.trans}</span>
+        </div>`).join('')+'</div>';
+    }else{inner=`<div class="step-own-sal">${d.salRange||d.sal||''}</div>`;}
+    wrap.insertAdjacentHTML("beforeend",
+      `<div class="step ${d.isOwn?'own':''}"><div class="n">${i+1}</div><h4>${d.name}</h4>${inner}</div>`);
+    if(i<seq.length-1)wrap.insertAdjacentHTML("beforeend",`<div class="arrow-i">→</div>`);
+  });
+  document.getElementById("pathSummary").classList.add("show");
+  document.getElementById("pathSummary").scrollIntoView({behavior:"smooth",block:"nearest"});}
+
+function clearHl(){map.classList.remove("filtering");map.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl"));}
+function reset(){curSel.value="";goalSel.value="";clearHl();document.getElementById("pathSummary").classList.remove("show");}
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
+const settPanel=document.getElementById("settPanel");
+function openSettings(){buildSettPanel();settPanel.classList.add("show");settPanel.setAttribute("aria-hidden","false");}
+function closeSettings(){settPanel.classList.remove("show");settPanel.setAttribute("aria-hidden","true");}
+document.getElementById("openSett").onclick=openSettings;
+document.getElementById("closeSett").onclick=closeSettings;
+function buildSettPanel(){
+  const lg=document.getElementById("settLvlNames");
+  lg.innerHTML=S.lvlNames.slice(0,3).map((nm,i)=>`
+    <div class="sett-field"><label>${i+1}-daraja</label>
+      <input class="sett-inp sett-lvl-inp" data-idx="${i}" value="${nm}"></div>`).join('');
+  [0,1,2].forEach(i=>{const th=document.getElementById('sh'+i);if(th)th.textContent=S.lvlNames[i]||'-';});
+  const tbody=document.getElementById("settSalBody");
+  let rows='';let curTrk='';
+  ROLE_ORDER.forEach(k=>{
+    if(!P[k])return;const d=P[k];
+    if(d.track!==curTrk){curTrk=d.track;rows+=`<tr class="trk-row"><td colspan="5">${TRACKS[curTrk]?.name||curTrk}</td></tr>`;}
+    const cells=[0,1,2].map(i=>{
+      const lv=d.levels[i];if(!lv)return'<td class="empty">—</td>';
+      const num=S.salaries[k]?.[i]??lv.salNum??0;
+      return `<td><input class="sal-inp" type="number" data-role="${k}" data-idx="${i}" value="${num}" min="0" step="50"></td>`;}).join('');
+    rows+=`<tr><td class="rname">${d.name}</td>${cells}<td></td></tr>`;});
+  tbody.innerHTML=rows;
+  const kg=document.getElementById("settKpi");
+  const bf=S.kpiBase.map((v,i)=>`<div class="sett-kpi-field"><label>${BAND_LABELS[i]}</label>
+    <input class="sett-inp" type="number" data-kpi="base${i}" value="${v}" min="0" max="5" step="0.01"></div>`).join('');
+  const inc=[1,2].map(i=>`<div class="sett-kpi-field"><label>${S.lvlNames[i]||'L'+(i+1)} +</label>
+    <input class="sett-inp" type="number" data-kpi="inc${i}" value="${S.kpiInc[i]||0}" min="0" step="0.01"></div>`).join('');
+  kg.innerHTML=bf+inc+`
+    <div class="sett-kpi-field"><label>Muddatli spread</label>
+      <input class="sett-inp" type="number" data-kpi="spread" value="${S.kpiSpread}" min="0" step="0.01"></div>
+    <div class="sett-kpi-field"><label>Sifat bonus</label>
+      <input class="sett-inp" type="number" data-kpi="bonus" value="${S.kpiBonus}" min="0" step="0.01"></div>
+    <div class="sett-kpi-field"><label>Aksessuar %</label>
+      <input class="sett-inp" type="number" data-kpi="acc" value="${S.kpiAcc}" min="0" step="0.5"></div>`;}
+
+document.getElementById("applySettBtn").onclick=()=>{
+  document.querySelectorAll(".sett-lvl-inp").forEach(inp=>{const i=parseInt(inp.dataset.idx),v=inp.value.trim();if(v)S.lvlNames[i]=v;});
+  document.querySelectorAll(".sal-inp").forEach(inp=>{
+    const r=inp.dataset.role,i=parseInt(inp.dataset.idx),v=parseInt(inp.value);
+    if(!isNaN(v)&&v>=0){if(!S.salaries[r])S.salaries[r]=[];S.salaries[r][i]=v;}});
+  document.querySelectorAll("[data-kpi]").forEach(inp=>{
+    const k=inp.dataset.kpi,v=parseFloat(inp.value);if(isNaN(v))return;
+    if(k.startsWith('base')){const i=parseInt(k.slice(4));S.kpiBase[i]=v;}
+    else if(k.startsWith('inc')){const i=parseInt(k.slice(3));S.kpiInc[i]=v;}
+    else if(k==='spread')S.kpiSpread=v;
+    else if(k==='bonus')S.kpiBonus=v;
+    else if(k==='acc')S.kpiAcc=v;});
+  saveS();syncSK();buildMap();closeSettings();reset();};
+
+document.getElementById("resetSettBtn").onclick=()=>{
+  if(!confirm("Barcha sozlamalarni aslga qaytarasizmi?"))return;
+  S=defaultS();saveS();syncSK();buildMap();buildSettPanel();reset();};
+
+// CEO tayinlov — xaritada ko'rsatilmaydi
+
+loadS();syncSK();buildMap();
+</script></body></html>
