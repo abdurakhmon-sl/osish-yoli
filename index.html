@@ -251,9 +251,10 @@ html.xodim .mc-s { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
-
 </head>
 <body>
+
+
 <header class="mast">
   <div class="wrap">
     <div class="mast-top">
@@ -265,7 +266,7 @@ html.xodim .mc-s { display: none; }
     </div>
     <h1>O'sish yo'li <span>2.0</span></h1>
     <p class="lede">Har bir lavozim: qancha topish mumkin, bonus qanday hisoblanadi va keyingi darajaga nima kerak.</p>
-    <div class="meta"><span>Kuchga kirdi: oktabr 2026</span><span>Qayta ko'rish: har 6 oyda</span><span>Fiksa: so'm &middot; KPI: $</span></div>
+    <div class="meta"><span>O'tish davri: oktabr-dekabr 2026</span><span>To'liq: 1 yanvar 2027</span><span>Qayta ko'rish: har 6 oyda</span><span>Fiksa: so'm &middot; KPI: $</span></div>
     <nav class="tabs" role="tablist">
       <button type="button" data-t="xarita" role="tab">Xarita</button>
       <button type="button" data-t="roles" role="tab">Lavozimlar</button>
@@ -319,7 +320,9 @@ html.xodim .mc-s { display: none; }
         <dt>Kim qaror qiladi</dt><dd>Komissiya: CEO, CFO va bevosita rahbar.</dd>
         <dt>Qachon</dt><dd>Yiliga 2 marta.</dd>
         <dt>Dalil</dt><dd>Tizimdagi raqamlar va rahbarning yozma bahosi.</dd>
-        <dt>Pasayish</dt><dd>3 oy ketma-ket daraja minimumidan past bo'lsa ogohlantirish. Yana 3 oy davom etsa bir daraja pastga.</dd>
+        <dt>Shartlar shakli</dt><dd>Har shart raqam bilan: "6 oyning 4 tasida reja 100%+" kabi. Reja jadvalidan olinadi, tizim o'zi hisoblaydi.</dd>
+        <dt>Ichki nomzod</dt><dd>Ko'prik shartini bajargan xodim Do'kon rahbari, Undiruv rahbari yoki CC rahbarga Pro darajadan kiradi. Tashqi nomzod Junior'dan. Pro daromadi oldingi 6 oy o'rtachasidan kam bo'lsa, farq 6 oy to'lanadi.</dd>
+        <dt>Pasayish</dt><dd>3 oy ketma-ket daraja minimumidan past bo'lsa ogohlantirish. Yana 3 oy davom etsa bir daraja pastga. Daraja minimumi: shu darajaga ko'tarilish shartidagi reja foizi.</dd>
         <dt>Shaxsiy maqsad</dt><dd>Dostigator va Partner uchun 2 ta shaxsiy maqsad. Maqsadni xodim o'zi tanlaydi va Direktor bilan kelishadi.</dd>
         <dt>Rahbarsiz o'sish</dt><dd>Kuchli sotuvchi rahbar bo'lmasdan KPI orqali Do'kon rahbaridan ko'p topa oladi.</dd>
       </dl>
@@ -337,17 +340,32 @@ html.xodim .mc-s { display: none; }
         <tr><td>Andijon (franshiza)</td><td>&middot;</td><td>&middot;</td><td>Alohida kelishuv</td></tr>
       </tbody></table></div>
       <p class="cn">* Vaqtincha. 6 oylik ma'lumot yig'ilgach o'z raqami bilan almashtiriladi. Overdue normasi faqat pasayishi mumkin, overdue yomonlashsa norma bo'shatilmaydi.</p>
+      <p>Shuning uchun bir xil lavozimda filialga qarab raqamlar har xil. Kichik filialda shu natijaga kamroq savdo bilan yetiladi.</p>
+    </div>
+    <div class="blk"><h3>Reja jadvali</h3>
+      <dl class="kv">
+        <dt>Filial</dt><dd>Sof foyda, sotuv va aksessuar rejasi = oxirgi 6 oy o'rtachasi x 1.10.</dd>
+        <dt>Sotuvchi</dt><dd>Filial sotuv rejasi x sotuvchining oxirgi 3 oydagi ulushi. Yangi sotuvchi: filial o'rtachasining 60%.</dd>
+        <dt>Undiruv</dt><dd>Shu oy grafik bo'yicha to'lanishi kerak bo'lgan summa. Tizim hisoblaydi.</dd>
+        <dt>Call center</dt><dd>Haftalik: birinchi 3 oy $15k, keyin $20k.</dd>
+        <dt>Kim tasdiqlaydi</dt><dd>ROP tayyorlaydi, CFO tekshiradi, CEO tasdiqlaydi. Har oyning 3-sanasigacha.</dd>
+      </dl>
     </div>
     <div class="blk"><h3>Ochiqlik</h3>
-      <p>Har bir xodim o'z maoshi va keyingi darajasini ko'radi. "Xodim" ko'rinishida faqat tanlangan lavozim va keyingi pog'ona ko'rsatiladi. Shaxsiy hisob har oy oxirida Telegram bot orqali yuboriladi.</p>
+      <p>Har bir xodim o'z maoshi va keyingi darajasini ko'radi. "Xodim" ko'rinishida faqat tanlangan lavozim va keyingi pog'ona ko'rsatiladi. </p>
+      <dl class="kv">
+        <dt>Hisob varag'i</dt><dd>Har oyning 5-sanasigacha har xodim Telegram bot orqali o'z hisobini oladi: raqamlari, formula, bonus.</dd>
+        <dt>E'tiroz</dt><dd>3 ish kuni ichida bosh kassir yoki CFO'ga yoziladi. Javob 3 ish kuni ichida beriladi.</dd>
+      </dl>
     </div>
     <div class="blk"><h3>Partner va kapital</h3>
       <p>Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi. Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi. Filial yopilsa aktivlari sotiladi, zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi, qolgan summa har sherikka ulushiga qarab qaytariladi. Bu tartib AAOIFI 12-standartiga mos.</p>
     </div>
     <div class="blk"><h3>Joriy etish</h3>
       <dl class="kv">
-        <dt>Kuchga kirish</dt><dd>Oktabr 2026 dan, to'liq yangi tizim bo'yicha.</dd>
-        <dt>Fikr davri</dt><dd>E'londan keyin 1 oy. Savol va e'tirozlar yig'iladi.</dd>
+        <dt>O'tish davri</dt><dd>Oktabr-dekabr 2026: har xodim eski va yangi tizimdan qaysi biri katta bo'lsa, o'shani oladi.</dd>
+        <dt>To'liq kuchga kirish</dt><dd>1 yanvar 2027 dan.</dd>
+        <dt>Fikr davri</dt><dd>Noyabr 2026. Savol va e'tirozlar yig'iladi.</dd>
         <dt>Yetkazish</dt><dd>Har xodimga shaxsiy varaq, shu sahifa, oylik Telegram hisobot.</dd>
         <dt>Qayta ko'rish</dt><dd>Har 6 oyda, ko'tarilish bilan birga.</dd>
       </dl>
@@ -359,13 +377,13 @@ html.xodim .mc-s { display: none; }
     <p class="cn">Aprel-sentabr 2026, 5 filial: C1, Chorsu, Qo'qon, Navoiy, Farg'ona. Manba: filial Balans, Server, Sklad va Aksessuar fayllari. Har formula haqiqiy oylik raqamlar bilan qayta hisoblangan.</p>
     <div class="blk"><h3>Lavozimlar bo'yicha</h3>
       <div class="tw"><table class="st"><thead><tr><th>Lavozim</th><th>Natija</th><th>Holat</th></tr></thead><tbody>
-        <tr><td>Sotuvchi</td><td>Yangi KPI eski bonusdan jami +28.6% (sifat bonusisiz). Kuchli sotuvchilar ko'proq oladi. Farg'onada Umidjon -35%.</td><td><span class="flag ok">ishlaydi</span></td></tr>
+        <tr><td>Sotuvchi</td><td>Band jami savdo bo'yicha. Yangi KPI eski bonusdan jami +72% (Junior stavkasi, sifat bonusisiz). 20%+ kam oladigan sotuvchi: Farg'onada Abdulhamid.</td><td><span class="flag ok">ishlaydi</span></td></tr>
         <tr><td>Do'kon rahbari, 240 ball</td><td>Filial normasi bilan o'rtacha $342/oy. Overdue 0 ball bo'lgan oylar 20/30 dan 0/30 ga tushdi.</td><td><span class="flag ok">tuzatildi</span></td></tr>
         <tr><td>Do'kon rahbari, Farg'ona</td><td>Overdue 55-60%, stavka 5%. O'rtacha $220/oy.</td><td><span class="flag ok">ishlaydi</span></td></tr>
         <tr><td>Do'kon rahbari, Qo'qon</td><td>O'rtacha $1,072/oy, ustiga ish reja $100. Overdue hisobga olinmaydi.</td><td><span class="flag warn">kuzatish</span></td></tr>
-        <tr><td>ROP</td><td>Tarmoq overdue 31-34%, pog'ona har oy 0.75. Bonus $381-606/oy.</td><td><span class="flag warn">kuzatish</span></td></tr>
+        <tr><td>ROP</td><td>Alohida kelishuv (ish taklifi).</td><td><span class="flag ok">kelishilgan</span></td></tr>
         <tr><td>Marketing</td><td>Oyiga 730-860 xaridor. Baza 801 bilan fond $1,200-1,700.</td><td><span class="flag ok">ishlaydi</span></td></tr>
-        <tr><td>Unduruvchi</td><td>Har filialda bitta odam deb sinaldi. 6 oy: Firdavs (C1) +7%, Farrux (Chorsu) +83%, Muhammadyusuf (Qo'qon) -40%. Bonus filial undiruv hajmiga bog'liq.</td><td><span class="flag warn">kuzatish</span></td></tr>
+        <tr><td>Unduruvchi</td><td>Silliq reja koeffitsienti bilan. 6 oy: Firdavs (C1) +8%, Farrux (Chorsu) +84%, Muhammadyusuf (Qo'qon) -40%. Bonus filial undiruv hajmiga bog'liq. O'tish davrida kattasi to'lanadi.</td><td><span class="flag warn">kuzatish</span></td></tr>
         <tr><td>Kassir</td><td>Lavozim va ballar faylda yo'q.</td><td><span class="flag bad">sinab bo'lmadi</span></td></tr>
       </tbody></table></div>
     </div>
@@ -406,15 +424,17 @@ var KPI = (function () {
   }
   function sotuvchi(o) {
     var k = BRANCH_K[o.filial] || 1, inc = LEVEL_INC[o.daraja] || 0, extra = o.extra || 0;
-    var rn = sellerRate(o.naqd, k) + inc + extra;
-    var rm = sellerRate(o.mudd, k) + inc + 0.05 + extra + (o.sifat ? 0.10 : 0);
+    var base = sellerRate(o.naqd + o.mudd, k);
+    var rn = base + inc + extra;
+    var rm = base + inc + 0.05 + extra + (o.sifat ? 0.10 : 0);
     var a = o.naqd * rn / 100, b = o.mudd * rm / 100, c = (o.aks || 0) * 0.05;
     return { rn: rn, rm: rm, naqd: a, mudd: b, aks: c, total: a + b + c, k: k };
   }
   function teamLead(o) {
     var s = sotuvchi({ filial: o.filial, daraja: 'TL', naqd: o.naqd, mudd: o.mudd, aks: o.aks, sifat: o.sifat });
-    var m = o.m1 * 150 + o.m2 * 50;
-    return { s: s, mentee: m, total: s.total + m };
+    var m1 = Math.min(3, o.m1 || 0), m2 = Math.min(3 - m1, o.m2 || 0), pro = o.m3 || 0;
+    var m = m1 * 150 + m2 * 50 + pro * 300;
+    return { s: s, m1: m1, m2: m2, mentee: m, total: s.total + m };
   }
 
   var DR_LV = {
@@ -445,9 +465,10 @@ var KPI = (function () {
   function tier(net, t) { for (var i = 0; i < t.length; i++) if (net < t[i][0]) return t[i][1]; return t[t.length - 1][1]; }
   function drQoqon(o) {
     var r = tier(o.net, [[10000, 0], [20000, .03], [35000, .035], [1e18, .04]]);
-    var a = o.net * r, plan = o.reja ? 100 : 0, sale = o.sotuv > 50 ? o.sotuv * 2 : 0;
+    var odBlock = !!o.yanvardan && o.od > 32.9;
+    var a = o.net * r, plan = o.reja ? 100 : 0, sale = (o.sotuv > 50 && !odBlock) ? o.sotuv * 2 : 0;
     var ar = o.aks > 4000 ? .15 : o.aks > 2000 ? .12 : o.aks > 1000 ? .10 : 0;
-    return { rate: r, foyda: a, plan: plan, sotuv: sale, aksR: ar, aks: o.aks * ar, total: a + plan + sale + o.aks * ar };
+    return { rate: r, foyda: a, plan: plan, sotuv: sale, odBlock: odBlock, aksR: ar, aks: o.aks * ar, total: a + plan + sale + o.aks * ar };
   }
   function drAndijon(o) {
     var r = tier(o.net, [[10000, 0], [15000, .02], [20000, .03], [35000, .035], [1e18, .04]]);
@@ -455,50 +476,62 @@ var KPI = (function () {
     return { rate: r, foyda: o.net * r, aks: ak, total: o.net * r + ak };
   }
   function pogona(od) { return od <= 15 ? 1 : od <= 20 ? .95 : od <= 25 ? .9 : od <= 30 ? .85 : .75; }
-  function rop(o) {
-    var p = pogona(o.od), a = o.net * 0.01 * p, b = o.yangi24 ? o.yy * 0.05 : 0;
-    return { p: p, tarmoq: a, yy: b, total: a + b };
-  }
   function rp(o) {
     var r = o.daraja === 'Pro' ? 0.035 : 0.025, p = pogona(o.od);
     return { rate: r, p: p, total: o.net * r * p };
   }
+  /* Kassir: yozilgan farq 20 ming so'mgacha ta'sirsiz; oshgan har holat -10 ball (summa undiriladi).
+     Yashirilgan farq (tekshiruvda topilgan, yozilmagan) bo'lsa oy bonusi 0. */
   function kassir(o) {
-    var ball = Math.min(40, o.b1) + Math.min(25, o.b2) + Math.min(15, o.b3) + Math.min(20, o.b4);
-    var total = o.kamomad ? 0 : o.fiksa * 1.3 * ball / 100;
-    return { ball: ball, total: total };
+    var p = {
+      farq: Math.max(0, 40 - 10 * (o.farq || 0)),
+      smena: Math.max(0, 25 - 5 * (o.kech || 0)),
+      xizmat: Math.max(0, 15 - 5 * (o.shikoyat || 0)),
+      aks: Math.min(20, Math.floor((o.aksRef || 0) / 200))
+    };
+    var ball = p.farq + p.smena + p.xizmat + p.aks;
+    var total = o.yashirin ? 0 : o.fiksa * 1.3 * ball / 100;
+    return { parts: p, ball: ball, total: total };
   }
   function boshKassir(o) {
     var n = Math.max(0, o.filial - o.yangi);
     return { n: n, max: 225 * n, total: 225 * n * o.ball / 100 };
   }
-  function rejaKoef(r) { return r < 80 ? 0 : Math.min(1.5, 0.5 + (r - 80) * 0.025); }
+  /* Reja koeffitsienti silliq: 70% dan past 0; 70% x0.3; 100% x1.0; 120% va yuqori x1.5 */
+  function rejaKoef(r) { if (r < 70) return 0; if (r <= 100) return 0.3 + (r - 70) * 0.7 / 30; return Math.min(1.5, 1 + (r - 100) * 0.025); }
   function band90(s) { return s < 10000 ? .03 : s < 20000 ? .04 : .05; }
+  /* 90+ uchun 3-5% faqat meros ro'yxatiga (1.10.2026 holatida 90+ bo'lgan shartnomalar).
+     Yangi 90+ va 31-90 kunlik undiruv 1%. Pul shartnoma biriktirilgan odamga yoziladi. */
   function unduruvchi(o) {
     var k = rejaKoef(o.reja), a = o.d10 * 0.006, b = o.d30 * 0.0078, base = (a + b) * k;
-    var c = o.d90 * 0.01, r = band90(o.d90p), d = o.d90p * r, n = Math.max(1, o.kishi || 1);
+    var c = (o.d90 + (o.yangi90 || 0)) * 0.01, r = band90(o.meros3 || o.meros || 0), d = (o.meros || 0) * r, n = Math.max(1, o.kishi || 1);
     return { k: k, a: a, b: b, base: base, c: c, d: d, r: r, total: (base + c + d) / n, n: n };
   }
+  /* Kollektor: meros bandi oxirgi 3 oy o'rtachasi bo'yicha tanlanadi, stavka shu oy summasiga */
   function kollektor(o) {
-    var r = band90(o.d90p), c = o.d90 * 0.01, b = o.d90p * r, f = o.fil * 100;
+    var r = band90(o.meros3 || o.meros || 0), c = (o.d90 + (o.yangi90 || 0)) * 0.01, b = (o.meros || 0) * r, f = o.fil * 100;
     return { rate: r, c: c, asos: b, filial: f, total: c + b + f };
   }
+  /* Undiruv rahbari: 5 mln so'm x jamoa reja koeffitsienti + jamoa bonuslarining 10% */
   function undiruvRahbar(o) {
-    var m2 = o.past70 ? Math.min(o.m2, 0.85) : o.m2;
-    return { m2: m2, som: 5000000 * o.m1 * m2, qayta: o.qayta * 0.25 };
+    var k = rejaKoef(o.reja);
+    if (o.past70) k = Math.min(k, 0.85);
+    return { k: k, som: 5000000 * k, jamoa: o.jamoa * 0.10 };
   }
   var CC = { Junior: [0.40, 0.50], Pro: [0.45, 0.55], Dostigator: [0.50, 0.60] };
   function ccOperator(o) {
-    var plan = o.tajribali ? 20000 : 15000, hit = o.savdo >= plan, r = CC[o.daraja][hit ? 1 : 0];
+    var plan = (o.oy || 0) >= 3 ? 20000 : 15000, hit = o.savdo >= plan, r = CC[o.daraja][hit ? 1 : 0];
     return { plan: plan, hit: hit, rate: r, total: o.savdo * r / 100 };
   }
   function ccTL(o) {
-    var own = ccOperator({ daraja: 'Dostigator', savdo: o.savdo, tajribali: true });
+    var own = ccOperator({ daraja: 'Dostigator', savdo: o.savdo, oy: 12 });
     var t = o.jamoa * 0.0005;
     return { own: own, jamoa: t, total: own.total + t };
   }
-  function ccRahbar(o) { return { total: o.savdo * 0.001 }; }
+  function ccRahbar(o) { return { total: o.savdo * 0.002 }; }
   var MK_SHARE = { Targetolog: .35, 'SMM menejer': .25, Videograf: .25, 'Brand Face': .15 };
+  /* Baza har chorakda: eski baza + (oxirgi 3 oy o'rtachasi - eski baza) / 2, faqat o'sganda */
+  function mkBaza(eski, ortacha) { return ortacha > eski ? eski + (ortacha - eski) / 2 : eski; }
   function marketing(o) {
     var fond = Math.min(o.xaridor, o.baza) * 1.5 + Math.max(0, o.xaridor - o.baza) * 8;
     var s = MK_SHARE[o.lavozim] || 0;
@@ -511,7 +544,7 @@ var KPI = (function () {
     var k = o.kun > 21 ? 0.6 : 1;
     return { k: k, total: o.fiksa * 0.5 * k };
   }
-  return { BRANCH_K: BRANCH_K, OD_NORM: OD_NORM, sotuvchi: sotuvchi, teamLead: teamLead, dr240: dr240, drFargona: drFargona, drQoqon: drQoqon, drAndijon: drAndijon, rop: rop, rp: rp, kassir: kassir, boshKassir: boshKassir, unduruvchi: unduruvchi, kollektor: kollektor, rejaKoef: rejaKoef, undiruvRahbar: undiruvRahbar, ccOperator: ccOperator, ccTL: ccTL, ccRahbar: ccRahbar, marketing: marketing, onlineSavdo: onlineSavdo, ecRahbar: ecRahbar, hr: hr, pogona: pogona, odBands: odBands, MK_SHARE: MK_SHARE };
+  return { BRANCH_K: BRANCH_K, OD_NORM: OD_NORM, sotuvchi: sotuvchi, teamLead: teamLead, dr240: dr240, drFargona: drFargona, drQoqon: drQoqon, drAndijon: drAndijon, rp: rp, mkBaza: mkBaza, kassir: kassir, boshKassir: boshKassir, unduruvchi: unduruvchi, kollektor: kollektor, rejaKoef: rejaKoef, undiruvRahbar: undiruvRahbar, ccOperator: ccOperator, ccTL: ccTL, ccRahbar: ccRahbar, marketing: marketing, onlineSavdo: onlineSavdo, ecRahbar: ecRahbar, hr: hr, pogona: pogona, odBands: odBands, MK_SHARE: MK_SHARE };
 })();
 if (typeof module !== 'undefined') module.exports = KPI;
 
@@ -529,28 +562,28 @@ var TRACKS = [
 var GOAL = "2 ta shaxsiy maqsadga erishgan bo'lishi (maqsadni xodim o'zi tanlaydi va Direktor bilan kelishadi)";
 var ROLES = {
   /* ---------------- SAVDO ---------------- */
-  rop: { track: 'savdo', name: 'ROP', order: 1, calcs: ['rop'],
-    levels: [['Junior', '$2,000', "Ichkaridan (eng yaxshi Do'kon rahbari Dostigator) yoki tashqaridan. Komissiya tanlaydi."], ['Pro', '$2,200', "ROP Junior 12 oy, barcha filiallar 95%+, kamida 1 yangi yo'nalish ishga tushgan."]],
-    kpi: ["Barcha o'z filiallarining sof foydasidan 1%.", "Shu summa tarmoq overdue pog'onasiga ko'paytiriladi.", "Yangi yo'nalish keltirgan qo'shimcha foydadan 5%, 24 oy davomida.", "Regional Partner kelgach, u boshqaradigan filiallar ROP bazasidan chiqadi."],
-    mas: ["Barcha filiallarda savdo strategiyasi va reja", "Do'kon rahbarlarini boshqarish va baholash", "Yangi filial va yangi yo'nalishlarni ochish"],
+  rop: { track: 'savdo', name: 'ROP', order: 1, calcs: [],
+    levels: [['ROP', "Kelishuvga ko'ra", "Ichkaridan (eng yaxshi Do'kon rahbari Dostigator) yoki tashqaridan. Komissiya tanlaydi."]],
+    kpi: ["Kelishuvga ko'ra (imzolangan ish taklifi).", "Asos: tarmoq yalpi foydasining bazadan oshgan qismi, mijozlarning to'lov sifatiga ko'paytiriladi.", "Fiksa aniq ishlarga bo'lingan va har ish yopilganda to'lanadi."],
+    mas: ["Har filial va sotuvchiga oylik reja, haftalik reja va fakt hisoboti", "Do'kon rahbarlarini boshqarish va baholash", "Filiallar konversiyasi va call center bilan ishlash", "Yangi filial va yangi yo'nalishlarni ochish"],
     note: "Hozir ROP Do'kon rahbarlarini to'g'ridan-to'g'ri boshqaradi. Regional Partner tarmoq o'sganda ROP va Do'kon rahbari orasiga qo'shiladi." },
   regional_partner: { track: 'savdo', name: 'Regional Partner', order: 2, calcs: ['rp'], later: true,
-    levels: [['Junior', '$1,500', "Do'kon rahbari Dostigator 12+ oy, yangi filial, $10,000 kapital, o'rniga yangi rahbar tayyorlagan."], ['Pro', '$1,750', "RP Junior 12 oy, barcha filiallar 6 oy o'rtacha 95%+, o'rniga yangi RP tayyorlagan."]],
+    levels: [['Junior', '$1,500', "Do'kon rahbari Dostigator 12+ oy, yangi filial, $10,000 kapital, o'rniga tayyorlagan nomzod komissiyadan o'tgan."], ['Pro', '$1,750', "RP Junior 12 oy, region filiallari 6 oyning 4 tasida sof foyda rejasi 100%+, o'rniga tayyorlagan nomzod komissiyadan o'tgan."]],
     kpi: ["Region sof foydasidan Junior 2.5%, Pro 3.5%.", "Shu summa region overdue pog'onasiga ko'paytiriladi.", "Kapital ulushi alohida, hech qachon to'xtamaydi."],
     mas: ["2-3 filialni boshqarish", "Har bir Do'kon rahbarini rivojlantirish", "Yangi filial ochilishini boshqarish"],
     note: "Bu lavozim tarmoq o'sganda ochiladi." },
   dokon_rahbari: { track: 'savdo', name: "Do'kon rahbari", order: 3, calcs: ['dr240', 'drFargona', 'drQoqon', 'drAndijon'],
-    levels: [['Junior', '$400', "Kirish. Ko'p yo'ldan kelish mumkin, har yo'lning o'z sharti bor (pastda)."], ['Pro', '$600', "3 oy davomida: sof foyda $20k x filial koeffitsienti, sotuv reja 95%+, overdue filial normasidan past, aksessuar foydasi $3,500 x koeffitsient."], ['Dostigator', '$1,000', "4 oy davomida: sof foyda $28k x koeffitsient, sotuv reja 98%+, overdue normadan kamida 10% past, aksessuar foydasi $4,500 x koeffitsient, " + GOAL + ". O'rniga yangi rahbar tayyorlash sharti bor. Partner yo'lini ochadi."]],
-    kpi: ["Filialga qarab 3 xil model bor. Kalkulyatorda filialni tanlang.", "C1, Chorsu, Navoiy, Samarqand 4, Toshkent: 240 ballik model. Bonus = sof foyda x stavka x multiplikator x jamoa koeffitsienti.", "Overdue bali har filialning o'z normasiga nisbatan hisoblanadi.", "Farg'ona: sof foyda x 5/6/7% (overdue'ga qarab).", "Qo'qon va Andijon: alohida kelishuv bo'yicha."],
+    levels: [['Junior', '$400', "Kirish. Ko'p yo'ldan kelish mumkin, har yo'lning o'z sharti bor (pastda)."], ['Pro', '$600', "Junior'da 6 oy: 6 oyning 4 tasida filial sof foyda va aksessuar rejasi 100%+, overdue filial normasidan past."], ['Dostigator', '$1,000', "Pro'da 6 oy: 6 oyning 5 tasida sof foyda va aksessuar rejasi 100%+, overdue normadan kamida 10% past (norma 28% bo'lsa 25.2%), " + GOAL + ", o'rniga tayyorlagan nomzod komissiyadan o'tgan. Partner yo'lini ochadi."]],
+    kpi: ["Filialga qarab 3 xil model bor. Kalkulyatorda filialni tanlang.", "C1, Chorsu, Navoiy, Samarqand 4, Toshkent: 240 ballik model. Bonus = sof foyda x stavka x multiplikator x jamoa koeffitsienti.", "Overdue bali har filialning o'z normasiga nisbatan hisoblanadi.", "Farg'ona: sof foyda x 5/6/7% (overdue'ga qarab).", "Qo'qon va Andijon: alohida kelishuv bo'yicha. Qo'qonda 2027 yil yanvaridan overdue 32.9% dan oshgan oyda sotuv soni premiyasi berilmaydi.", "Filiallar hajmi har xil, shuning uchun filiallarda raqamlar har xil."],
     mas: ["Jamoani boshqarish, xodim olish va rivojlantirish", "Filial P&L uchun to'liq javobgarlik", "Tovar ostatkasi, kassa intizomi, portfel sifati", "Ijtimoiy tarmoqdagi faollik, kunlik hisobot va jamoa motivatsiyasi"],
-    bridges: [["Sotuvchi", "Dostigator, shaxsiy sotuvi filial planining 70%+ ini 12 oy ta'minlagan"], ["Team Lead", "Pro, mentee'lar rejada, 12 oy"], ["Kassir", "Pro, $1,500/oy aksessuar+referral 3 oy ketma-ket, 12 oy 0 kamomad, 1 kassir o'qitgan, P&L test"], ["Unduruvchi", "Pro, oylik sotuv $70k+ 3 oy ketma-ket, shu vaqtda undiruv rejasi 95%+, P&L test"], ["Kollektor", "Pro, oylik sotuv $70k+ 3 oy ketma-ket, shu vaqtda undiruv rejasi 95%+, P&L test"], ["Undiruv rahbari", "Pro, jamoa rejasi 6 oy o'rtacha 95%+, hech kim 80% dan pastga tushmagan, P&L test"], ["CC rahbar", "Pro, CC savdo plani 6 oy ketma-ket 95%+, P&L test"]] },
+    bridges: [["Sotuvchi", "Dostigator, 12 oyning 9 tasida shaxsiy reja 100%+"], ["Team Lead", "Pro, 12 oy, mentee'lar 12 oyning 9 tasida rejada"], ["Kassir", "Pro, 3 oy ketma-ket aksessuar va referral $1,500+/oy, 12 oy yozilmagan farq yo'q, 1 kassir o'qitgan, P&L testi 70%+"], ["Unduruvchi", "Pro, 6 oyning 4 tasida filial undiruv rejasi 100%+, P&L testi 70%+"], ["Kollektor", "Pro, 6 oyning 4 tasida qaraydigan filiallar rejasi 100%+, P&L testi 70%+"], ["Undiruv rahbari", "Pro, jamoa rejasi 6 oyning 4 tasida 100%+, hech bir filial 80% dan pastga tushmagan, P&L testi 70%+"], ["CC rahbar", "Pro, CC savdo rejasi 6 oyning 5 tasida 95%+, P&L testi 70%+"], ["Barcha ko'priklar", "Ichki nomzod (ko'prik shartini bajargan) Pro darajadan kiradi; Pro daromadi oldingi 6 oy o'rtachasidan kam bo'lsa, farq 6 oy to'lanadi. P&L testini CFO o'tkazadi."]] },
   team_lead: { track: 'savdo', name: 'Team Lead', order: 4, calcs: ['teamLead'],
-    levels: [['Junior', '$400', "Sotuvchi Dostigator, barqaror natija, mentorlik qobiliyati baholangan."], ['Pro', '$500', "Team Lead Junior 6 oy, shaxsiy plan 100%, kamida 3 mentee 95%+ barqaror, inventar kamomadi yo'q."]],
-    kpi: ["O'z savdosidan sotuvchi zinapoyasi, TL qo'shimchasi +0.15pp.", "Har bir mentee o'z rejasini bajargan oyda: birinchi 6 oy $150, keyin $50.", "Mentee soniga chegara yo'q."],
+    levels: [['Junior', '$400', "Sotuvchi Dostigator, 6 oyning 4 tasida shaxsiy reja 100%+, Do'kon rahbari tavsiyasi."], ['Pro', '$500', "Team Lead Junior 6 oy: 6 oyning 4 tasida shaxsiy reja 100%+, kamida 2 mentee 6 oyning 4 tasida reja 95%+, inventar kamomadi yo'q."]],
+    kpi: ["O'z savdosidan sotuvchi zinapoyasi, TL qo'shimchasi +0.15pp.", "Har bir mentee o'z rejasini bajargan oyda: birinchi 6 oy $150, keyin $50.", "Mentee 6 oy ichida Pro bo'lsa, bir martalik $300.", "Bir vaqtda ko'pi bilan 3 mentee. Mentee rejasi reja jadvalidan olinadi."],
     mas: ["Yuqori shaxsiy savdoni saqlash", "Yangi sotuvchilarni o'rgatish", "Do'kon rahbariga yordam"] },
   sotuvchi: { track: 'savdo', name: 'Sotuvchi', order: 5, calcs: ['sotuvchi'],
-    levels: [['Junior', '$200', "Kirish darajasi, sinov muddati."], ['Pro', '$250', "6 oy ichida kamida 2 marta shaxsiy plan 120%+, o'rtacha 95%+, erta overdue filial o'rtachasidan past, kuniga 2+ story, inventar kamomadi yo'q."], ['Dostigator', '$350', "Pro'da 6 oy plan 100%+, kamida 1 Junior o'qitgan, erta overdue filial o'rtachasidan past, kuniga 3+ story, " + GOAL + ". Partner yo'lini ochadi."]],
-    kpi: ["Naqd va muddatli savdo alohida hisoblanadi. Stavka butun summaga qo'llanadi.", "Band chegaralari filial koeffitsientiga ko'paytiriladi: C1 1.0, Chorsu 0.73, Qo'qon 0.71, Navoiy 0.48, Farg'ona 0.30.", "Muddatli stavka = naqd stavka + 0.05pp.", "Sifat bonusi +0.10pp: erta overdue (birinchi 3 to'lov) filial o'rtachasidan past bo'lsa.", "Aksessuar savdosidan 5%.", "Ichki sotuvlar (Smartlife Ofis, boshqa filial, diler) hisobga kirmaydi."],
+    levels: [['Junior', '$200', "Kirish darajasi, sinov muddati."], ['Pro', '$250', "Junior'da 6 oy: 6 oyning 2 tasida shaxsiy reja 120%+, 6 oy o'rtachasi 95%+, erta overdue filial o'rtachasidan past, kuniga 2+ story (Do'kon rahbari haftalik tekshiradi), inventar kamomadi yo'q."], ['Dostigator', '$350', "Pro'da 6 oy: 6 oyning 5 tasida reja 100%+, o'qitgan Junior Pro bo'lgan, erta overdue filial o'rtachasidan past, kuniga 3+ story, " + GOAL + ". Partner yo'lini ochadi."]],
+    kpi: ["Band naqd va muddatli savdo birga (jami savdo) bo'yicha belgilanadi. Stavka butun summaga qo'llanadi.", "Misol, C1: $30k naqd va $30k muddatli = $60k, band 0.35%. Naqddan 0.35%, muddatlidan 0.40%.", "Band chegaralari filial koeffitsientiga ko'paytiriladi: C1 1.0, Chorsu 0.73, Qo'qon 0.71, Navoiy 0.48, Farg'ona 0.30.", "Muddatli stavka = naqd stavka + 0.05pp.", "Sifat bonusi +0.10pp: oxirgi 3 oyda erta overdue (birinchi 3 to'lov) filialdagi boshqa sotuvchilar o'rtachasidan past bo'lsa. Shu 3 oyda kamida 8 ta muddatli savdo bo'lishi kerak.", "Reja: filial sotuv rejasi x sotuvchining oxirgi 3 oydagi ulushi. Yangi sotuvchi uchun filial o'rtachasining 60%.", "Aksessuar savdosidan 5%.", "Ichki sotuvlar (Smartlife Ofis, boshqa filial, diler) hisobga kirmaydi."],
     mas: ["Mijozga mahsulot taqdim etish, ehtiyojini aniqlash", "Naqd va muddatli savdoni to'g'ri rasmiylashtirish", "Mijozning to'lov qobiliyatini dastlabki baholash", "Aksessuar sotish, iCloud'ni to'g'ri yuritish"] },
   /* ---------------- MOLIYA ---------------- */
   cfo: { track: 'moliya', name: 'CFO', order: 1, calcs: [],
@@ -558,47 +591,47 @@ var ROLES = {
     kpi: ["Gain-sharing: 2025 yil oylik o'rtacha sof foydasidan oshgan qismdan ulush.", "Foydani CFO o'zi hisoblaydi, shuning uchun CEO tasdiqlaydi.", "Aniq foiz shartnomada."],
     mas: ["Moliyaviy strategiya", "Hisobot, audit va byudjet nazorati", "Tavakkalchilik boshqaruvi"] },
   finansist: { track: 'moliya', name: 'Finansist', order: 2, calcs: [],
-    levels: [['Junior', '$700', "Analitik Pro yoki Bosh kassir Pro'dan."], ['Pro', '$800', "Finansist Junior 12 oy, mustaqil hisobot va solishtirmalar xatosiz."]],
-    kpi: ["Kelishuvga ko'ra."],
+    levels: [['Junior', '$700', "Analitik Pro'dan. Bosh kassir Pro'dan yonma-yon o'tish: ish turi o'zgaradi, daromad oshmasligi mumkin."], ['Pro', '$1,000', "Finansist Junior 12 oy, checklist 12 oyning 10 tasida 90%+."]],
+    kpi: ["Oylik checklist: to'lovlar, solishtirma va hisobotlar o'z vaqtida va xatosiz.", "Bonus fiksaning 40% igacha, checklist bajarilgan foizga qarab."],
     mas: ["To'lovlar, hisob-kitob va bank operatsiyalari", "Debitor va kreditorlik, solishtirma"] },
   analitik: { track: 'moliya', name: 'Analitik', order: 3, pair: 'a', calcs: [],
-    levels: [['Junior', '$500', "Kassir Pro'dan, tahlil yo'li. 12 oy va tahliliy ish namunasi."], ['Pro', '$650', "Analitik Junior 12 oy, moliyaviy modellarni mustaqil yuritadi."]],
-    kpi: ["Oylik checklist: dashboard va hisobotlar o'z vaqtida va xatosiz.", "Bajarilgan foizga qarab bonus."],
+    levels: [['Junior', '$500', "Kassir Pro'dan, tahlil yo'li. CFO bergan tahliliy topshiriq qabul qilingan."], ['Pro', '$650', "Analitik Junior 12 oy, checklist 12 oyning 10 tasida 90%+."]],
+    kpi: ["Oylik checklist: dashboard va hisobotlar o'z vaqtida va xatosiz.", "Bonus fiksaning 30% igacha, checklist bajarilgan foizga qarab."],
     mas: ["P&L va birlik iqtisodi tahlili", "KPI hisob-kitobi, dashboard", "Byudjet va prognoz"] },
   bosh_kassir: { track: 'moliya', name: 'Bosh kassir', order: 3, pair: 'b', calcs: ['boshKassir'],
-    levels: [['Junior', '$500', "Kassir Pro'dan, operatsion yo'l. 12 oy va jamoa boshqaruvi tajribasi."], ['Pro', '$550', "Bosh kassir Junior 12 oy, filiallararo xazina boshqaruvida isbotlangan."]],
+    levels: [['Junior', '$500', "Kassir Pro'dan, operatsion yo'l. Kassir sifatida oxirgi 6 oy o'rtacha ball 90+."], ['Pro', '$550', "Bosh kassir Junior 12 oy, 12 oyning 10 tasida ball 85+."]],
     kpi: ["Har bir filialdan $225, 100 ball, 1 ball = $2.25.", "Yangi ochilgan filial birinchi 2 oy hisobga kirmaydi.", "$100 gacha farq to'g'ri hisoblanadi, lekin aktga yoziladi."],
     blocks: [["Telefon va aksessuar kassasi jadval bilan bir xil", 20, "Farq $100 dan oshsa ball yo'q"], ["Oy yopish", 18, "Barcha filialda vaqtida va to'g'ri"], ["Balans, akt-sverka, ayirboshlash", 15, "Haftalik tekshiruv, farq $100 dan oshsa ball yo'q"], ["Hisobotlar", 13, "Har kuni. Oyda 3 kundan ortiq topshirilmasa ball yo'q"], ["Filial oldi-berdilari", 12, "Har dushanba tekshiriladi"], ["Sotuv vaqtida va tannarx bilan", 12, "Oyda 3 kundan ko'p kechiksa yoki tannarxsiz sotuv bo'lsa ball yo'q"], ["Ostatka nazorati", 10, "Har hafta, oyiga kamida 2 filialda o'zi qatnashadi"]],
     mas: ["Barcha kassalarni har kuni 14:00 gacha tekshirish", "Kassirlar hisobotini tasdiqlash", "Oy yopish va oldingi oyga yozuv tushmasligi", "CFO jadvali bo'yicha dividend yechish va ofis fondi", "Filial xarajat limiti, bank pul harakati"] },
   kassir: { track: 'moliya', name: 'Kassir', order: 4, calcs: ['kassir'],
-    levels: [['Junior', '$350', "Kirish darajasi, kassa intizomi, sinov muddati."], ['Pro', '$380', "Junior'da 12 oy xatosiz. Keyin 2 yo'l: Analitik yoki Bosh kassir."]],
-    kpi: ["100 ball = fiksa x 130%. Bonus ballga proporsional.", "Kamomad/ortiqcha yo'q 40, smena yopilishi va inkassatsiya 25, xizmat 15, aksessuar/referral 20.", "Biror smenada farq 20 ming so'mdan oshsa, oy bonusi 0. Kamomad alohida undiriladi.", "Daraja 12 oyda o'zgaradi. Har 6 oyda o'rtacha ball 85+ bo'lsa fiksa 5% oshadi."],
+    levels: [['Junior', '$350', "Kirish darajasi, kassa intizomi, sinov muddati."], ['Pro', '$400', "Junior'da 12 oy: yozilmagan farq yo'q, 12 oy o'rtacha ball 85+. Keyin 2 yo'l: Analitik yoki Bosh kassir."]],
+    kpi: ["100 ball = fiksa x 130%. Bonus ballga proporsional.", "Kassa farqi 40: smenada yozilgan farq 20 ming so'mgacha ta'sir qilmaydi. Oshgan har holat -10 ball, summa undiriladi.", "Smena yopilishi va inkassatsiya 25: kech qolgan har holat -5.", "Xizmat 15: yozilgan har mijoz shikoyati -5.", "Aksessuar va referral 20: har $200 savdo = 1 ball.", "Tekshiruvda yozilmagan farq (kamomad yoki ortiqcha) topilsa, oy bonusi 0.", "Daraja 12 oyda o'zgaradi. Har 6 oyda o'rtacha ball 85+ bo'lsa fiksa 5% oshadi, lekin keyingi daraja fiksasidan oshmaydi."],
     mas: ["Smena naqdi uchun moddiy javobgarlik", "Kunlik hisobot va inkassatsiya", "Mijozga tez xizmat"] },
   /* ---------------- UNDIRUV ---------------- */
   undiruv_rahbar: { track: 'undiruv', name: 'Undiruv rahbari', order: 1, calcs: ['undiruvRahbar'],
-    levels: [['Junior', '$700', "Kollektor Pro 6 oy, jamoa boshqaruvi baholangan."], ['Pro', '$800', "Undiruv rahbari Junior 6 oy, bo'lim ko'rsatkichlari barqaror yaxshilangan."]],
-    kpi: ["5 mln so'm x M1 x M2.", "Ustiga jamoa qayta sotuv KPI'sining 25%.", "Biror filial 70% dan past bo'lsa, M2 0.85 dan oshmaydi."],
+    levels: [['Junior', '$700', "Kollektor Pro 6 oy, 6 oyning 4 tasida qaraydigan filiallar rejasi 100%+. Ichki nomzod Pro darajadan kiradi."], ['Pro', '$800', "Undiruv rahbari Junior 6 oy: jamoa rejasi 6 oyning 4 tasida 100%+, 90+ qarz ulushi 6 oyda kamaygan."]],
+    kpi: ["5 mln so'm x jamoa reja koeffitsienti (filiallar undiruv rejasining o'rtacha bajarilishi, unduruvchi bilan bir xil shkala).", "Ustiga jamoa bonuslari yig'indisining 10% (unduruvchilar va kollektorlar).", "Biror filial 70% dan past bo'lsa, koeffitsient 0.85 dan oshmaydi."],
     mas: ["Undiruv strategiyasi va jarayon", "Portfel sifati va bad debt", "Kollektor va unduruvchilarni rivojlantirish"] },
   kollektor: { track: 'undiruv', name: 'Kollektor', order: 2, calcs: ['kollektor'],
-    levels: [['Junior', '$500', "Unduruvchi Pro 6 oy, samaradorlik ko'rsatkichi."], ['Pro', '$550', "Kollektor Junior 6 oy, yuqori DPD bo'yicha barqaror natija."]],
-    kpi: ["Kim undirsa o'sha oladi. Kassada har bir to'lov kim undirgani bilan yoziladi.", "O'zi undirgan 31-90 kunlik qarzdan 1%.", "O'zi undirgan 90+ kunlik va meros qarzdan: $0-10k 3%, $10-20k 4%, $20k+ 5% (butun summaga).", "Qaraydigan har bir filial undiruv rejasini bajarsa +$100."],
+    levels: [['Junior', '$500', "Unduruvchi Pro 6 oy, 6 oyning 4 tasida reja koeffitsienti 1.0+."], ['Pro', '$550', "Kollektor Junior 6 oy, meros undiruvi 6 oyning 4 tasida $10k+."]],
+    kpi: ["Har shartnoma bitta odamga biriktiriladi. Pul shartnoma biriktirilgan odamga yoziladi.", "Biriktirilgan 31-90 kunlik va yangi 90+ qarzdan 1%.", "Meros ro'yxatidan (1.10.2026 holatida 90+ bo'lgan shartnomalar): $0-10k 3%, $10-20k 4%, $20k+ 5% (butun summaga). Band oxirgi 3 oy o'rtachasi bo'yicha tanlanadi.", "Qaraydigan har bir filial undiruv rejasini bajarsa +$100."],
     mas: ["Kechikkan qarzlarni undirish, dala ishi", "Qayta tuzilgan to'lov rejalari", "Huquqiy jarayonga tayyorlash"] },
   unduruvchi: { track: 'undiruv', name: 'Unduruvchi', order: 3, calcs: ['unduruvchi'],
-    levels: [['Junior', '$250', "Kirish darajasi."], ['Pro', '$275', "Junior'da 6 oy, filial reja bajarilishi 95%+ barqaror."]],
-    kpi: ["0-10 kunlik undiruvdan 0.60%, 11-30 kunlikdan 0.78%.", "Shu summa filial reja koeffitsientiga ko'paytiriladi. Reja = shu oy grafik bo'yicha to'lanishi kerak bo'lgan summa (tizim hisoblaydi). 80% dan past 0, 80% x0.5, 100% x1.0, 120% va yuqori x1.5.", "O'zi undirgan 31-90 kunlik qarzdan 1%, 90+ kunlikdan 3-5% (kollektor stavkasi).", "Filialda bir nechta unduruvchi bo'lsa, bonus teng bo'linadi.", "Kassada har bir to'lov kim undirgani bilan yoziladi."],
+    levels: [['Junior', '$250', "Kirish darajasi."], ['Pro', '$275', "Junior'da 6 oy, filial reja bajarilishi 6 oyning 4 tasida 95%+."]],
+    kpi: ["0-10 kunlik undiruvdan 0.60%, 11-30 kunlikdan 0.78%.", "Shu summa filial reja koeffitsientiga ko'paytiriladi. Reja = shu oy grafik bo'yicha to'lanishi kerak bo'lgan summa (tizim hisoblaydi). 70% dan past 0, 70% x0.3, 100% x1.0, 120% va yuqori x1.5, oraliqda bir tekis o'sadi.", "Biriktirilgan 31-90 kunlik va yangi 90+ qarzdan 1%. Meros ro'yxatidan 3-5% (kollektor stavkasi).", "Filialda bir nechta unduruvchi bo'lsa, bonus teng bo'linadi.", "Har shartnoma bitta odamga biriktiriladi. Pul shartnoma biriktirilgan odamga yoziladi."],
     mas: ["To'lov kunini eslatish va undirish", "Mijoz bilan grafik bo'yicha aloqa", "Kechikkan mijozni kuzatish"] },
   /* ---------------- CALL CENTER ---------------- */
   cc_rahbar: { track: 'cc', name: 'CC rahbar', order: 1, calcs: ['ccRahbar'],
-    levels: [['Junior', '$500', "CC operator Dostigator yoki CC Team Lead Pro, 6 oy, vakansiya bo'lsa."], ['Pro', '$550', "CC rahbar Junior 6 oy, CC savdo plani 6 oy ketma-ket 95%+."]],
-    kpi: ["Call center orqali kelgan jami savdodan 0.1%."],
+    levels: [['Junior', '$500', "CC operator Dostigator yoki CC Team Lead Pro, 6 oy, vakansiya bo'lsa. Ichki nomzod Pro darajadan kiradi."], ['Pro', '$550', "CC rahbar Junior 6 oy, CC savdo rejasi 6 oyning 5 tasida 95%+."]],
+    kpi: ["Call center orqali kelgan jami savdodan 0.2%."],
     mas: ["Smena va yuklamani rejalashtirish", "Qo'ng'iroq sifati, skript, konversiya", "Operatorlarni o'qitish"] },
   cc_teamlead: { track: 'cc', name: 'CC Team Lead', order: 2, calcs: ['ccTL'],
-    levels: [['Junior', '$300', "CC operator Dostigator 6 oy, mentorlik baholangan."], ['Pro', '$325', "CC Team Lead Junior 6 oy, kamida 2 mentee barqaror natijada."]],
+    levels: [['Junior', '$300', "CC operator Dostigator 6 oy, 26 haftaning 20 tasida reja bajarilgan."], ['Pro', '$325', "CC Team Lead Junior 6 oy, kamida 2 mentee 26 haftaning 18 tasida rejada."]],
     kpi: ["O'z haftalik KPI'si (Dostigator stavkasi).", "Ustiga jamoa umumiy savdosidan 0.05%."],
     mas: ["Yuqori shaxsiy natija", "Yangi operatorlarni o'rgatish"] },
   cc_operator: { track: 'cc', name: 'CC operator', order: 3, calcs: ['ccOperator'],
-    levels: [['Junior', '$250', "Kirish darajasi."], ['Pro', '$265', "Sotuvchi Pro tajribasi bilan kirish yoki CC Junior 6 oy, konversiya rejasi 80%+."], ['Dostigator', '$285', "Sotuvchi Dostigator tajribasi bilan kirish yoki CC Pro 6 oy, konversiya rejasi 90%+, " + GOAL + "."]],
-    kpi: ["Haftalik KPI, CC orqali kelgan savdodan. Stavka butun summaga.", "Rejadan past / reja va yuqori: Junior 0.40/0.50%, Pro 0.45/0.55%, Dostigator 0.50/0.60%.", "Haftalik reja: yangi operator $15k, tajribali $20k."],
+    levels: [['Junior', '$250', "Kirish darajasi."], ['Pro', '$265', "Sotuvchi Pro tajribasi bilan kirish yoki CC Junior 6 oy, 26 haftaning 18 tasida reja bajarilgan."], ['Dostigator', '$285', "Sotuvchi Dostigator tajribasi bilan kirish yoki CC Pro 6 oy, 26 haftaning 22 tasida reja bajarilgan, " + GOAL + "."]],
+    kpi: ["Haftalik KPI, CC orqali kelgan savdodan. Stavka butun summaga.", "Rejadan past / reja va yuqori: Junior 0.40/0.50%, Pro 0.45/0.55%, Dostigator 0.50/0.60%.", "Haftalik reja: birinchi 3 oy $15k, keyin $20k.", "Savdo do'konda operator nomi bilan yoziladi (lid manbai ustuni). Bunday savdo uchun operator ham, sotuvchi ham o'z KPI'sini oladi."],
     mas: ["Qo'ng'iroqlarni qabul qilish", "Skript bo'yicha sotuvga yordam, lead'ni malakalash"] },
   /* ---------------- MARKETING ---------------- */
   cmo: { track: 'marketing', name: 'CMO', order: 1, calcs: [],
@@ -606,30 +639,30 @@ var ROLES = {
     kpi: ["Kelishuvga ko'ra (imzolangan shartnoma)."],
     mas: ["Marketing va brend strategiyasi", "Barcha kanal va kampaniyalar nazorati"] },
   marketolog: { track: 'marketing', name: 'Marketolog', order: 2, calcs: [],
-    levels: [['Junior', '$700', "Videograf/Targetolog/SMM/Brand Face Pro 6 oy, baho 3/5+."], ['Pro', '$900', "Marketolog Junior 6 oy, ROI isbotlangan, baho 3/5+."], ['Dostigator', '$1,100', "Pro 6 oy, kanallarni kompleks boshqaradi, baho 4/5+, " + GOAL + "."]],
+    levels: [['Junior', '$700', "Videograf/Targetolog/SMM/Brand Face Pro 6 oy, CMO va CFO bahosi 3/5+."], ['Pro', '$900', "Marketolog Junior 6 oy, xaridorlar soni va CAC rejasi 6 oyning 4 tasida bajarilgan, CMO va CFO bahosi 3/5+."], ['Dostigator', '$1,100', "Pro 6 oy, xaridorlar va CAC rejasi 6 oyning 5 tasida bajarilgan, CMO va CFO bahosi 4/5+, " + GOAL + "."]],
     kpi: ["Oylik reja: marketingdan kelgan xaridorlar soni va bir xaridor narxi (CAC).", "Ikkisi bajarilsa fiksa x 100%, ortig'i proporsional.", "Lavozim hali ochilmagan."],
     mas: ["Kanallarni muvofiqlashtirish", "Byudjet va CAC nazorati"] },
   mutaxassis: { track: 'marketing', name: 'Videograf, Targetolog, SMM, Brand Face', order: 3, calcs: ['marketing'],
-    levels: [['Junior', '$400 (BF $300)', "Kirish darajasi."], ['Pro', '$550 (BF $450)', "Junior 6 oy, oylik ish rejasi barqaror bajarilgan."]],
-    kpi: ["Darvoza: oylik ish rejasi (CMO tasdiqlaydi). Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor, har chorakda oxirgi 3 oy o'rtachasi bilan yangilanadi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "To'rtovi orasida lateral o'tish mumkin."],
+    levels: [['Junior', '$400 (BF $300)', "Kirish darajasi."], ['Pro', '$550 (BF $450)', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan."]],
+    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "To'rtovi orasida lateral o'tish mumkin."],
     mas: ["Videograf: 12 video", "SMM: 30 post va har kuni story", "Targetolog: kampaniyalar uzluksiz", "Brand Face: 8 kontent"] },
   /* ---------------- E-COMMERCE ---------------- */
   ec_rahbar: { track: 'ecommerce', name: 'E-commerce rahbari', order: 1, calcs: ['ecRahbar'],
-    levels: [['Junior', '$1,200', "Online savdo Dostigator yoki senior Dasturchi."], ['Pro', '$1,500', "Junior 12 oy, bo'lim barqaror o'sgan."], ['Dostigator', '$2,000', "Pro 12 oy, strategik natijalar isbotlangan. Partner yo'li ochiladi."]],
+    levels: [['Junior', '$1,200', "Online savdo Dostigator yoki Dasturchi Dostigator."], ['Pro', '$1,500', "Junior 12 oy, online savdo 12 oyda 20%+ o'sgan."], ['Dostigator', '$2,000', "Pro 12 oy, online savdo yana 20%+ o'sgan. Partner yo'li ochiladi."]],
     kpi: ["Jami online savdodan 0.3%."], mas: ["E-commerce bo'limi strategiyasi", "Yangi online kanallar"] },
   online_savdo: { track: 'ecommerce', name: 'Online savdo', order: 2, pair: 'a', calcs: ['onlineSavdo'],
-    levels: [['Junior', '$500', "EC Junior Pro va online savdo ko'nikmasi."], ['Pro', '$700', "Junior 12 oy, oylik online reja barqaror."], ['Dostigator', '$900', "Pro 12 oy, " + GOAL + "."]],
+    levels: [['Junior', '$500', "EC Junior Pro va online savdo ko'nikmasi."], ['Pro', '$700', "Junior 12 oy, online reja 12 oyning 9 tasida 100%+."], ['Dostigator', '$900', "Pro 12 oy, online reja 12 oyning 10 tasida 100%+, " + GOAL + "."]],
     kpi: ["Sotuvchi zinapoyasi (C1 bandlari) + 0.10pp, do'kon xarajati yo'q.", "Asos: buyurtma tizimida raqam bilan yozilgan va yetkazilgan buyurtmalar."], mas: ["Sayt, Telegram, Instagram orqali savdo", "Yetkazish va qaytarishlar"] },
   dasturchi: { track: 'ecommerce', name: 'Dasturchi', order: 2, pair: 'b', calcs: [],
-    levels: [['Junior', '$650', "Kirish darajasi."], ['Pro', '$800', "Junior 12 oy, mustaqil topshiriqlar sifatli."], ['Dostigator', '$1,000', "Pro 12 oy, murakkab modullar mustaqil, " + GOAL + "."]],
+    levels: [['Junior', '$650', "Kirish darajasi."], ['Pro', '$800', "Junior 12 oy, kamida 4 loyiha muddatida topshirilgan va 2 hafta xatosiz ishlagan."], ['Dostigator', '$1,000', "Pro 12 oy, kamida 2 katta tizim ($5k+/oy qo'shimcha foyda), " + GOAL + "."]],
     kpi: ["Fiksa + loyiha bonusi. Har loyiha oldidan yozma kelishuv: nima, qachon, qancha.", "Loyiha ishga tushib, 2 hafta jiddiy xatosiz ishlasa to'lanadi.", "Katta tizimlar uchun Innovation Royalty: kompaniyaga oyiga $5k+ qo'shimcha foyda keltirsa, ~15%."],
     mas: ["Platforma va botlar", "Integratsiyalar", "Barqarorlik va xavfsizlik"] },
   ec_junior: { track: 'ecommerce', name: 'EC Junior', order: 3, calcs: [],
-    levels: [['Junior', '$300', "Kirish darajasi."], ['Pro', '$450', "12 oy ichida Online savdo yoki Dasturchi yo'nalishini tanlaydi."]],
+    levels: [['Junior', '$300', "Kirish darajasi."], ['Pro', '$450', "12 oy ichida Online savdo yoki Dasturchi yo'nalishini tanlab, shu yo'nalishda 2 ta topshiriqni bajargan."]],
     kpi: ["Fiksa. Yo'nalish tanlangach o'sha lavozim KPI'si."], mas: ["Bo'lim uchun yordamchi ishlar"] },
   /* ---------------- HR ---------------- */
   hr_menejer: { track: 'hr', name: 'HR menejer', order: 1, calcs: ['hr'],
-    levels: [['Junior', "Joriy maosh", "Kirish darajasi."], ['Pro', "Joriy maosh", "Junior 12 oy, ishga olinganlarning ko'pchiligi sinovdan o'tgan."]],
+    levels: [['Junior', "Joriy maosh", "Kirish darajasi."], ['Pro', "Joriy maosh", "Junior 12 oy, yollanganlarning 70%+ i 3 oylik sinovdan o'tgan."]],
     kpi: ["Yollangan har bir xodim uchun: uning 1 oylik fiksasi x 50%.", "Xodim 3 oylik sinovdan o'tgandan keyin to'lanadi. 3 oy ichida ketsa 0.", "Vakansiya 21 kundan kech yopilsa x 0.6.", "Aylanma KPI qilinmaydi: unga rahbar va maosh ta'sir qiladi."],
     mas: ["Vakansiya ochish va yopish", "Nomzodlarni saralash", "Sinov muddatini kuzatish"] },
   /* ---------------- HAMKORLIK ---------------- */
@@ -643,7 +676,7 @@ var ROLES = {
 var EDGES = [
   ['sotuvchi', 'team_lead'], ['sotuvchi', 'dokon_rahbari'], ['team_lead', 'dokon_rahbari'], ['dokon_rahbari', 'rop'], ['dokon_rahbari', 'regional_partner'], ['regional_partner', 'rop'], ['dokon_rahbari', 'partner'],
   ['sotuvchi', 'cc_operator', 'lateral'],
-  ['kassir', 'analitik'], ['kassir', 'bosh_kassir'], ['analitik', 'finansist'], ['bosh_kassir', 'finansist'], ['finansist', 'cfo'], ['cfo', 'partner'], ['kassir', 'dokon_rahbari', 'bridge'], ['kassir', 'unduruvchi', 'bridge'],
+  ['kassir', 'analitik'], ['kassir', 'bosh_kassir'], ['analitik', 'finansist'], ['bosh_kassir', 'finansist', 'lateral'], ['finansist', 'cfo'], ['cfo', 'partner'], ['kassir', 'dokon_rahbari', 'bridge'], ['kassir', 'unduruvchi', 'bridge'],
   ['unduruvchi', 'kollektor'], ['kollektor', 'undiruv_rahbar'], ['unduruvchi', 'dokon_rahbari', 'bridge'], ['kollektor', 'dokon_rahbari', 'bridge'], ['undiruv_rahbar', 'dokon_rahbari', 'bridge'],
   ['cc_operator', 'cc_teamlead'], ['cc_operator', 'cc_rahbar'], ['cc_teamlead', 'cc_rahbar'], ['cc_rahbar', 'dokon_rahbari', 'bridge'],
   ['mutaxassis', 'marketolog'], ['marketolog', 'cmo'], ['cmo', 'partner'],
@@ -664,12 +697,12 @@ var EDGES = [
     sotuvchi: { title: 'Sotuvchi', fields: [
       ['filial', 'Filial', 'sel', 'Navoiy', SELLER_BR], ['daraja', 'Daraja', 'sel', 'Junior', LV3],
       ['naqd', 'Naqd savdo', 'usd', 26000], ['mudd', 'Muddatli savdo', 'usd', 44000], ['aks', 'Aksessuar savdosi', 'usd', 1500],
-      ['sifat', "Erta overdue filial o'rtachasidan past", 'chk', true]],
-      run: function (v) { var r = KPI.sotuvchi(v); return { rows: [['Naqd', usd(r.naqd), pct(r.rn)], ['Muddatli', usd(r.mudd), pct(r.rm)], ['Aksessuar', usd(r.aks), '5%']], total: usd(r.total), note: 'Filial koeffitsienti ' + r.k + '. Birinchi band chegarasi: ' + usd(25000 * r.k) + '.' }; } },
+      ['sifat', "Sifat bonusi: erta overdue filial o'rtachasidan past (3 oyda 8+ muddatli savdo)", 'chk', true]],
+      run: function (v) { var r = KPI.sotuvchi(v); return { rows: [['Jami savdo (band shunga qarab)', usd(v.naqd + v.mudd), ''], ['Naqd', usd(r.naqd), pct(r.rn)], ['Muddatli', usd(r.mudd), pct(r.rm)], ['Aksessuar', usd(r.aks), '5%']], total: usd(r.total), note: 'Band naqd va muddatli birga hisoblanadi. Filial koeffitsienti ' + r.k + '. Birinchi band chegarasi: ' + usd(25000 * r.k) + '.' }; } },
     teamLead: { title: 'Team Lead', fields: [
       ['filial', 'Filial', 'sel', 'C1', SELLER_BR], ['naqd', "O'z naqd savdosi", 'usd', 30000], ['mudd', "O'z muddatli savdosi", 'usd', 35000], ['aks', 'Aksessuar', 'usd', 1000],
-      ['sifat', "Erta overdue filial o'rtachasidan past", 'chk', true], ['m1', 'Mentee, birinchi 6 oy (rejada)', 'n', 2], ['m2', 'Mentee, 6 oydan keyin (rejada)', 'n', 1]],
-      run: function (v) { var r = KPI.teamLead(v); return { rows: [["O'z KPI (TL +0.15pp)", usd(r.s.total), pct(r.s.rn) + ' / ' + pct(r.s.rm)], ['Mentee bonusi', usd(r.mentee), v.m1 + ' x $150 + ' + v.m2 + ' x $50']], total: usd(r.total) }; } },
+      ['sifat', "Erta overdue filial o'rtachasidan past", 'chk', true], ['m1', 'Mentee, birinchi 6 oy (rejada)', 'n', 2], ['m2', 'Mentee, 6 oydan keyin (rejada)', 'n', 1], ['m3', 'Shu oy Pro bo\'lgan mentee', 'n', 0]],
+      run: function (v) { var r = KPI.teamLead(v); return { rows: [["O'z KPI (TL +0.15pp)", usd(r.s.total), pct(r.s.rn) + ' / ' + pct(r.s.rm)], ['Mentee bonusi', usd(r.mentee), r.m1 + ' x $150 + ' + r.m2 + ' x $50' + (v.m3 ? ' + ' + v.m3 + ' x $300' : '')]], total: usd(r.total), note: 'Bir vaqtda ko\'pi bilan 3 mentee. Mentee rejasi reja jadvalidan olinadi.' }; } },
     dr240: { title: "C1, Chorsu, Navoiy, Samarqand 4, Toshkent", fields: [
       ['filial', 'Filial', 'sel', 'C1', BR240], ['daraja', 'Daraja', 'sel', 'Junior', LV3],
       ['fcm', 'Sof foyda (FCM)', 'usd', 15300], ['reja', 'Sotuv rejasi bajarilishi', 'pct', 100], ['od', 'Overdue ulushi (butun portfel)', 'pct', 29.1],
@@ -679,31 +712,29 @@ var EDGES = [
           total: usd(r.total), note: 'Overdue bandlari (' + v.daraja + '): ' + b[0] + '% dan yuqori 0 ball, ' + b[1] + '-' + b[0] + '% 15, ' + b[2] + '-' + b[1] + '% 25, ' + b[3] + '-' + b[2] + '% 40, ' + b[3] + '% dan past 60 ball.' }; } },
     drFargona: { title: "Farg'ona", fields: [['net', 'Filial sof foydasi', 'usd', 6000], ['od', 'Overdue ulushi (butun portfel)', 'pct', 58]],
       run: function (v) { var r = KPI.drFargona(v); return { rows: [['Stavka', pct(r.rate * 100, 0), '50% dan yuqori 5%, 30-50% 6%, 30% dan past 7%']], total: usd(r.total), note: "Fiksa: L1 5 mln, L2 6 mln, L3 7.5 mln, RM 10 mln so'm. Stavka 5% dan pastga tushmaydi." }; } },
-    drQoqon: { title: "Qo'qon", fields: [['net', 'Filial sof foydasi', 'usd', 16600], ['sotuv', 'Sotuvlar soni', 'n', 180], ['aks', 'Aksessuar sof foydasi', 'usd', 1600], ['reja', "Oylik ish reja bajarildi", 'chk', true]],
-      run: function (v) { var r = KPI.drQoqon(v); return { rows: [['Sof foydadan', usd(r.foyda), pct(r.rate * 100, 1)], ['Sotuvdan', usd(r.sotuv), v.sotuv > 50 ? v.sotuv + ' x $2' : "50 tadan kam"], ['Aksessuardan', usd(r.aks), pct(r.aksR * 100, 0)], ['Ish reja', usd(r.plan), '']], total: usd(r.total), note: "Fiksa 4 000 000 so'm. Sof foyda: $10k gacha 0, $10-20k 3%, $20-35k 3.5%, $35k+ 4%. Aksessuar: $1k gacha 0, $1k+ 10%, $2k+ 12%, $4k+ 15%." }; } },
+    drQoqon: { title: "Qo'qon", fields: [['net', 'Filial sof foydasi', 'usd', 16600], ['sotuv', 'Sotuvlar soni', 'n', 180], ['aks', 'Aksessuar sof foydasi', 'usd', 1600], ['reja', "Oylik ish reja bajarildi", 'chk', true], ['od', 'Overdue ulushi (butun portfel)', 'pct', 28.8], ['yanvardan', '2027 yil yanvaridan keyingi oy', 'chk', false]],
+      run: function (v) { var r = KPI.drQoqon(v); return { rows: [['Sof foydadan', usd(r.foyda), pct(r.rate * 100, 1)], ['Sotuvdan', usd(r.sotuv), r.odBlock ? 'overdue 32.9% dan yuqori' : v.sotuv > 50 ? v.sotuv + ' x $2' : "50 tadan kam"], ['Aksessuardan', usd(r.aks), pct(r.aksR * 100, 0)], ['Ish reja', usd(r.plan), '']], total: usd(r.total), note: "Fiksa 4 000 000 so'm. Sof foyda: $10k gacha 0, $10-20k 3%, $20-35k 3.5%, $35k+ 4%. Aksessuar: $1k gacha 0, $1k+ 10%, $2k+ 12%, $4k+ 15%. 2027 yil yanvaridan: overdue 32.9% dan oshgan oyda sotuv soni premiyasi yo'q." }; } },
     drAndijon: { title: 'Andijon', fields: [['net', 'Filial sof foydasi', 'usd', 15000], ['aks', 'Aksessuar foydasi', 'usd', 1200]],
       run: function (v) { var r = KPI.drAndijon(v); return { rows: [['Sof foydadan', usd(r.foyda), pct(r.rate * 100, 1)], ['Aksessuardan', usd(r.aks), v.aks > 1000 ? '15%' : '$1,000 dan oshmadi']], total: usd(r.total), note: "Fiksa 5 mln so'm. Sof foyda: $10k gacha 0, $10-15k 2%, $15-20k 3%, $20-35k 3.5%, $35k+ 4%. Andijon franshiza, xarajatni franshizachi ko'taradi." }; } },
-    rop: { title: 'ROP', fields: [['net', "Barcha o'z filiallar sof foydasi", 'usd', 65000], ['od', 'Tarmoq overdue ulushi', 'pct', 31], ['yy', "Yangi yo'nalish qo'shimcha foydasi", 'usd', 0], ['yangi24', "Yangi yo'nalish 24 oy ichida", 'chk', true]],
-      run: function (v) { var r = KPI.rop(v); return { rows: [['Tarmoq foydasidan 1%', usd(r.tarmoq), "pog'ona x" + r.p], ["Yangi yo'nalishdan 5%", usd(r.yy), '']], total: usd(r.total), note: "Overdue pog'onasi: 15% gacha 1.0, 15-20% 0.95, 20-25% 0.9, 25-30% 0.85, 30% dan yuqori 0.75." }; } },
     rp: { title: 'Regional Partner', fields: [['daraja', 'Daraja', 'sel', 'Junior', ['Junior', 'Pro']], ['net', 'Region sof foydasi', 'usd', 40000], ['od', 'Region overdue ulushi', 'pct', 25]],
       run: function (v) { var r = KPI.rp(v); return { rows: [['Stavka', pct(r.rate * 100, 1), ''], ["Overdue pog'onasi", 'x' + r.p, '']], total: usd(r.total), note: 'Kapital ulushi alohida hisoblanadi.' }; } },
-    kassir: { title: 'Kassir', fields: [['fiksa', 'Fiksa', 'usd', 350], ['b1', "Kamomad/ortiqcha yo'q (40 gacha)", 'n', 40], ['b2', 'Smena yopilishi, inkassatsiya (25 gacha)', 'n', 25], ['b3', 'Xizmat (15 gacha)', 'n', 15], ['b4', 'Aksessuar/referral (20 gacha)', 'n', 15], ['kamomad', "Biror smenada farq 20 ming so'mdan oshdi", 'chk', false]],
-      run: function (v) { var r = KPI.kassir(v); return { rows: [['Jami ball', r.ball + ' / 100', '']], total: usd(r.total), note: v.kamomad ? "Chegaradan oshgan kamomad bor: oy bonusi 0." : '100 ball = fiksa x 130%.' }; } },
+    kassir: { title: 'Kassir', fields: [['fiksa', 'Fiksa', 'usd', 350], ['farq', "20 ming so'mdan oshgan yozilgan farqlar soni", 'n', 0], ['kech', 'Kech yopilgan smena yoki inkassatsiya', 'n', 0], ['shikoyat', 'Yozilgan mijoz shikoyatlari', 'n', 0], ['aksRef', 'Aksessuar va referral savdosi', 'usd', 3000], ['yashirin', 'Tekshiruvda yozilmagan farq topildi', 'chk', false]],
+      run: function (v) { var r = KPI.kassir(v), p = r.parts; return { rows: [['Kassa farqi', p.farq + ' / 40', '-10 har holat'], ['Smena va inkassatsiya', p.smena + ' / 25', '-5 har holat'], ['Xizmat', p.xizmat + ' / 15', '-5 har shikoyat'], ['Aksessuar, referral', p.aks + ' / 20', 'har $200 = 1 ball'], ['Jami ball', r.ball + ' / 100', '']], total: usd(r.total), note: v.yashirin ? "Yozilmagan farq topildi: oy bonusi 0." : "100 ball = fiksa x 130%. Smenada yozilgan farq 20 ming so'mgacha ballga ta'sir qilmaydi." }; } },
     boshKassir: { title: 'Bosh kassir', fields: [['filial', 'Qamralgan filiallar', 'n', 7], ['yangi', 'Shulardan yangi (2 oydan kam)', 'n', 0], ['ball', 'Ball', 'n', 90]],
       run: function (v) { var r = KPI.boshKassir(v); return { rows: [['Hisobga olinadigan filial', r.n, ''], ['Maksimal bonus', usd(r.max), '$225 x ' + r.n]], total: usd(r.total) }; } },
-    unduruvchi: { title: 'Unduruvchi', fields: [['d10', 'Undirildi, DPD 0-10', 'usd', 30000], ['d30', 'Undirildi, DPD 11-30', 'usd', 11000], ['d90', 'O\'zi undirdi, DPD 31-90', 'usd', 15000], ['d90p', 'O\'zi undirdi, DPD 90+', 'usd', 1000], ['reja', 'Filial reja bajarilishi', 'pct', 94], ['kishi', 'Filialdagi unduruvchilar soni', 'n', 1]],
-      run: function (v) { var r = KPI.unduruvchi(v); return { rows: [['0-10 kun', '$' + Math.round(r.a), '0.60%'], ['11-30 kun', '$' + Math.round(r.b), '0.78%'], ['Reja koeffitsienti', 'x' + r.k.toFixed(2), v.reja + '%'], ['31-90 kun', '$' + Math.round(r.c), '1%'], ['90+ kun', '$' + Math.round(r.d), (r.r * 100).toFixed(0) + '%']].concat(r.n > 1 ? [['Bo\'linadi', r.n + ' kishiga', 'teng']] : []), total: '$' + Math.round(r.total).toLocaleString('en-US'), note: "Reja = shu oy grafik bo'yicha to'lanishi kerak bo'lgan summa. Koeffitsient: 80% dan past 0, 80% x0.5, 100% x1.0, 120% va yuqori x1.5." }; } },
-    kollektor: { title: 'Kollektor', fields: [['d90', "O'zi undirdi, DPD 31-90", 'usd', 3000], ['d90p', "O'zi undirdi, DPD 90+", 'usd', 6000], ['fil', 'Rejani bajargan filiallar', 'n', 2]],
-      run: function (v) { var r = KPI.kollektor(v); return { rows: [['31-90 kun', '$' + Math.round(r.c), '1%'], ['90+ kun', '$' + Math.round(r.asos), (r.rate * 100).toFixed(0) + '%'], ['Filial bonusi', '$' + r.filial, v.fil + ' x $100']], total: '$' + Math.round(r.total).toLocaleString('en-US') }; } },
-    undiruvRahbar: { title: 'Undiruv rahbari', fields: [['m1', 'M1 koeffitsienti', 'dec', 1.0], ['m2', 'M2 koeffitsienti', 'dec', 1.0], ['past70', "Biror filial 70% dan past", 'chk', false], ['qayta', 'Jamoa qayta sotuv KPI', 'usd', 400]],
-      run: function (v) { var r = KPI.undiruvRahbar(v); return { rows: [["5 mln x M1 x M2", som(r.som), 'M2 = ' + r.m2], ['Qayta sotuvdan 25%', usd(r.qayta), '']], total: som(r.som) + ' + ' + usd(r.qayta) }; } },
-    ccOperator: { title: 'CC operator (hafta)', fields: [['daraja', 'Daraja', 'sel', 'Junior', LV3], ['savdo', 'Haftalik savdo', 'usd', 21000], ['tajribali', 'Tajribali operator ($20k reja)', 'chk', true]],
-      run: function (v) { var r = KPI.ccOperator(v); return { rows: [['Haftalik reja', usd(r.plan), r.hit ? 'bajarildi' : 'bajarilmadi'], ['Stavka', pct(r.rate), 'butun summaga']], total: usd(r.total), note: 'Bu bir haftalik hisob.' }; } },
+    unduruvchi: { title: 'Unduruvchi', fields: [['d10', 'Undirildi, DPD 0-10', 'usd', 30000], ['d30', 'Undirildi, DPD 11-30', 'usd', 11000], ['reja', 'Filial reja bajarilishi', 'pct', 94], ['d90', 'Biriktirilgan, DPD 31-90', 'usd', 3000], ['yangi90', 'Biriktirilgan, yangi 90+ (merosdan tashqari)', 'usd', 0], ['meros', 'Biriktirilgan, meros ro\'yxatidan', 'usd', 1000], ['meros3', 'Meros undiruvi, oxirgi 3 oy o\'rtachasi', 'usd', 1000], ['kishi', 'Filialdagi unduruvchilar soni', 'n', 1]],
+      run: function (v) { var r = KPI.unduruvchi(v); return { rows: [['0-10 kun', '$' + Math.round(r.a), '0.60%'], ['11-30 kun', '$' + Math.round(r.b), '0.78%'], ['Reja koeffitsienti', 'x' + r.k.toFixed(2), v.reja + '%'], ['31-90 kun va yangi 90+', '$' + Math.round(r.c), '1%'], ['Meros ro\'yxati', '$' + Math.round(r.d), (r.r * 100).toFixed(0) + '%']].concat(r.n > 1 ? [['Bo\'linadi', r.n + ' kishiga', 'teng']] : []), total: '$' + Math.round(r.total).toLocaleString('en-US'), note: "Reja = shu oy grafik bo'yicha to'lanishi kerak bo'lgan summa. Koeffitsient: 70% dan past 0, 70% x0.3, 100% x1.0, 120% va yuqori x1.5, oraliqda bir tekis o'sadi." }; } },
+    kollektor: { title: 'Kollektor', fields: [['d90', "Biriktirilgan, DPD 31-90", 'usd', 3000], ['yangi90', 'Biriktirilgan, yangi 90+ (merosdan tashqari)', 'usd', 1000], ['meros', "Meros ro'yxatidan undirildi", 'usd', 6000], ['meros3', "Meros undiruvi, oxirgi 3 oy o'rtachasi", 'usd', 6000], ['fil', 'Rejani bajargan filiallar', 'n', 2]],
+      run: function (v) { var r = KPI.kollektor(v); return { rows: [['31-90 kun va yangi 90+', '$' + Math.round(r.c), '1%'], ["Meros ro'yxati", '$' + Math.round(r.asos), (r.rate * 100).toFixed(0) + '%, band 3 oylik o\'rtacha bo\'yicha'], ['Filial bonusi', '$' + r.filial, v.fil + ' x $100']], total: '$' + Math.round(r.total).toLocaleString('en-US') }; } },
+    undiruvRahbar: { title: 'Undiruv rahbari', fields: [['reja', 'Filiallar undiruv rejasi, o\'rtacha', 'pct', 95], ['past70', "Biror filial 70% dan past", 'chk', false], ['jamoa', 'Jamoa bonuslari yig\'indisi (unduruvchi + kollektor)', 'usd', 1500]],
+      run: function (v) { var r = KPI.undiruvRahbar(v); return { rows: [["5 mln so'm x reja koeffitsienti", som(r.som), 'x' + r.k.toFixed(2)], ['Jamoa bonuslaridan 10%', usd(r.jamoa), '']], total: som(r.som) + ' + ' + usd(r.jamoa), note: "Reja koeffitsienti unduruvchi bilan bir xil shkala. Biror filial 70% dan past bo'lsa x0.85 dan oshmaydi." }; } },
+    ccOperator: { title: 'CC operator (hafta)', fields: [['daraja', 'Daraja', 'sel', 'Junior', LV3], ['savdo', 'Haftalik savdo', 'usd', 21000], ['oy', 'Necha oy ishlagan', 'n', 4]],
+      run: function (v) { var r = KPI.ccOperator(v); return { rows: [['Haftalik reja', usd(r.plan), r.hit ? 'bajarildi' : 'bajarilmadi'], ['Stavka', pct(r.rate), 'butun summaga']], total: usd(r.total), note: "Bu bir haftalik hisob. Birinchi 3 oy reja $15k, keyin $20k. Savdo do'konda operator nomi bilan yozilgan bo'lsa hisoblanadi." }; } },
     ccTL: { title: 'CC Team Lead (hafta)', fields: [['savdo', "O'z haftalik savdosi", 'usd', 20000], ['jamoa', 'Jamoa haftalik savdosi', 'usd', 90000]],
       run: function (v) { var r = KPI.ccTL(v); return { rows: [["O'z KPI", usd(r.own.total), pct(r.own.rate)], ['Jamoadan 0.05%', usd(r.jamoa), '']], total: usd(r.total) }; } },
-    ccRahbar: { title: 'CC rahbar', fields: [['savdo', 'CC orqali oylik savdo', 'usd', 400000]], run: function (v) { return { rows: [], total: usd(KPI.ccRahbar(v).total), note: '0.1%' }; } },
-    marketing: { title: 'Marketing jamoa fondi', fields: [['lavozim', 'Lavozim', 'sel', 'Targetolog', ['Targetolog', 'SMM menejer', 'Videograf', 'Brand Face']], ['xaridor', 'Oylik xaridorlar (barcha filial)', 'n', 860], ['baza', 'Baza', 'n', 801], ['darvoza', 'Oylik ish rejasi bajarildi', 'chk', true]],
-      run: function (v) { var r = KPI.marketing(v); return { rows: [['Jamoa fondi', usd(r.fond), Math.min(v.xaridor, v.baza) + ' x $1.5 + ' + Math.max(0, v.xaridor - v.baza) + ' x $8'], ['Ulush', pct(r.ulush * 100, 0), v.lavozim]], total: usd(r.total), note: v.darvoza ? '' : "Ish rejasi bajarilmagan: bonus 0." }; } },
+    ccRahbar: { title: 'CC rahbar', fields: [['savdo', 'CC orqali oylik savdo', 'usd', 400000]], run: function (v) { return { rows: [], total: usd(KPI.ccRahbar(v).total), note: "CC orqali kelgan savdodan 0.2%." }; } },
+    marketing: { title: 'Marketing jamoa fondi', fields: [['lavozim', 'Lavozim', 'sel', 'Targetolog', ['Targetolog', 'SMM menejer', 'Videograf', 'Brand Face']], ['xaridor', 'Oylik xaridorlar (barcha o\'z filiallar)', 'n', 860], ['baza', 'Baza', 'n', 801], ['darvoza', 'Oylik ish rejasi bajarildi (CMO va CFO tasdiqladi)', 'chk', true]],
+      run: function (v) { var r = KPI.marketing(v); return { rows: [['Jamoa fondi', usd(r.fond), Math.min(v.xaridor, v.baza) + ' x $1.5 + ' + Math.max(0, v.xaridor - v.baza) + ' x $8'], ['Ulush', pct(r.ulush * 100, 0), v.lavozim]], total: usd(r.total), note: (v.darvoza ? '' : "Ish rejasi bajarilmagan: bonus 0. ") + "Xaridor = oy ichidagi tashqi sotuvlar soni: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi." }; } },
     onlineSavdo: { title: 'Online savdo', fields: [['daraja', 'Daraja', 'sel', 'Junior', LV3], ['naqd', 'Online naqd', 'usd', 20000], ['mudd', 'Online muddatli', 'usd', 20000]],
       run: function (v) { var r = KPI.onlineSavdo(v); return { rows: [['Naqd', usd(r.naqd), pct(r.rn)], ['Muddatli', usd(r.mudd), pct(r.rm)]], total: usd(r.total) }; } },
     ecRahbar: { title: 'E-commerce rahbari', fields: [['savdo', 'Jami online savdo', 'usd', 60000]], run: function (v) { return { rows: [], total: usd(KPI.ecRahbar(v).total), note: '0.3%' }; } },
