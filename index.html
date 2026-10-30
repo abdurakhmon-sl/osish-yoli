@@ -149,6 +149,9 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; }
 .kv dt { font-weight: 600; }
 .kv dd { margin: 0; color: var(--fg); }
 .flag { display: inline-block; font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 2px 7px; border-radius: 4px; margin-right: 6px; }
+.tt { margin: 6px 0 0; }
+.rtab { display: grid; gap: 10px; }
+.invest .calc { margin-top: 4px; }
 .flag.ok { background: var(--accent-soft); color: var(--accent); }
 .flag.warn { background: var(--warn-soft); color: var(--warn); }
 .flag.bad { background: var(--bad-soft); color: var(--bad); }
@@ -678,6 +681,14 @@ var ROLES = {
   ceo: { track: 'hamkorlik', name: 'CEO', order: 2, calcs: [], appoint: true,
     levels: [['CEO', 'Tayinlov', "Ta'sischilar tayinlaydi. O'sish yo'li orqali emas."]], kpi: ["Alohida kelishuv."], mas: ["Bosh direktor"] }
 };
+var TABLES = {
+  kassir: [{ title: 'Ball jadvali', head: ['Blok', 'Maksimum', "Qanday o'zgaradi"], rows: [['Kassa farqi', '40', "20 ming so'mdan oshgan har yozilgan farq: -10"], ['Smena va inkassatsiya', '25', 'Har kech qolish: -5'], ['Xizmat', '15', 'Har yozilgan shikoyat: -5'], ['Aksessuar va referral', '20', 'Har $200 savdo: +1']], note: "100 ball = fiksa x 130%. Yozilmagan farq topilsa oy bonusi 0." }],
+  unduruvchi: [{ title: 'Stavkalar', head: ['Undiruv turi', 'Stavka'], rows: [['0-10 kunlik', '0.60%'], ['11-30 kunlik', '0.78%'], ['31-90 kunlik va yangi 90+', '1%'], ["Meros ro'yxati, 3 oy o'rtacha $0-10k", '3%'], ['Meros, $10-20k', '4%'], ['Meros, $20k+', '5%']] },
+    { title: 'Reja koeffitsienti (0-30 kunlik undiruvga)', head: ['Filial reja bajarilishi', 'Koeffitsient'], rows: [['70% dan past', 'x0'], ['70%', 'x0.30'], ['80%', 'x0.53'], ['90%', 'x0.77'], ['100%', 'x1.00'], ['110%', 'x1.25'], ['120% va yuqori', 'x1.50']] }],
+  kollektor: [{ title: 'Stavkalar', head: ['Undiruv turi', 'Stavka'], rows: [['31-90 kunlik va yangi 90+', '1%'], ["Meros ro'yxati, 3 oy o'rtacha $0-10k", '3% butun summaga'], ['Meros, $10-20k', '4% butun summaga'], ['Meros, $20k+', '5% butun summaga'], ['Har bir filial undiruv rejasini bajarsa', '+$100']] }],
+  cc_operator: [{ title: 'Haftalik stavkalar', head: ['Daraja', 'Rejadan past', 'Reja va yuqori'], rows: [['Junior', '0.40%', '0.50%'], ['Pro', '0.45%', '0.55%'], ['Dostigator', '0.50%', '0.60%']], note: 'Haftalik reja: birinchi 3 oy $15,000, keyin $20,000. Stavka butun haftalik summaga.' }],
+  mutaxassis: [{ title: 'Jamoa fondi (baza 801 xaridor)', head: ['Oylik xaridorlar', 'Fond', 'Targetolog 35%', 'SMM 25%', 'Videograf 25%', 'Brand Face 15%'], rows: [['700', '$1,050', '$368', '$263', '$263', '$158'], ['801', '$1,202', '$421', '$300', '$300', '$180'], ['900', '$1,994', '$698', '$498', '$498', '$299'], ['1,000', '$2,794', '$978', '$698', '$698', '$419'], ['1,200', '$4,394', '$1,538', '$1,098', '$1,098', '$659']], note: 'Bazagacha har xaridor $1.5, bazadan oshgan har xaridor $8.' }]
+};
 var EDGES = [
   ['sotuvchi', 'team_lead'], ['sotuvchi', 'dokon_rahbari'], ['team_lead', 'dokon_rahbari'], ['dokon_rahbari', 'rop'], ['dokon_rahbari', 'regional_partner'], ['regional_partner', 'rop'], ['dokon_rahbari', 'partner'],
   ['sotuvchi', 'cc_operator', 'lateral'],
@@ -811,12 +822,19 @@ var EDGES = [
     var head = el('header', 'rh');
     head.innerHTML = '<p class="eyebrow">' + trk.name + (r.track !== 'hamkorlik' ? ' &middot; har darajada kamida ' + months(r) + ' oy' : '') + '</p><h2>' + r.name + '</h2>' + (r.note ? '<p class="rnote">' + r.note + '</p>' : '');
     main.appendChild(head);
+    investBlock(id, r, main);
 
     var sec = el('section', 'blk'); sec.appendChild(el('h3', null, 'Bonus qanday hisoblanadi'));
     sec.appendChild(el('ul', 'steps', r.kpi.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
     if (r.blocks) {
       sec.appendChild(el('div', 'tw', '<table class="bt"><thead><tr><th>Blok</th><th class="num">Ball</th><th>Shart</th></tr></thead><tbody>' + r.blocks.map(function (b) { return '<tr><td>' + b[0] + '</td><td class="num">' + b[1] + '</td><td>' + b[2] + '</td></tr>'; }).join('') + '</tbody></table>'));
     }
+    if (id === 'sotuvchi' || id === 'team_lead' || id === 'online_savdo') sec.appendChild(rateTable(id));
+    (TABLES[id] || []).forEach(function (t) {
+      sec.appendChild(el('p', 'tt', '<b>' + t.title + '</b>'));
+      sec.appendChild(el('div', 'tw', '<table class="bt"><thead><tr>' + t.head.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' + t.rows.map(function (rw) { return '<tr>' + rw.map(function (c, i) { return i ? '<td class="num">' + c + '</td>' : '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>'));
+      if (t.note) sec.appendChild(el('p', 'cn', t.note));
+    });
     main.appendChild(sec);
 
     if (r.calcs.length) {
@@ -870,6 +888,59 @@ var EDGES = [
       main.appendChild(pr);
     }
   }
+  /* -------- Sotuvchi stavkalar jadvali -------- */
+  function rateTable(id) {
+    var box = el('div', 'rtab'), BANDS = [0, 25000, 40000, 60000, 80000, 100000], RATES = [0.20, 0.25, 0.30, 0.35, 0.40, 0.50];
+    var fixedC1 = id === 'online_savdo';
+    var sel = '<label class="fld" style="max-width:260px"><span class="fl">Filial</span><select>' + SELLER_BR.map(function (b) { return '<option>' + b + '</option>'; }).join('') + '</select></label>';
+    box.innerHTML = '<p class="tt"><b>Stavkalar jadvali: oylik jami savdo (naqd + muddatli) qaysi oraliqqa tushsa, butun summaga shu foiz</b></p>' + (fixedC1 ? '' : sel) + '<div class="tw"></div><p class="cn"></p>';
+    function draw() {
+      var b = fixedC1 ? 'C1' : box.querySelector('select').value, k = KPI.BRANCH_K[b] || 1;
+      var lv = id === 'team_lead' ? [['Team Lead', 0.15]] : [['Junior', 0], ['Pro', 0.05], ['Dostigator', 0.10]];
+      var ex = id === 'online_savdo' ? 0.10 : 0;
+      var f = function (x) { return '$' + Math.round(x).toLocaleString('en-US'); };
+      var h = '<table class="bt"><thead><tr><th>Jami savdo</th>' + lv.map(function (l) { return '<th class="num">' + l[0] + ' naqd</th><th class="num">' + l[0] + ' muddatli</th>'; }).join('') + '</tr></thead><tbody>';
+      for (var i = 0; i < BANDS.length; i++) {
+        var lo = BANDS[i] * k, hi = BANDS[i + 1] ? BANDS[i + 1] * k : null;
+        var lab = hi ? f(lo) + ' - ' + f(hi) : f(lo) + ' dan yuqori';
+        h += '<tr><td>' + lab + '</td>' + lv.map(function (l) { var n = RATES[i] + l[1] + ex; return '<td class="num">' + n.toFixed(2) + '%</td><td class="num">' + (n + 0.05).toFixed(2) + '%</td>'; }).join('') + '</tr>';
+      }
+      box.querySelector('.tw').innerHTML = h + '</tbody></table>';
+      box.querySelector('.cn').innerHTML = (fixedC1 ? 'C1 bandlari, do\'kon xarajati yo\'qligi uchun +0.10 punkt. ' : 'Filial koeffitsienti ' + k + '. ') + (id === 'online_savdo' ? '' : 'Sifat bonusi bajarilsa muddatliga yana +0.10 punkt. Aksessuar savdosidan 5%.');
+    }
+    if (!fixedC1) box.querySelector('select').addEventListener('change', draw);
+    draw();
+    return box;
+  }
+
+  /* -------- Kapital tikish: Andijon filialidagi haqiqiy hamkor misoli -------- */
+  var INV = { yil: 0.33, oyO: 0.0275, oyMin: 0.012, oyMax: 0.043 };
+  function investBlock(id, r, host) {
+    if (r.appoint) return;
+    var topFx = 0; r.levels.forEach(function (l) { topFx = Math.max(topFx, salNum(l[1])); });
+    var b = el('section', 'blk nextp invest');
+    b.innerHTML = '<h3>Kapital tiksangiz: hamkor bo\'lib qancha topasiz</h3>' +
+      '<p><b>Haqiqiy misol, Andijon filiali.</b> Hamkor 2025 yil fevralda taxminan $13,000 tikdi, keyin kapitalini qo\'shib bordi. Oxirgi 12 oyda uning o\'rtacha kapitali ~$34,000 bo\'ldi va unga oyiga o\'rtacha ~$940 foyda keldi, yiliga ~33%. 21 oyda jami ~$16,900 foyda oldi.</p>' +
+      '<div class="calc"><div class="cf">' +
+      '<label class="fld"><span class="fl">Tikadigan kapital <i>$</i></span><input type="number" inputmode="decimal" data-k="cap" value="10000"></label>' +
+      '<label class="fld"><span class="fl">Necha yil</span><input type="number" inputmode="decimal" data-k="yil" value="3"></label>' +
+      '<label class="fld chk"><input type="checkbox" data-k="re" checked><span class="fl">Foydani qayta tikaman</span></label>' +
+      '</div><div class="co"></div></div>' +
+      '<p class="cn">Kim tika oladi: kompaniyada 12 oy ishlagan yoki Dostigator darajasidagi xodim. Undan oldin rahbariyat bilan kelishib. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Foyda kafolatlanmaydi: yaxshi oyda kapitalning ~4.3%, yomon oyda ~1.2%. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
+    var ins = b.querySelectorAll('input'), out = b.querySelector('.co');
+    ins.forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+    function calc() {
+      var cap = parseFloat(b.querySelector('[data-k=cap]').value) || 0, y = Math.max(0, Math.min(30, parseFloat(b.querySelector('[data-k=yil]').value) || 0)), re = b.querySelector('[data-k=re]').checked;
+      var m = Math.round(cap * INV.oyO), n = Math.round(y * 12), endCap = re ? cap * Math.pow(1 + INV.oyO, n) : cap, got = re ? 0 : cap * INV.oyO * n;
+      out.innerHTML = '<table class="rt"><tbody>' +
+        '<tr><th>Oylik foyda, o\'rtacha</th><td class="num">' + usd(m) + '</td><td class="sub">2.75%</td></tr>' +
+        '<tr><th>Yomon / yaxshi oy</th><td class="num">' + usd(cap * INV.oyMin) + ' / ' + usd(cap * INV.oyMax) + '</td><td class="sub"></td></tr>' +
+        (topFx ? '<tr><th>Eng yuqori darajada fiksa + kapital foydasi</th><td class="num">' + usd(topFx + m) + '/oy</td><td class="sub">KPI\'siz</td></tr>' : '') +
+        '</tbody></table><div class="tot"><span>' + (re ? y + ' yildan keyin kapitalingiz' : y + ' yilda olgan foydangiz') + '</span><strong class="num">' + usd(re ? endCap : got) + '</strong></div>';
+    }
+    calc(); host.appendChild(b);
+  }
+
   /* -------- Hayot maqsadi kalkulyatori (v1 dan qaytarildi) -------- */
   function salNum(s) { var m = String(s).replace(/,/g, '').match(/\$\s*(\d+)/); return m ? +m[1] : 0; }
   function goalBlock(id, r, host) {
