@@ -1,5 +1,5 @@
 {
-  "izoh": "Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (yashil yoki qora), rasm (robot, bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi.",
+  "izoh": "Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (lux, yashil yoki qora), rasm (robot, bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi.",
   "sekund": 8,
   "bannerlar": [
     {
@@ -12,7 +12,7 @@
       "tugma": "O'zingiz hisoblang",
       "lavozim": "partner",
       "bolim": "sec-inv",
-      "rang": "yashil",
+      "rang": "lux",
       "rasm": "robot"
     },
     {
