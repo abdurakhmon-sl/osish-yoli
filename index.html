@@ -230,25 +230,49 @@ html.xodim .mc-s { display: none; }
 /* phone reading */
 /* hamkorlik banneri */
 section.blk, .sumc { scroll-margin-top: 80px; }
-.pbanner { background: #06140D; color: #E6EFEA; position: sticky; top: 0; z-index: 20; border-top: 1px solid #1A2E23; border-bottom: 1px solid #1A2E23; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
-.pb-in { display: flex; align-items: center; gap: 16px; padding-block: 12px; min-height: 76px; }
-.pb-slide { display: grid; gap: 3px; flex: 1; min-width: 0; animation: pbIn .35s ease; }
-@keyframes pbIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.pb-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.pb-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #7FDDA9; background: #10291C; border: 1px solid #1E4A31; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
-.pb-h { margin: 0; font-family: var(--f-display); font-size: 19px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; line-height: 1.3; }
-.pb-h em { font-style: normal; color: #2FBF78; font-weight: 800; white-space: nowrap; }
-.pb-txt { margin: 0; font-size: 13.5px; color: #A9BDB2; line-height: 1.45; max-width: 92ch; }
-.pb-side { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-.pb-btn { background: #008D4A; color: #fff; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background .15s; }
-.pb-btn:hover { background: #00A257; }
-.pb-btn span { display: inline-block; transition: transform .15s; }
-.pb-btn:hover span { transform: translateX(2px); }
-.pb-nav { display: flex; align-items: center; gap: 4px; }
-.pb-nav button { width: 30px; height: 30px; border-radius: 999px; border: 1px solid #2A4234; background: transparent; color: #CFE3D8; font-size: 15px; line-height: 1; padding: 0; }
-.pb-nav button:hover { border-color: #2FBF78; color: #FFFFFF; }
-.pb-nav span { font-family: var(--f-mono); font-size: 12px; color: #93A89C; min-width: 34px; text-align: center; }
-@media (prefers-reduced-motion: reduce) { .pb-slide { animation: none; } }
+/* hero banner (promo karta) */
+.hero { position: relative; margin: 18px 0 6px; border-radius: 22px; overflow: hidden; color: #FFFFFF; isolation: isolate; box-shadow: 0 12px 32px -12px rgba(0,60,30,.45); touch-action: pan-y; }
+.hero-s { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: center; gap: 24px; min-height: 236px; padding: 30px 36px 46px; animation: hIn .45s ease; }
+@keyframes hIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.hero-s.yashil { background: radial-gradient(120% 140% at 100% 0%, #19C06D 0%, rgba(25,192,109,0) 55%), linear-gradient(135deg, #00A257 0%, #007A3F 55%, #00552C 100%); }
+.hero-s.qora { background: radial-gradient(110% 140% at 100% 0%, rgba(47,191,120,.35) 0%, rgba(47,191,120,0) 55%), linear-gradient(135deg, #0F2A1C 0%, #071710 60%, #030B07 100%); }
+.hero-t { display: grid; gap: 6px; justify-items: start; min-width: 0; }
+.hero-tag { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); }
+.hero-eb { margin: 6px 0 0; font-size: 18px; font-weight: 600; color: rgba(255,255,255,.88); }
+.hero-n { margin: 0; font-family: var(--f-display); font-weight: 800; letter-spacing: -0.035em; line-height: .95; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+.hero-n b { font-size: clamp(48px, 7vw, 76px); font-weight: 800; }
+.hero-n u { text-decoration: none; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: -0.01em; }
+.hero-n s { font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; color: rgba(255,255,255,.55); text-decoration-thickness: 3px; text-decoration-color: rgba(255,255,255,.55); }
+.hero-n i { font-style: normal; font-size: clamp(24px, 3vw, 36px); color: #7FEFB2; font-weight: 700; }
+.hero-s.qora .hero-n b { color: #3EE08A; }
+.hero-m { margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.86); max-width: 58ch; }
+.hero-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.hero-btn { background: #FFFFFF; color: #00552C; border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 700; font-size: 15px; box-shadow: 0 6px 16px -6px rgba(0,0,0,.4); transition: transform .15s; }
+.hero-btn:hover { transform: translateY(-1px); }
+.hero-s.qora .hero-btn { background: #2FBF78; color: #04130B; }
+.hero-chip { font-size: 14px; font-weight: 600; padding: 8px 12px; border-radius: 999px; background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.2); }
+.hero-art { position: relative; height: 180px; }
+.hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-nav { position: absolute; left: 36px; right: 36px; bottom: 16px; display: flex; align-items: center; gap: 10px; z-index: 2; }
+.hero-dots { display: flex; gap: 6px; }
+.hero-dots button { width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: rgba(255,255,255,.4); transition: width .2s; }
+.hero-dots button.on { width: 26px; background: #FFFFFF; }
+.hero-ar { margin-left: auto; display: flex; gap: 8px; }
+.hero-ar button { width: 36px; height: 36px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.15); color: #FFFFFF; font-size: 18px; line-height: 1; padding: 0; }
+.hero-ar button:hover { background: rgba(255,255,255,.18); }
+@media (max-width: 760px) {
+  .hero { margin: 12px 0 4px; border-radius: 18px; }
+  .hero-s { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 20px 18px 54px; gap: 0; }
+  .hero-art { position: absolute; right: -24px; top: 10px; width: 170px; height: 130px; opacity: .35; z-index: -1; }
+  .hero-eb { font-size: 16px; }
+  .hero-n b { font-size: 46px; }
+  .hero-m { font-size: 14px; }
+  .hero-btn { padding: 11px 16px; font-size: 14px; }
+  .hero-chip { font-size: 13px; padding: 6px 10px; }
+  .hero-nav { left: 18px; right: 18px; bottom: 14px; }
+  .hero-ar button { width: 32px; height: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-s { animation: none; } }
 .story { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; margin: 12px 0; justify-items: start; }
 .story h3 { font-size: 18px; }
 .st-e { margin: 0; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -309,12 +333,6 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .faq dd { margin: 0 0 6px; }
 @media (max-width: 860px) { .sumc { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {
-  .pbanner { position: static; }
-  .pb-in { flex-direction: column; align-items: stretch; gap: 10px; padding-block: 12px; min-height: 0; }
-  .pb-h { font-size: 17px; }
-  .pb-txt { font-size: 13px; }
-  .pb-side { margin-left: 0; justify-content: space-between; }
-  .pb-btn { padding: 8px 14px; font-size: 14px; }
   .mast .meta, .mast .lede { display: none; }
   .jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
   .jump .chip { white-space: nowrap; }
@@ -367,11 +385,9 @@ section.blk, .sumc { scroll-margin-top: 80px; }
     </nav>
   </div>
 </header>
-<aside class="pbanner" aria-label="E'lonlar" aria-roledescription="karusel">
-  <div class="wrap pb-in" id="pbIn"></div>
-</aside>
 
 <main class="wrap">
+  <section class="hero" id="hero" aria-roledescription="karusel" aria-label="E'lonlar"></section>
   <section class="pane" id="p-xarita">
     <div class="finder blk">
       <h3>Qaysi lavozimga qanday yetaman?</h3>
@@ -813,7 +829,7 @@ var EDGES = [
   ['ec_junior', 'online_savdo'], ['ec_junior', 'dasturchi'], ['online_savdo', 'dasturchi', 'lateral'], ['dasturchi', 'online_savdo', 'lateral'], ['online_savdo', 'ec_rahbar'], ['dasturchi', 'ec_rahbar'], ['ec_rahbar', 'partner']
 ];
 
-var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), sarlavha (asosiy gap; *yulduzcha* ichidagi so'z yashil va qalin chiqadi), matn (izoh, 1-2 gap), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi, masalan partner, dokon_rahbari, sotuvchi), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori, sec-calc = kalkulyator, sec-bonus = bonus). sekund: e'lonlar necha sekundda o'zi almashadi. Summalar yaxlitlangan, so'mda.","sekund":10,"bannerlar":[{"belgi":"Hamkorlik","sarlavha":"Yangi do'kon ochsangiz oyiga *~30 mln so'm* topasiz","matn":"Smartlife yangi do'konni o'z puli bilan ochadi, siz boshqarasiz. Yangi do'kondan fiksa va KPI, foydadan 5%, eski do'kondan ham olasiz. Pul tiksangiz, investor kabi foyda qo'shiladi.","tugma":"O'zingiz hisoblang","lavozim":"dokon_rahbari","bolim":"sec-inv"},{"belgi":"Haqiqiy yo'l","sarlavha":"Unduruvchi edi: ~5 mln so'm. Do'kon rahbari bo'ldi: *~9 mln so'm*","matn":"Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Yangi do'konga rahbar bo'ldi va birinchi oyidayoq ~9 mln so'm oldi (+75%).","tugma":"Bu yo'lni ko'ring","lavozim":"dokon_rahbari"}]};
+var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (yashil yoki qora), rasm (bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi.","sekund":8,"bannerlar":[{"belgi":"Hamkorlik","ustki":"Hamkor bo'lsangiz oyiga","raqam":"~70 mln","birlik":"so'm","matn":"Haqiqiy raqam: hamkor oxirgi 12 oyda oyiga o'rtacha shuncha topdi. Yo'l: eng yuqori daraja va kompaniya taklifi.","chip":"Yiliga ~840 mln so'm","tugma":"O'zingiz hisoblang","lavozim":"partner","bolim":"sec-inv","rang":"yashil","rasm":"bars"},{"belgi":"Haqiqiy yo'l","ustki":"Unduruvchidan do'kon rahbariga","oldin":"5 mln","raqam":"15 mln","birlik":"so'm oyiga","matn":"Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Do'kon rahbari bo'ldi. Hozir oyiga ~15 mln so'm oladi.","chip":"3 barobar ko'p","tugma":"Bu yo'lni ko'ring","lavozim":"dokon_rahbari","rang":"qora","rasm":"steps"}]};
 /* O'sish yo'li 2.0: interfeys */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -1088,10 +1104,10 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
       '<div class="st-row">' +
         '<div class="st-c"><span>Unduruvchi</span><b class="num">~5 mln so\'m</b><small>oyiga, aprel-iyul 2026 o\'rtachasi</small></div>' +
         '<div class="st-ar" aria-hidden="true">&rarr;</div>' +
-        '<div class="st-c on"><span>Do\'kon rahbari</span><b class="num">~9 mln so\'m</b><small>oyiga, avgust 2026 (fiksa + KPI)</small></div>' +
-        '<div class="st-up"><b class="num">+75%</b><small>bir lavozim yuqoriga</small></div>' +
+        '<div class="st-c on"><span>Do\'kon rahbari</span><b class="num">~15 mln so\'m</b><small>oyiga, hozir (fiksa + KPI)</small></div>' +
+        '<div class="st-up"><b class="num">3 barobar</b><small>bir lavozim yuqoriga</small></div>' +
       '</div>' +
-      '<p class="st-t">Xodimimiz unduruvchi bo\'lib ishlagan. Yangi do\'kon ochilganda unga rahbarlik ishonib topshirildi. Birinchi oyidayoq daromadi 1.75 barobar oshdi.</p>';
+      '<p class="st-t">Xodimimiz unduruvchi bo\'lib ishlagan. Yangi do\'kon ochilganda unga rahbarlik ishonib topshirildi. Hozir oyiga ~15 mln so\'m oladi, avvalgidan 3 barobar ko\'p.</p>';
     if (here !== 'dokon_rahbari') {
       var go = el('button', 'btn ghost', "Do'kon rahbari sahifasi");
       go.type = 'button'; go.onclick = function () { select('dokon_rahbari'); setTab('roles'); window.scrollTo({ top: 0 }); };
@@ -1280,7 +1296,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
   function buildMap() {
     var host = $('#map'); host.innerHTML = '';
     var apex = el('div', 'apex');
-    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Yangi do\'kon ochgan rahbar oyiga ~30 mln so\'m topishi mumkin: yangi do\'kondan fiksa va KPI, foydadan 5%, eski do\'kondan va tikkan pulidan. Do\'konni Smartlife o\'z puli bilan ochadi.</span>'));
+    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Hamkor oyiga ~70 mln so\'m topadi (haqiqiy raqam, oxirgi 12 oy o\'rtachasi). Yo\'l: eng yuqori daraja va kompaniya taklifi.</span>'));
     var ar = el('div', 'apex-r'); ar.appendChild(mapCard('partner')); ar.appendChild(mapCard('ceo')); apex.appendChild(ar);
     host.appendChild(apex);
     host.appendChild(storyCard('map'));
@@ -1369,35 +1385,50 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
   $('#showPath').onclick = showPath; $('#clearPath').onclick = clearPath;
   if ($('#cmpA')) { $('#cmpA').value = 'team_lead'; $('#cmpB').value = 'dokon_rahbari'; $('#cmpA').onchange = drawCompare; $('#cmpB').onchange = drawCompare; drawCompare(); }
   (function banner() {
-    var host = $('#pbIn'); if (!host) return;
+    var host = $('#hero'); if (!host) return;
     var cfg = BANNERS_DEFAULT, i = 0, timer = null, hold = false, manual = false;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-    function hl(x) { return esc(x).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
-    function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.sarlavha; }); }
+    function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.raqam; }); }
+    var ART = {
+      bars: '<svg viewBox="0 0 300 180" aria-hidden="true"><defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".35"/></linearGradient></defs>' +
+        '<rect x="40" y="118" width="38" height="52" rx="8" fill="url(#hg1)" opacity=".45"/><rect x="92" y="92" width="38" height="78" rx="8" fill="url(#hg1)" opacity=".6"/><rect x="144" y="60" width="38" height="110" rx="8" fill="url(#hg1)" opacity=".8"/><rect x="196" y="24" width="38" height="146" rx="8" fill="url(#hg1)"/>' +
+        '<path d="M40 104 L110 80 L162 50 L246 12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><path d="M230 10 L248 11 L244 29" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="262" cy="128" r="26" fill="#FFD66B"/><circle cx="262" cy="128" r="18" fill="none" stroke="#C99A1E" stroke-width="3"/><text x="262" y="135" text-anchor="middle" font-size="20" font-weight="800" fill="#8A6510" font-family="Arial">$</text></svg>',
+      steps: '<svg viewBox="0 0 300 180" aria-hidden="true"><rect x="20" y="130" width="80" height="40" rx="10" fill="#fff" opacity=".18"/><rect x="110" y="90" width="80" height="80" rx="10" fill="#fff" opacity=".28"/><rect x="200" y="40" width="80" height="130" rx="10" fill="#3EE08A" opacity=".9"/>' +
+        '<circle cx="60" cy="110" r="12" fill="#fff" opacity=".7"/><path d="M48 128 q12 -12 24 0" fill="#fff" opacity=".7"/>' +
+        '<circle cx="240" cy="18" r="13" fill="#fff"/><path d="M226 38 q14 -14 28 0" fill="#fff"/>' +
+        '<path d="M72 96 C110 60 170 40 222 24" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round" opacity=".8"/></svg>'
+    };
     function go(b) {
       var id = ROLES[b.lavozim] ? b.lavozim : state.role;
       setTab('roles'); select(id);
       var t = b.bolim ? $('#' + b.bolim) : null;
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); else window.scrollTo({ top: 0 });
     }
+    function stop() { manual = true; clearInterval(timer); }
     function draw() {
-      var L = list(); if (!L.length) { host.parentNode.hidden = true; return; }
-      host.parentNode.hidden = false;
+      var L = list(); if (!L.length) { host.hidden = true; return; }
+      host.hidden = false;
       i = (i + L.length) % L.length; var b = L[i];
-      host.innerHTML = '<div class="pb-slide" aria-live="polite">' +
-        '<div class="pb-top">' + (b.belgi ? '<span class="pb-tag">' + esc(b.belgi) + '</span>' : '') + '<p class="pb-h">' + hl(b.sarlavha) + '</p></div>' +
-        (b.matn ? '<p class="pb-txt">' + hl(b.matn) + '</p>' : '') + '</div>' +
-        '<div class="pb-side">' +
-        (L.length > 1 ? '<div class="pb-nav"><button type="button" data-d="-1" aria-label="Oldingi e\'lon">&lsaquo;</button><span>' + (i + 1) + ' / ' + L.length + '</span><button type="button" data-d="1" aria-label="Keyingi e\'lon">&rsaquo;</button></div>' : '') +
-        (b.tugma ? '<button type="button" class="pb-btn" id="pbGo">' + esc(b.tugma) + ' <span aria-hidden="true">&rarr;</span></button>' : '') + '</div>';
+      var rang = b.rang === 'qora' ? 'qora' : 'yashil';
+      host.innerHTML = '<div class="hero-s ' + rang + '" aria-live="polite"><div class="hero-t">' +
+        (b.belgi ? '<span class="hero-tag">' + esc(b.belgi) + '</span>' : '') +
+        (b.ustki ? '<p class="hero-eb">' + esc(b.ustki) + '</p>' : '') +
+        '<p class="hero-n">' + (b.oldin ? '<s>' + esc(b.oldin) + '</s><i aria-hidden="true">&rarr;</i>' : '') + '<b>' + esc(b.raqam) + '</b>' + (b.birlik ? '<u>' + esc(b.birlik) + '</u>' : '') + '</p>' +
+        (b.matn ? '<p class="hero-m">' + esc(b.matn) + '</p>' : '') +
+        '<div class="hero-row">' + (b.tugma ? '<button type="button" class="hero-btn" id="pbGo">' + esc(b.tugma) + ' &rarr;</button>' : '') + (b.chip ? '<span class="hero-chip">' + esc(b.chip) + '</span>' : '') + '</div>' +
+        '</div><div class="hero-art">' + (ART[b.rasm] || (b.oldin ? ART.steps : ART.bars)) + '</div></div>' +
+        (L.length > 1 ? '<div class="hero-nav"><div class="hero-dots">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"></button>'; }).join('') + '</div>' +
+          '<div class="hero-ar"><button type="button" data-d="-1" aria-label="Oldingi">&lsaquo;</button><button type="button" data-d="1" aria-label="Keyingi">&rsaquo;</button></div></div>' : '');
       var g = $('#pbGo'); if (g) g.onclick = function () { go(b); };
-      host.querySelectorAll('.pb-nav button').forEach(function (d) { d.onclick = function () { manual = true; clearInterval(timer); i += +d.dataset.d; draw(); }; });
+      host.querySelectorAll('.hero-dots button').forEach(function (d) { d.onclick = function () { stop(); i = +d.dataset.k; draw(); }; });
+      host.querySelectorAll('.hero-ar button').forEach(function (d) { d.onclick = function () { stop(); i += +d.dataset.d; draw(); }; });
     }
     function start() {
       clearInterval(timer); var L = list();
       if (reduce || manual || L.length < 2) return;
-      timer = setInterval(function () { if (!hold && !document.hidden) { i++; draw(); } }, Math.max(4, +cfg.sekund || 10) * 1000);
+      timer = setInterval(function () { if (!hold && !document.hidden) { i++; draw(); } }, Math.max(4, +cfg.sekund || 8) * 1000);
     }
     host.addEventListener('mouseenter', function () { hold = true; });
     host.addEventListener('mouseleave', function () { hold = false; });
@@ -1405,12 +1436,12 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     host.addEventListener('focusout', function () { hold = false; });
     var sx = null;
     host.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; hold = true; }, { passive: true });
-    host.addEventListener('touchend', function (e) { hold = false; if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 40 && list().length > 1) { manual = true; clearInterval(timer); i += dx < 0 ? 1 : -1; draw(); } }, { passive: true });
+    host.addEventListener('touchend', function (e) { hold = false; if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 40 && list().length > 1) { stop(); i += dx < 0 ? 1 : -1; draw(); } }, { passive: true });
     draw(); start();
     if (location.protocol.indexOf('http') === 0) {
       try {
         fetch('banners.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-          if (j && Array.isArray(j.bannerlar) && j.bannerlar.some(function (x) { return x && x.sarlavha; })) { cfg = j; i = 0; draw(); start(); }
+          if (j && Array.isArray(j.bannerlar) && j.bannerlar.some(function (x) { return x && x.raqam; })) { cfg = j; i = 0; draw(); start(); }
         }).catch(function () {});
       } catch (e) {}
     }
