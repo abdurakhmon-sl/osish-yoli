@@ -359,6 +359,10 @@ html.xodim .mc-s { display: none; }
       </dl>
     </div>
     <div class="blk"><h3>Partner va kapital</h3>
+      <dl class="kv">
+        <dt>Investitsiya huquqi</dt><dd>Biznesga investitsiya (kapital tikish) uchun xodim kompaniyada kamida 12 oy ishlagan yoki Dostigator darajasiga chiqqan bo'lishi kerak. Imtiyozli holatda rahbariyat bilan kelishib, undan oldin ham kiritish mumkin.</dd>
+        <dt>Do'kon rahbari</dt><dd>Partner bo'lishi uchun yangi do'kon ochilishi kerak. Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi. Rahbar shu do'konga $10,000+ tikadi va o'rniga yangi rahbar tayyorlaydi.</dd>
+      </dl>
       <p>Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi. Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi. Filial yopilsa aktivlari sotiladi, zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi, qolgan summa har sherikka ulushiga qarab qaytariladi. Bu tartib AAOIFI 12-standartiga mos.</p>
     </div>
     <div class="blk"><h3>Joriy etish</h3>
@@ -575,7 +579,8 @@ var ROLES = {
   dokon_rahbari: { track: 'savdo', name: "Do'kon rahbari", order: 3, calcs: ['dr240', 'drFargona', 'drQoqon', 'drAndijon'],
     levels: [['Junior', '$400', "Kirish. Ko'p yo'ldan kelish mumkin, har yo'lning o'z sharti bor (pastda)."], ['Pro', '$600', "Junior'da 6 oy: 6 oyning 4 tasida filial sof foyda va aksessuar rejasi 100%+, overdue filial normasidan past."], ['Dostigator', '$1,000', "Pro'da 6 oy: 6 oyning 5 tasida sof foyda va aksessuar rejasi 100%+, overdue normadan kamida 10% past (norma 28% bo'lsa 25.2%), " + GOAL + ", o'rniga tayyorlagan nomzod komissiyadan o'tgan. Partner yo'lini ochadi."]],
     kpi: ["Filialga qarab 3 xil model bor. Kalkulyatorda filialni tanlang.", "C1, Chorsu, Navoiy, Samarqand 4, Toshkent: 240 ballik model. Bonus = sof foyda x stavka x multiplikator x jamoa koeffitsienti.", "Overdue bali har filialning o'z normasiga nisbatan hisoblanadi.", "Farg'ona: sof foyda x 5/6/7% (overdue'ga qarab).", "Qo'qon va Andijon: alohida kelishuv bo'yicha. Qo'qonda 2027 yil yanvaridan overdue 32.9% dan oshgan oyda sotuv soni premiyasi berilmaydi.", "Filiallar hajmi har xil, shuning uchun filiallarda raqamlar har xil."],
-    mas: ["Jamoani boshqarish, xodim olish va rivojlantirish", "Filial P&L uchun to'liq javobgarlik", "Tovar ostatkasi, kassa intizomi, portfel sifati", "Ijtimoiy tarmoqdagi faollik, kunlik hisobot va jamoa motivatsiyasi"],
+    mas: ["Jamoani boshqarish, xodim olish va rivojlantirish", "Filial P&L uchun to'liq javobgarlik", "Tovar ostatkasi, kassa intizomi, portfel sifati", "Ijtimoiy tarmoqdagi faollik, kunlik hisobot va jamoa motivatsiyasi", "Muammoli holatlarni yashirmaslik", "Sotuvchilar bilan bo'lgan muammoli holatlarni yashirmaslik", "Barcha holatlarni rahbariyatga shaffof ko'rsatib borish"],
+    partner: ["Do'kon rahbari Partner bo'lishi uchun yangi do'kon ochilishi kerak: bitta do'kon boshqasini ochadi.", "Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi.", "Shart: Dostigator darajasida 12+ oy, " + GOAL + ", kompaniya taklifi.", "Yangi do'konga kamida $10,000 kapital tikadi. Kapital ulushi darhol boshlanadi va hech qachon to'xtamaydi, RP yoki ROP bo'lsa ham.", "Boshqaruv ulushi yangi do'kon 3 oy o'rtacha $10,000 sof foyda ko'rsatganda boshlanadi. Regional Partner bo'lganda to'xtaydi. Foizi alohida shartnomada.", "O'rniga yangi Do'kon rahbarini tayyorlab o'tadi (nomzod komissiyadan o'tadi)."],
     bridges: [["Sotuvchi", "Dostigator, 12 oyning 9 tasida shaxsiy reja 100%+"], ["Team Lead", "Pro, 12 oy, mentee'lar 12 oyning 9 tasida rejada"], ["Kassir", "Pro, 3 oy ketma-ket aksessuar va referral $1,500+/oy, 12 oy yozilmagan farq yo'q, 1 kassir o'qitgan, P&L testi 70%+"], ["Unduruvchi", "Pro, 6 oyning 4 tasida filial undiruv rejasi 100%+, P&L testi 70%+"], ["Kollektor", "Pro, 6 oyning 4 tasida qaraydigan filiallar rejasi 100%+, P&L testi 70%+"], ["Undiruv rahbari", "Pro, jamoa rejasi 6 oyning 4 tasida 100%+, hech bir filial 80% dan pastga tushmagan, P&L testi 70%+"], ["CC rahbar", "Pro, CC savdo rejasi 6 oyning 5 tasida 95%+, P&L testi 70%+"], ["Barcha ko'priklar", "Ichki nomzod (ko'prik shartini bajargan) Pro darajadan kiradi; Pro daromadi oldingi 6 oy o'rtachasidan kam bo'lsa, farq 6 oy to'lanadi. P&L testini CFO o'tkazadi."]] },
   team_lead: { track: 'savdo', name: 'Team Lead', order: 4, calcs: ['teamLead'],
     levels: [['Junior', '$400', "Sotuvchi Dostigator, 6 oyning 4 tasida shaxsiy reja 100%+, Do'kon rahbari tavsiyasi."], ['Pro', '$500', "Team Lead Junior 6 oy: 6 oyning 4 tasida shaxsiy reja 100%+, kamida 2 mentee 6 oyning 4 tasida reja 95%+, inventar kamomadi yo'q."]],
@@ -667,8 +672,8 @@ var ROLES = {
     mas: ["Vakansiya ochish va yopish", "Nomzodlarni saralash", "Sinov muddatini kuzatish"] },
   /* ---------------- HAMKORLIK ---------------- */
   partner: { track: 'hamkorlik', name: 'Partner', order: 1, calcs: [],
-    levels: [['Partner', 'Maosh + foyda ulushi', "Do'kon rahbari, CFO, CMO yoki E-commerce rahbari eng yuqori darajada 12+ oy, " + GOAL + ", kompaniya taklifi, $10,000 kapital."]],
-    kpi: ["Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi.", "Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi.", "Filial yopilsa aktivlari sotiladi. Zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi. Qolgan summa har sherikka ulushiga qarab qaytariladi.", "Kapital ulushi lavozimga bog'liq emas, hech qachon to'xtamaydi."],
+    levels: [['Partner', 'Maosh + foyda ulushi', "Do'kon rahbari: Dostigator 12+ oy va yangi do'kon ochilganda, shu do'konga $10,000+ kapital tikadi. CFO, CMO yoki E-commerce rahbari: eng yuqori darajada 12+ oy. Hammasi uchun " + GOAL + " va kompaniya taklifi."]],
+    kpi: ["Biznesga investitsiya (kapital tikish) uchun xodim kompaniyada kamida 12 oy ishlagan yoki Dostigator darajasiga chiqqan bo'lishi kerak. Imtiyozli holatda rahbariyat bilan kelishib, undan oldin ham kiritish mumkin.", "Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi.", "Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi.", "Filial yopilsa aktivlari sotiladi. Zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi. Qolgan summa har sherikka ulushiga qarab qaytariladi.", "Kapital ulushi lavozimga bog'liq emas, hech qachon to'xtamaydi."],
     mas: ["Ishlaydi va sherik: maosh va tikkan kapitaliga foyda"] },
   ceo: { track: 'hamkorlik', name: 'CEO', order: 2, calcs: [], appoint: true,
     levels: [['CEO', 'Tayinlov', "Ta'sischilar tayinlaydi. O'sish yo'li orqali emas."]], kpi: ["Alohida kelishuv."], mas: ["Bosh direktor"] }
@@ -839,6 +844,13 @@ var EDGES = [
     ms.appendChild(el('ul', 'dots', r.mas.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
     main.appendChild(ms);
 
+    if (r.partner) {
+      var ps = el('section', 'blk'); ps.appendChild(el('h3', null, "Partner yo'li"));
+      ps.appendChild(el('ul', 'steps', r.partner.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
+      main.appendChild(ps);
+    }
+    goalBlock(id, r, main);
+
     if (r.bridges) {
       var br = el('section', 'blk'); br.appendChild(el('h3', null, "Boshqa yo'ldan kirish shartlari"));
       br.appendChild(el('div', 'tw', '<table class="bt"><tbody>' + r.bridges.map(function (b) { return '<tr><th>' + b[0] + '</th><td>' + b[1] + '</td></tr>'; }).join('') + '</tbody></table>'));
@@ -857,6 +869,45 @@ var EDGES = [
       pr.innerHTML = '<h3>Keyingi pog\'ona: ' + nr.name + '</h3><p>' + nr.levels[0][2] + '</p><p class="cn">Kirish fiksasi: ' + nr.levels[0][1] + '</p>';
       main.appendChild(pr);
     }
+  }
+  /* -------- Hayot maqsadi kalkulyatori (v1 dan qaytarildi) -------- */
+  function salNum(s) { var m = String(s).replace(/,/g, '').match(/\$\s*(\d+)/); return m ? +m[1] : 0; }
+  function goalBlock(id, r, host) {
+    if (r.appoint || !r.levels.some(function (l) { return salNum(l[1]) > 0; })) return;
+    var key = 'oy2_goal_' + id, sv = {};
+    try { sv = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+    var minM = (id === 'regional_partner' || id === 'rop') ? 12 : months(r);
+    var b = el('section', 'blk');
+    b.innerHTML = '<h3>Hayot maqsadi kalkulyatori</h3>' +
+      '<div class="calc"><div class="cf">' +
+      '<label class="fld" style="grid-column:1/-1"><span class="fl">Maqsad nomi</span><input type="text" data-k="name" placeholder="masalan: Mashina" style="font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px"></label>' +
+      '<label class="fld"><span class="fl">Narxi <i>$</i></span><input type="number" inputmode="decimal" data-k="goal" placeholder="8000"></label>' +
+      '<label class="fld"><span class="fl">O\'rtacha oylik KPI <i>$</i></span><input type="number" inputmode="decimal" data-k="kpi" placeholder="300"></label>' +
+      '<label class="fld"><span class="fl">Oylikdan jamg\'arish <i>%</i></span><input type="number" inputmode="decimal" data-k="pct" value="30"></label>' +
+      '</div><div class="co"></div></div>' +
+      '<p class="cn">Har darajada kamida ' + minM + ' oy. Daromad = fiksa + o\'rtacha KPI, darajaga qarab o\'sadi.</p>';
+    var inputs = b.querySelectorAll('input'), out = b.querySelector('.co');
+    inputs.forEach(function (i) { if (sv[i.dataset.k] != null && sv[i.dataset.k] !== '') i.value = sv[i.dataset.k]; i.addEventListener('input', calc); });
+    function calc() {
+      var v = {}; inputs.forEach(function (i) { v[i.dataset.k] = i.value; });
+      try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {}
+      var goal = parseFloat(v.goal) || 0, kpi = parseFloat(v.kpi) || 0, pct = parseFloat(v.pct) || 30;
+      if (!goal) { out.innerHTML = '<p class="cn">Maqsad narxini kiriting.</p>'; return; }
+      var saved = 0, total = 0, rows = [], done = false;
+      for (var i = 0; i < r.levels.length && !done; i++) {
+        var fx = salNum(r.levels[i][1]), mon = (fx + kpi) * pct / 100;
+        if (mon <= 0) { out.innerHTML = '<p class="cn">Jamg\'arma 0. Foiz yoki KPI kiriting.</p>'; return; }
+        var last = i === r.levels.length - 1, need = Math.ceil((goal - saved) / mon);
+        if (last || saved + mon * minM >= goal) { rows.push([r.levels[i][0], fx, need]); total += need; done = true; }
+        else { saved += mon * minM; total += minM; rows.push([r.levels[i][0], fx, minM]); }
+      }
+      var nm = (v.name || '').replace(/[<>&]/g, '') || 'maqsadingiz';
+      out.innerHTML = '<table class="rt"><tbody>' + rows.map(function (x) { return '<tr><th>' + x[0] + '</th><td class="num">' + usd(x[1] + kpi) + '/oy</td><td class="sub">' + x[2] + ' oy</td></tr>'; }).join('') + '</tbody></table>' +
+        '<div class="tot"><span>' + nm + '</span><strong class="num">' + total + ' oy</strong></div>' +
+        '<p class="cn">Taxminan ' + (total / 12).toFixed(1) + ' yil. Darajaga o\'z vaqtida ko\'tarilsangiz.</p>';
+    }
+    calc();
+    host.appendChild(b);
   }
   function linkRow(arr) {
     var d = el('div', 'lk');
