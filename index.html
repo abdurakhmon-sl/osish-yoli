@@ -913,30 +913,34 @@ var EDGES = [
     return box;
   }
 
-  /* -------- Kapital tikish: Andijon filialidagi haqiqiy hamkor misoli -------- */
-  var INV = { yil: 0.33, oyO: 0.0275, oyMin: 0.012, oyMax: 0.043 };
+  /* -------- Hamkorlik: Andijon filialidagi haqiqiy raqamlar (Fondlar varag'i) -------- */
+  var INV = { oyO: 0.027, oyMin: 0.012, oyMax: 0.043, dFoyda: 14000, ulush: 40 };
   function investBlock(id, r, host) {
     if (r.appoint) return;
     var topFx = 0; r.levels.forEach(function (l) { topFx = Math.max(topFx, salNum(l[1])); });
+    var inp = function (k, lab, v, u) { return '<label class="fld"><span class="fl">' + lab + (u ? ' <i>' + u + '</i>' : '') + '</span><input type="number" inputmode="decimal" data-k="' + k + '" value="' + v + '"></label>'; };
     var b = el('section', 'blk nextp invest');
-    b.innerHTML = '<h3>Kapital tiksangiz: hamkor bo\'lib qancha topasiz</h3>' +
-      '<p><b>Haqiqiy misol, Andijon filiali.</b> Hamkor 2025 yil fevralda taxminan $13,000 tikdi, keyin kapitalini qo\'shib bordi. Oxirgi 12 oyda uning o\'rtacha kapitali ~$34,000 bo\'ldi va unga oyiga o\'rtacha ~$940 foyda keldi, yiliga ~33%. 21 oyda jami ~$16,900 foyda oldi.</p>' +
-      '<div class="calc"><div class="cf">' +
-      '<label class="fld"><span class="fl">Tikadigan kapital <i>$</i></span><input type="number" inputmode="decimal" data-k="cap" value="10000"></label>' +
-      '<label class="fld"><span class="fl">Necha yil</span><input type="number" inputmode="decimal" data-k="yil" value="3"></label>' +
-      '<label class="fld chk"><input type="checkbox" data-k="re" checked><span class="fl">Foydani qayta tikaman</span></label>' +
-      '</div><div class="co"></div></div>' +
-      '<p class="cn">Kim tika oladi: kompaniyada 12 oy ishlagan yoki Dostigator darajasidagi xodim. Undan oldin rahbariyat bilan kelishib. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Foyda kafolatlanmaydi: yaxshi oyda kapitalning ~4.3%, yomon oyda ~1.2%. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
-    var ins = b.querySelectorAll('input'), out = b.querySelector('.co');
-    ins.forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+    b.innerHTML = '<h3>Hamkor bo\'lsangiz qancha topasiz</h3>' +
+      '<p><b>Haqiqiy misol, Andijon filiali.</b> Do\'konni boshqaradigan hamkor o\'z pulini tikmagan. Pulni investorlar tikdi: birinchi investor 2024 yil dekabrda $40,000 tikdi. Hamkor tomoni do\'kon foydasining ~40% ini oladi: oxirgi 12 oyda oyiga o\'rtacha $5,714, 23 oyda jami $133,745. Investorlar esa tikkan puliga oyiga o\'rtacha 2.7% foyda oldi, yiliga ~32%.</p>' +
+      '<p class="tt"><b>1. Investor topib do\'kon boshqarsangiz</b></p>' +
+      '<div class="calc" data-c="h"><div class="cf">' + inp('df', 'Do\'konning oylik sof foydasi', INV.dFoyda, '$') + inp('ul', 'Hamkor ulushi', INV.ulush, '%') + '</div><div class="co"></div></div>' +
+      '<p class="tt"><b>2. O\'zingiz pul tiksangiz</b></p>' +
+      '<div class="calc" data-c="i"><div class="cf">' + inp('cap', 'Tikadigan pul', 10000, '$') + inp('yil', 'Necha yil', 3) +
+      '<label class="fld chk"><input type="checkbox" data-k="re" checked><span class="fl">Foydani qayta tikaman</span></label></div><div class="co"></div></div>' +
+      '<p class="cn">Andijonda oxirgi 12 oyda taqsimlangan foyda oyiga o\'rtacha ~$14,000. Hamkor ulushi har holat uchun shartnomada belgilanadi. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Pul tikish: 12 oy ishlagan yoki Dostigator xodim, undan oldin rahbariyat bilan kelishib. Foyda kafolatlanmaydi: investor yaxshi oyda ~4.3%, yomon oyda ~1.2% olgan. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
+    var q = function (k) { return b.querySelector('[data-k=' + k + ']'); };
+    b.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
     function calc() {
-      var cap = parseFloat(b.querySelector('[data-k=cap]').value) || 0, y = Math.max(0, Math.min(30, parseFloat(b.querySelector('[data-k=yil]').value) || 0)), re = b.querySelector('[data-k=re]').checked;
-      var m = Math.round(cap * INV.oyO), n = Math.round(y * 12), endCap = re ? cap * Math.pow(1 + INV.oyO, n) : cap, got = re ? 0 : cap * INV.oyO * n;
-      out.innerHTML = '<table class="rt"><tbody>' +
-        '<tr><th>Oylik foyda, o\'rtacha</th><td class="num">' + usd(m) + '</td><td class="sub">2.75%</td></tr>' +
+      var df = parseFloat(q('df').value) || 0, ul = parseFloat(q('ul').value) || 0, h = df * ul / 100;
+      b.querySelector('[data-c=h] .co').innerHTML = '<table class="rt"><tbody><tr><th>Yiliga</th><td class="num">' + usd(h * 12) + '</td><td class="sub"></td></tr>' +
+        (topFx ? '<tr><th>Eng yuqori darajadagi fiksa bilan</th><td class="num">' + usd(topFx + h) + '/oy</td><td class="sub">KPI\'siz</td></tr>' : '') +
+        '</tbody></table><div class="tot"><span>Oyiga hamkor ulushi</span><strong class="num">' + usd(h) + '</strong></div>';
+      var cap = parseFloat(q('cap').value) || 0, y = Math.max(0, Math.min(30, parseFloat(q('yil').value) || 0)), re = q('re').checked;
+      var m = cap * INV.oyO, n = Math.round(y * 12), endCap = cap * Math.pow(1 + INV.oyO, n), got = m * n;
+      b.querySelector('[data-c=i] .co').innerHTML = '<table class="rt"><tbody>' +
+        '<tr><th>Oylik foyda, o\'rtacha</th><td class="num">' + usd(m) + '</td><td class="sub">2.7%</td></tr>' +
         '<tr><th>Yomon / yaxshi oy</th><td class="num">' + usd(cap * INV.oyMin) + ' / ' + usd(cap * INV.oyMax) + '</td><td class="sub"></td></tr>' +
-        (topFx ? '<tr><th>Eng yuqori darajada fiksa + kapital foydasi</th><td class="num">' + usd(topFx + m) + '/oy</td><td class="sub">KPI\'siz</td></tr>' : '') +
-        '</tbody></table><div class="tot"><span>' + (re ? y + ' yildan keyin kapitalingiz' : y + ' yilda olgan foydangiz') + '</span><strong class="num">' + usd(re ? endCap : got) + '</strong></div>';
+        '</tbody></table><div class="tot"><span>' + (re ? y + ' yildan keyin pulingiz' : y + ' yilda olgan foydangiz') + '</span><strong class="num">' + usd(re ? endCap : got) + '</strong></div>';
     }
     calc(); host.appendChild(b);
   }
