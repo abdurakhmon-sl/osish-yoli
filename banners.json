@@ -1,23 +1,20 @@
 {
-  "izoh": "Bannerlarni shu yerda o'zgartiring. Har bir banner: belgi (kichik yorliq), oldin (ixtiyoriy, eski raqam), raqam (katta raqam), birlik, matn, tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim), bolim (ixtiyoriy, sahifadagi bo'lim). sekund: bannerlar necha sekundda almashadi.",
-  "sekund": 7,
+  "izoh": "Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), sarlavha (asosiy gap; *yulduzcha* ichidagi so'z yashil va qalin chiqadi), matn (izoh, 1-2 gap), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi, masalan partner, dokon_rahbari, sotuvchi), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori, sec-calc = kalkulyator, sec-bonus = bonus). sekund: e'lonlar necha sekundda o'zi almashadi. Summalar yaxlitlangan, so'mda.",
+  "sekund": 10,
   "bannerlar": [
     {
       "belgi": "Hamkorlik",
-      "raqam": "~$5,700",
-      "birlik": "oyiga",
-      "matn": "Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.",
-      "tugma": "Hisoblab ko'ring",
+      "sarlavha": "Hamkor bo'lsangiz oyiga *~70 mln so'm* topasiz",
+      "matn": "Do'kon rahbari yangi do'kon ochsa, hamkor bo'ladi va do'kon foydasidan ulush oladi. Raqam oxirgi 12 oyning haqiqiy o'rtachasi.",
+      "tugma": "O'zingiz hisoblang",
       "lavozim": "partner",
       "bolim": "sec-inv"
     },
     {
       "belgi": "Haqiqiy yo'l",
-      "oldin": "$420",
-      "raqam": "$737",
-      "birlik": "oyiga",
-      "matn": "Unduruvchidan do'kon rahbariga. Birinchi oyidayoq daromad +75%.",
-      "tugma": "Yo'lni ko'ring",
+      "sarlavha": "Unduruvchi edi: ~5 mln so'm. Do'kon rahbari bo'ldi: *~9 mln so'm*",
+      "matn": "Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Yangi do'konga rahbar bo'ldi va birinchi oyidayoq ~9 mln so'm oldi (+75%).",
+      "tugma": "Bu yo'lni ko'ring",
       "lavozim": "dokon_rahbari"
     }
   ]

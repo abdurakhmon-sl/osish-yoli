@@ -231,26 +231,24 @@ html.xodim .mc-s { display: none; }
 /* hamkorlik banneri */
 section.blk, .sumc { scroll-margin-top: 80px; }
 .pbanner { background: #06140D; color: #E6EFEA; position: sticky; top: 0; z-index: 20; border-top: 1px solid #1A2E23; border-bottom: 1px solid #1A2E23; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
-.pb-in { display: flex; align-items: center; gap: 14px; padding-block: 10px; }
-.pb-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #7FDDA9; background: #10291C; border: 1px solid #1E4A31; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
-.pb-num { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; font-family: var(--f-display); }
-.pb-num b { font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.pb-num small { font-size: 13px; color: #93A89C; }
-.pb-txt { margin: 0; font-size: 13px; color: #93A89C; min-width: 0; padding-left: 14px; border-left: 1px solid #23392D; }
-.pb-in { min-height: 56px; }
-.pb-slide { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; animation: pbIn .35s ease; }
+.pb-in { display: flex; align-items: center; gap: 16px; padding-block: 12px; min-height: 76px; }
+.pb-slide { display: grid; gap: 3px; flex: 1; min-width: 0; animation: pbIn .35s ease; }
 @keyframes pbIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-.pb-num s { color: #6F8579; font-weight: 600; font-size: 16px; text-decoration-thickness: 1px; }
-.pb-num i { font-style: normal; color: #6F8579; font-size: 15px; }
-.pb-num b.up { color: #2FBF78; }
-.pb-dots { display: flex; gap: 6px; margin-left: 6px; }
-.pb-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: #2A4234; }
-.pb-dots button.on { background: #2FBF78; width: 18px; }
-@media (prefers-reduced-motion: reduce) { .pb-slide { animation: none; } }
-.pb-btn { margin-left: auto; background: #008D4A; color: #fff; border: 0; border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background .15s; }
+.pb-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pb-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #7FDDA9; background: #10291C; border: 1px solid #1E4A31; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.pb-h { margin: 0; font-family: var(--f-display); font-size: 19px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.01em; line-height: 1.3; }
+.pb-h em { font-style: normal; color: #2FBF78; font-weight: 800; white-space: nowrap; }
+.pb-txt { margin: 0; font-size: 13.5px; color: #A9BDB2; line-height: 1.45; max-width: 92ch; }
+.pb-side { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.pb-btn { background: #008D4A; color: #fff; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background .15s; }
 .pb-btn:hover { background: #00A257; }
 .pb-btn span { display: inline-block; transition: transform .15s; }
 .pb-btn:hover span { transform: translateX(2px); }
+.pb-nav { display: flex; align-items: center; gap: 4px; }
+.pb-nav button { width: 30px; height: 30px; border-radius: 999px; border: 1px solid #2A4234; background: transparent; color: #CFE3D8; font-size: 15px; line-height: 1; padding: 0; }
+.pb-nav button:hover { border-color: #2FBF78; color: #FFFFFF; }
+.pb-nav span { font-family: var(--f-mono); font-size: 12px; color: #93A89C; min-width: 34px; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .pb-slide { animation: none; } }
 .story { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; margin: 12px 0; justify-items: start; }
 .story h3 { font-size: 18px; }
 .st-e { margin: 0; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -282,21 +280,12 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .faq dd { margin: 0 0 6px; }
 @media (max-width: 860px) { .sumc { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {
-  .pb-in { gap: 10px; padding-block: 8px; }
-  .pb-tag { font-size: 10px; padding: 2px 6px; letter-spacing: .04em; }
-  .pb-num small { display: none; }
-  .pb-num b::after { content: "/oy"; font-size: 12px; font-weight: 500; color: #93A89C; margin-left: 2px; }
-  .pb-num b { font-size: 19px; }
-  .pb-txt { display: none; }
-  .pb-slide { gap: 8px; }
-  .pb-num s, .pb-num i { font-size: 13px; }
-  .pb-has-old .pb-num b { font-size: 17px; }
-  .pb-btn { padding: 7px 10px; }
-  .pb-dots { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); margin: 0; }
-  .pb-dots button { width: 6px; height: 4px; }
-  .pb-dots button.on { width: 12px; }
-  .pbanner .wrap { position: relative; padding-bottom: 10px; }
-  .pb-btn { padding: 7px 12px; font-size: 13px; }
+  .pbanner { position: static; }
+  .pb-in { flex-direction: column; align-items: stretch; gap: 10px; padding-block: 12px; min-height: 0; }
+  .pb-h { font-size: 17px; }
+  .pb-txt { font-size: 13px; }
+  .pb-side { margin-left: 0; justify-content: space-between; }
+  .pb-btn { padding: 8px 14px; font-size: 14px; }
   .mast .meta, .mast .lede { display: none; }
   .jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
   .jump .chip { white-space: nowrap; }
@@ -795,7 +784,7 @@ var EDGES = [
   ['ec_junior', 'online_savdo'], ['ec_junior', 'dasturchi'], ['online_savdo', 'dasturchi', 'lateral'], ['dasturchi', 'online_savdo', 'lateral'], ['online_savdo', 'ec_rahbar'], ['dasturchi', 'ec_rahbar'], ['ec_rahbar', 'partner']
 ];
 
-var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banner: belgi (kichik yorliq), oldin (ixtiyoriy, eski raqam), raqam (katta raqam), birlik, matn, tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim), bolim (ixtiyoriy, sahifadagi bo'lim). sekund: bannerlar necha sekundda almashadi.","sekund":7,"bannerlar":[{"belgi":"Hamkorlik","raqam":"~$5,700","birlik":"oyiga","matn":"Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.","tugma":"Hisoblab ko'ring","lavozim":"partner","bolim":"sec-inv"},{"belgi":"Haqiqiy yo'l","oldin":"$420","raqam":"$737","birlik":"oyiga","matn":"Unduruvchidan do'kon rahbariga. Birinchi oyidayoq daromad +75%.","tugma":"Yo'lni ko'ring","lavozim":"dokon_rahbari"}]};
+var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), sarlavha (asosiy gap; *yulduzcha* ichidagi so'z yashil va qalin chiqadi), matn (izoh, 1-2 gap), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi, masalan partner, dokon_rahbari, sotuvchi), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori, sec-calc = kalkulyator, sec-bonus = bonus). sekund: e'lonlar necha sekundda o'zi almashadi. Summalar yaxlitlangan, so'mda.","sekund":10,"bannerlar":[{"belgi":"Hamkorlik","sarlavha":"Hamkor bo'lsangiz oyiga *~70 mln so'm* topasiz","matn":"Do'kon rahbari yangi do'kon ochsa, hamkor bo'ladi va do'kon foydasidan ulush oladi. Raqam oxirgi 12 oyning haqiqiy o'rtachasi.","tugma":"O'zingiz hisoblang","lavozim":"partner","bolim":"sec-inv"},{"belgi":"Haqiqiy yo'l","sarlavha":"Unduruvchi edi: ~5 mln so'm. Do'kon rahbari bo'ldi: *~9 mln so'm*","matn":"Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Yangi do'konga rahbar bo'ldi va birinchi oyidayoq ~9 mln so'm oldi (+75%).","tugma":"Bu yo'lni ko'ring","lavozim":"dokon_rahbari"}]};
 /* O'sish yo'li 2.0: interfeys */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -1068,9 +1057,9 @@ var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banne
     b.innerHTML = '<p class="st-e">Haqiqiy yo\'l</p>' +
       '<h3>Unduruvchidan do\'kon rahbariga</h3>' +
       '<div class="st-row">' +
-        '<div class="st-c"><span>Unduruvchi</span><b class="num">~$420</b><small>oyiga, aprel-iyul 2026 o\'rtachasi</small></div>' +
+        '<div class="st-c"><span>Unduruvchi</span><b class="num">~5 mln so\'m</b><small>oyiga, aprel-iyul 2026 o\'rtachasi</small></div>' +
         '<div class="st-ar" aria-hidden="true">&rarr;</div>' +
-        '<div class="st-c on"><span>Do\'kon rahbari</span><b class="num">~$737</b><small>oyiga, avgust 2026 (fiksa + KPI)</small></div>' +
+        '<div class="st-c on"><span>Do\'kon rahbari</span><b class="num">~9 mln so\'m</b><small>oyiga, avgust 2026 (fiksa + KPI)</small></div>' +
         '<div class="st-up"><b class="num">+75%</b><small>bir lavozim yuqoriga</small></div>' +
       '</div>' +
       '<p class="st-t">Xodimimiz unduruvchi bo\'lib ishlagan. Yangi do\'kon ochilganda unga rahbarlik ishonib topshirildi. Birinchi oyidayoq daromadi 1.75 barobar oshdi.</p>';
@@ -1231,7 +1220,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banne
   function buildMap() {
     var host = $('#map'); host.innerHTML = '';
     var apex = el('div', 'apex');
-    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Hamkor bo\'lsangiz oyiga ~$5,700 (haqiqiy raqam, oxirgi 12 oy o\'rtachasi). Yo\'l: eng yuqori daraja va kompaniya taklifi.</span>'));
+    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Hamkor bo\'lsangiz oyiga ~70 mln so\'m (~$5,700, oxirgi 12 oyning haqiqiy o\'rtachasi). Yo\'l: eng yuqori daraja va kompaniya taklifi.</span>'));
     var ar = el('div', 'apex-r'); ar.appendChild(mapCard('partner')); ar.appendChild(mapCard('ceo')); apex.appendChild(ar);
     host.appendChild(apex);
     host.appendChild(storyCard('map'));
@@ -1321,10 +1310,11 @@ var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banne
   if ($('#cmpA')) { $('#cmpA').value = 'team_lead'; $('#cmpB').value = 'dokon_rahbari'; $('#cmpA').onchange = drawCompare; $('#cmpB').onchange = drawCompare; drawCompare(); }
   (function banner() {
     var host = $('#pbIn'); if (!host) return;
-    var cfg = BANNERS_DEFAULT, i = 0, timer = null, hold = false;
+    var cfg = BANNERS_DEFAULT, i = 0, timer = null, hold = false, manual = false;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-    function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.raqam; }); }
+    function hl(x) { return esc(x).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
+    function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.sarlavha; }); }
     function go(b) {
       var id = ROLES[b.lavozim] ? b.lavozim : state.role;
       setTab('roles'); select(id);
@@ -1335,29 +1325,32 @@ var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banne
       var L = list(); if (!L.length) { host.parentNode.hidden = true; return; }
       host.parentNode.hidden = false;
       i = (i + L.length) % L.length; var b = L[i];
-      host.innerHTML = '<div class="pb-slide' + (b.oldin ? ' pb-has-old' : '') + '" aria-live="polite">' +
-        (b.belgi ? '<span class="pb-tag">' + esc(b.belgi) + '</span>' : '') +
-        '<div class="pb-num">' + (b.oldin ? '<s>' + esc(b.oldin) + '</s><i aria-hidden="true">&rarr;</i>' : '') + '<b' + (b.oldin ? ' class="up"' : '') + '>' + esc(b.raqam) + '</b>' + (b.birlik ? '<small>' + esc(b.birlik) + '</small>' : '') + '</div>' +
-        (b.matn ? '<p class="pb-txt">' + esc(b.matn) + '</p>' : '') + '</div>' +
-        (b.tugma ? '<button type="button" class="pb-btn" id="pbGo">' + esc(b.tugma) + ' <span aria-hidden="true">&rarr;</span></button>' : '') +
-        (L.length > 1 ? '<div class="pb-dots" role="tablist">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"></button>'; }).join('') + '</div>' : '');
+      host.innerHTML = '<div class="pb-slide" aria-live="polite">' +
+        '<div class="pb-top">' + (b.belgi ? '<span class="pb-tag">' + esc(b.belgi) + '</span>' : '') + '<p class="pb-h">' + hl(b.sarlavha) + '</p></div>' +
+        (b.matn ? '<p class="pb-txt">' + hl(b.matn) + '</p>' : '') + '</div>' +
+        '<div class="pb-side">' +
+        (L.length > 1 ? '<div class="pb-nav"><button type="button" data-d="-1" aria-label="Oldingi e\'lon">&lsaquo;</button><span>' + (i + 1) + ' / ' + L.length + '</span><button type="button" data-d="1" aria-label="Keyingi e\'lon">&rsaquo;</button></div>' : '') +
+        (b.tugma ? '<button type="button" class="pb-btn" id="pbGo">' + esc(b.tugma) + ' <span aria-hidden="true">&rarr;</span></button>' : '') + '</div>';
       var g = $('#pbGo'); if (g) g.onclick = function () { go(b); };
-      host.querySelectorAll('.pb-dots button').forEach(function (d) { d.onclick = function () { i = +d.dataset.k; draw(); start(); }; });
+      host.querySelectorAll('.pb-nav button').forEach(function (d) { d.onclick = function () { manual = true; clearInterval(timer); i += +d.dataset.d; draw(); }; });
     }
     function start() {
       clearInterval(timer); var L = list();
-      if (reduce || L.length < 2) return;
-      timer = setInterval(function () { if (!hold && !document.hidden) { i++; draw(); } }, Math.max(3, +cfg.sekund || 7) * 1000);
+      if (reduce || manual || L.length < 2) return;
+      timer = setInterval(function () { if (!hold && !document.hidden) { i++; draw(); } }, Math.max(4, +cfg.sekund || 10) * 1000);
     }
     host.addEventListener('mouseenter', function () { hold = true; });
     host.addEventListener('mouseleave', function () { hold = false; });
     host.addEventListener('focusin', function () { hold = true; });
     host.addEventListener('focusout', function () { hold = false; });
+    var sx = null;
+    host.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; hold = true; }, { passive: true });
+    host.addEventListener('touchend', function (e) { hold = false; if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 40 && list().length > 1) { manual = true; clearInterval(timer); i += dx < 0 ? 1 : -1; draw(); } }, { passive: true });
     draw(); start();
     if (location.protocol.indexOf('http') === 0) {
       try {
         fetch('banners.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-          if (j && Array.isArray(j.bannerlar)) { cfg = j; i = 0; draw(); start(); }
+          if (j && Array.isArray(j.bannerlar) && j.bannerlar.some(function (x) { return x && x.sarlavha; })) { cfg = j; i = 0; draw(); start(); }
         }).catch(function () {});
       } catch (e) {}
     }
