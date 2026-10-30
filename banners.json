@@ -4,10 +4,10 @@
   "bannerlar": [
     {
       "belgi": "Hamkorlik",
-      "sarlavha": "Hamkor bo'lsangiz oyiga *~70 mln so'm* topasiz",
-      "matn": "Do'kon rahbari yangi do'kon ochsa, hamkor bo'ladi va do'kon foydasidan ulush oladi. Raqam oxirgi 12 oyning haqiqiy o'rtachasi.",
+      "sarlavha": "Yangi do'kon ochsangiz oyiga *~30 mln so'm* topasiz",
+      "matn": "Smartlife yangi do'konni o'z puli bilan ochadi, siz boshqarasiz. Yangi do'kondan fiksa va KPI, foydadan 5%, eski do'kondan ham olasiz. Pul tiksangiz, investor kabi foyda qo'shiladi.",
       "tugma": "O'zingiz hisoblang",
-      "lavozim": "partner",
+      "lavozim": "dokon_rahbari",
       "bolim": "sec-inv"
     },
     {
