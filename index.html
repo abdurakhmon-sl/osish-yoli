@@ -231,48 +231,76 @@ html.xodim .mc-s { display: none; }
 /* hamkorlik banneri */
 section.blk, .sumc { scroll-margin-top: 80px; }
 /* hero banner (promo karta) */
-.hero { position: relative; margin: 18px 0 6px; border-radius: 22px; overflow: hidden; color: #FFFFFF; isolation: isolate; box-shadow: 0 12px 32px -12px rgba(0,60,30,.45); touch-action: pan-y; }
-.hero-s { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: center; gap: 24px; min-height: 236px; padding: 30px 36px 46px; animation: hIn .45s ease; }
-@keyframes hIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
-.hero-s.yashil { background: radial-gradient(120% 140% at 100% 0%, #19C06D 0%, rgba(25,192,109,0) 55%), linear-gradient(135deg, #00A257 0%, #007A3F 55%, #00552C 100%); }
-.hero-s.qora { background: radial-gradient(110% 140% at 100% 0%, rgba(47,191,120,.35) 0%, rgba(47,191,120,0) 55%), linear-gradient(135deg, #0F2A1C 0%, #071710 60%, #030B07 100%); }
-.hero-t { display: grid; gap: 6px; justify-items: start; min-width: 0; }
-.hero-tag { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); }
-.hero-eb { margin: 6px 0 0; font-size: 18px; font-weight: 600; color: rgba(255,255,255,.88); }
-.hero-n { margin: 0; font-family: var(--f-display); font-weight: 800; letter-spacing: -0.035em; line-height: .95; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
-.hero-n b { font-size: clamp(48px, 7vw, 76px); font-weight: 800; }
-.hero-n u { text-decoration: none; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: -0.01em; }
-.hero-n s { font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; color: rgba(255,255,255,.55); text-decoration-thickness: 3px; text-decoration-color: rgba(255,255,255,.55); }
+.hero { position: relative; margin: 18px 0 6px; border-radius: 24px; overflow: hidden; color: #FFFFFF; isolation: isolate; box-shadow: 0 18px 40px -18px rgba(0,70,35,.55), 0 2px 6px rgba(0,0,0,.08); touch-action: pan-y; }
+.hero-s { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 320px; align-items: center; gap: 24px; min-height: 244px; padding: 30px 38px 50px; animation: hIn .5s cubic-bezier(.2,.8,.2,1); overflow: hidden; }
+.hero-s::before, .hero-s::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; z-index: -1; }
+.hero-s::before { width: 420px; height: 420px; right: -120px; top: -190px; border: 56px solid rgba(255,255,255,.06); }
+.hero-s::after { width: 220px; height: 220px; left: 38%; bottom: -150px; background: radial-gradient(circle, rgba(255,255,255,.14), rgba(255,255,255,0) 70%); }
+@keyframes hIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+.hero-s.yashil { background: radial-gradient(90% 120% at 95% 10%, #2BE086 0%, rgba(43,224,134,0) 50%), linear-gradient(130deg, #00B160 0%, #008D4A 45%, #005A2E 100%); }
+.hero-s.qora { background: radial-gradient(90% 130% at 95% 0%, rgba(62,224,138,.38) 0%, rgba(62,224,138,0) 52%), linear-gradient(130deg, #123322 0%, #08190F 55%, #020805 100%); }
+.hero-s.qora::before { border-color: rgba(62,224,138,.08); }
+.hero-t { display: grid; gap: 6px; justify-items: start; min-width: 0; position: relative; z-index: 1; }
+.hero-tag { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.hero-eb { margin: 6px 0 0; font-size: 18px; font-weight: 600; color: rgba(255,255,255,.9); }
+.hero-n { margin: 0; font-family: var(--f-display); font-weight: 800; letter-spacing: -0.04em; line-height: .95; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+.hero-n b { font-size: clamp(52px, 7.4vw, 82px); font-weight: 800; background: linear-gradient(180deg, #FFFFFF 30%, #CFFBE3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 4px 14px rgba(0,0,0,.18)); }
+.hero-s.qora .hero-n b { background: linear-gradient(180deg, #7DFFBC 0%, #2FD67F 100%); -webkit-background-clip: text; background-clip: text; }
+.hero-n u { text-decoration: none; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: rgba(255,255,255,.88); letter-spacing: -0.01em; }
+.hero-n s { font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; color: rgba(255,255,255,.5); text-decoration-thickness: 3px; text-decoration-color: rgba(255,255,255,.5); }
 .hero-n i { font-style: normal; font-size: clamp(24px, 3vw, 36px); color: #7FEFB2; font-weight: 700; }
-.hero-s.qora .hero-n b { color: #3EE08A; }
-.hero-m { margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.86); max-width: 58ch; }
-.hero-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-.hero-btn { background: #FFFFFF; color: #00552C; border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 700; font-size: 15px; box-shadow: 0 6px 16px -6px rgba(0,0,0,.4); transition: transform .15s; }
-.hero-btn:hover { transform: translateY(-1px); }
-.hero-s.qora .hero-btn { background: #2FBF78; color: #04130B; }
-.hero-chip { font-size: 14px; font-weight: 600; padding: 8px 12px; border-radius: 999px; background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.2); }
-.hero-art { position: relative; height: 180px; }
-.hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-nav { position: absolute; left: 36px; right: 36px; bottom: 16px; display: flex; align-items: center; gap: 10px; z-index: 2; }
+.hero-m { margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.88); max-width: 56ch; }
+.hero-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.hero-btn { background: #FFFFFF; color: #00552C; border: 0; border-radius: 999px; padding: 13px 22px; font-weight: 700; font-size: 15px; box-shadow: 0 10px 22px -10px rgba(0,0,0,.55); transition: transform .15s, box-shadow .15s; }
+.hero-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -10px rgba(0,0,0,.6); }
+.hero-s.qora .hero-btn { background: linear-gradient(180deg, #4EEB98, #23C26F); color: #03140A; }
+.hero-chip { font-size: 14px; font-weight: 700; padding: 9px 13px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.26); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.hero-art { position: relative; height: 190px; z-index: 0; }
+.hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 10px 18px rgba(0,0,0,.18)); }
+.hero-art .hb rect { transform-box: fill-box; transform-origin: 50% 100%; animation: hBar .7s cubic-bezier(.2,.8,.2,1) both; }
+.hero-art .hb rect:nth-child(2) { animation-delay: .08s; } .hero-art .hb rect:nth-child(3) { animation-delay: .16s; } .hero-art .hb rect:nth-child(4) { animation-delay: .24s; }
+@keyframes hBar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.hero-art .hl { stroke-dasharray: 320; stroke-dashoffset: 320; animation: hLine .9s .35s ease forwards; }
+.hero-art .hl[stroke-dasharray="6 7"] { stroke-dashoffset: 0; animation: none; }
+.hero-art .hl2 { opacity: 0; animation: hFade .3s 1.1s forwards; }
+@keyframes hLine { to { stroke-dashoffset: 0; } }
+@keyframes hFade { to { opacity: 1; } }
+.hero-art .coin { animation: hBob 3.2s ease-in-out infinite; }
+@keyframes hBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.hero-art .spk path { transform-box: fill-box; transform-origin: center; animation: hTw 2.4s ease-in-out infinite; }
+.hero-art .spk path:nth-child(2) { animation-delay: .8s; } .hero-art .spk path:nth-child(3) { animation-delay: 1.6s; }
+@keyframes hTw { 0%, 100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1.1); opacity: 1; } }
+.hero-nav { position: absolute; left: 38px; right: 38px; bottom: 18px; display: flex; align-items: center; gap: 10px; z-index: 2; }
 .hero-dots { display: flex; gap: 6px; }
-.hero-dots button { width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: rgba(255,255,255,.4); transition: width .2s; }
-.hero-dots button.on { width: 26px; background: #FFFFFF; }
+.hero-dots button { position: relative; width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: rgba(255,255,255,.38); overflow: hidden; transition: width .25s; }
+.hero-dots button.on { width: 34px; background: rgba(255,255,255,.38); }
+.hero-dots button i { position: absolute; inset: 0; width: 0; background: #FFFFFF; border-radius: inherit; }
+.hero-dots button.on i { width: 100%; }
+.hero.auto .hero-dots button.on i { width: 0; animation: hProg var(--hdur, 8s) linear forwards; }
+.hero:hover .hero-dots button.on i { animation-play-state: paused; }
+@keyframes hProg { to { width: 100%; } }
 .hero-ar { margin-left: auto; display: flex; gap: 8px; }
-.hero-ar button { width: 36px; height: 36px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.15); color: #FFFFFF; font-size: 18px; line-height: 1; padding: 0; }
-.hero-ar button:hover { background: rgba(255,255,255,.18); }
+.hero-ar button { width: 38px; height: 38px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #FFFFFF; font-size: 19px; line-height: 1; padding: 0; transition: background .15s; }
+.hero-ar button:hover { background: rgba(255,255,255,.24); }
 @media (max-width: 760px) {
-  .hero { margin: 12px 0 4px; border-radius: 18px; }
-  .hero-s { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 20px 18px 54px; gap: 0; }
-  .hero-art { position: absolute; right: -24px; top: 10px; width: 170px; height: 130px; opacity: .35; z-index: -1; }
-  .hero-eb { font-size: 16px; }
-  .hero-n b { font-size: 46px; }
+  .hero { margin: 12px 0 4px; border-radius: 20px; }
+  .hero-s { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 18px 18px 58px; gap: 0; }
+  .hero-s::before { width: 260px; height: 260px; right: -90px; top: -120px; border-width: 36px; }
+  .hero-art { position: absolute; right: 10px; top: 12px; width: 132px; height: 92px; }
+  .hero-t { gap: 4px; }
+  .hero-eb { font-size: 15px; margin-top: 10px; max-width: calc(100% - 120px); }
+  .hero-n { margin-top: 4px; }
+  .hero-n b { font-size: 50px; }
+  .hero-n u { font-size: 20px; }
+  .hero-n s { font-size: 26px; }
   .hero-m { font-size: 14px; }
-  .hero-btn { padding: 11px 16px; font-size: 14px; }
-  .hero-chip { font-size: 13px; padding: 6px 10px; }
-  .hero-nav { left: 18px; right: 18px; bottom: 14px; }
-  .hero-ar button { width: 32px; height: 32px; }
+  .hero-row { margin-top: 10px; gap: 8px; }
+  .hero-btn { padding: 12px 18px; font-size: 14px; }
+  .hero-chip { font-size: 13px; padding: 8px 11px; }
+  .hero-nav { left: 18px; right: 18px; bottom: 16px; }
+  .hero-ar button { width: 34px; height: 34px; }
 }
-@media (prefers-reduced-motion: reduce) { .hero-s { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-s, .hero-art *, .hero-dots i { animation: none !important; } .hero-art .hl { stroke-dashoffset: 0; } .hero-art .hl2 { opacity: 1; } }
 .story { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; margin: 12px 0; justify-items: start; }
 .story h3 { font-size: 18px; }
 .st-e { margin: 0; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -1391,14 +1419,17 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
     function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.raqam; }); }
     var ART = {
-      bars: '<svg viewBox="0 0 300 180" aria-hidden="true"><defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".35"/></linearGradient></defs>' +
-        '<rect x="40" y="118" width="38" height="52" rx="8" fill="url(#hg1)" opacity=".45"/><rect x="92" y="92" width="38" height="78" rx="8" fill="url(#hg1)" opacity=".6"/><rect x="144" y="60" width="38" height="110" rx="8" fill="url(#hg1)" opacity=".8"/><rect x="196" y="24" width="38" height="146" rx="8" fill="url(#hg1)"/>' +
-        '<path d="M40 104 L110 80 L162 50 L246 12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><path d="M230 10 L248 11 L244 29" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<circle cx="262" cy="128" r="26" fill="#FFD66B"/><circle cx="262" cy="128" r="18" fill="none" stroke="#C99A1E" stroke-width="3"/><text x="262" y="135" text-anchor="middle" font-size="20" font-weight="800" fill="#8A6510" font-family="Arial">$</text></svg>',
-      steps: '<svg viewBox="0 0 300 180" aria-hidden="true"><rect x="20" y="130" width="80" height="40" rx="10" fill="#fff" opacity=".18"/><rect x="110" y="90" width="80" height="80" rx="10" fill="#fff" opacity=".28"/><rect x="200" y="40" width="80" height="130" rx="10" fill="#3EE08A" opacity=".9"/>' +
-        '<circle cx="60" cy="110" r="12" fill="#fff" opacity=".7"/><path d="M48 128 q12 -12 24 0" fill="#fff" opacity=".7"/>' +
-        '<circle cx="240" cy="18" r="13" fill="#fff"/><path d="M226 38 q14 -14 28 0" fill="#fff"/>' +
-        '<path d="M72 96 C110 60 170 40 222 24" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round" opacity=".8"/></svg>'
+      bars: '<svg viewBox="0 0 300 180" aria-hidden="true"><defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></linearGradient><radialGradient id="hgc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF3B0"/><stop offset=".6" stop-color="#FFC93C"/><stop offset="1" stop-color="#E09B12"/></radialGradient></defs>' +
+        '<g class="hb"><rect x="34" y="118" width="40" height="52" rx="9" fill="url(#hg1)" opacity=".45"/><rect x="88" y="90" width="40" height="80" rx="9" fill="url(#hg1)" opacity=".6"/><rect x="142" y="58" width="40" height="112" rx="9" fill="url(#hg1)" opacity=".8"/><rect x="196" y="22" width="40" height="148" rx="9" fill="url(#hg1)"/></g>' +
+        '<path class="hl" d="M34 106 L108 78 L162 48 L244 10" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path class="hl2" d="M226 8 L246 9 L242 29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<g class="coin"><circle cx="262" cy="130" r="27" fill="url(#hgc)"/><circle cx="262" cy="130" r="19" fill="none" stroke="#B9800E" stroke-width="2.5" opacity=".7"/><text x="262" y="138" text-anchor="middle" font-size="22" font-weight="800" fill="#8A5A00" font-family="Arial">$</text></g>' +
+        '<g class="spk" fill="#fff"><path d="M70 30 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/><path d="M128 18 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".7"/><path d="M286 70 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".8"/></g></svg>',
+      steps: '<svg viewBox="0 0 300 180" aria-hidden="true"><defs><linearGradient id="hg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5BF2A3"/><stop offset="1" stop-color="#13A45A"/></linearGradient></defs>' +
+        '<g class="hb"><rect x="20" y="128" width="82" height="42" rx="11" fill="#fff" opacity=".16"/><rect x="110" y="88" width="82" height="82" rx="11" fill="#fff" opacity=".26"/><rect x="200" y="40" width="82" height="130" rx="11" fill="url(#hg2)"/></g>' +
+        '<g opacity=".75"><circle cx="61" cy="104" r="12" fill="#fff"/><path d="M47 124 q14 -15 28 0z" fill="#fff"/></g>' +
+        '<g class="coin"><circle cx="241" cy="16" r="13" fill="#fff"/><path d="M226 37 q15 -16 30 0z" fill="#fff"/></g>' +
+        '<path class="hl" d="M76 92 C112 58 170 38 222 22" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round" opacity=".85"/>' +
+        '<g class="spk" fill="#5BF2A3"><path d="M150 30 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/><path d="M288 96 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".8"/></g></svg>'
     };
     function go(b) {
       var id = ROLES[b.lavozim] ? b.lavozim : state.role;
@@ -1412,6 +1443,8 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
       host.hidden = false;
       i = (i + L.length) % L.length; var b = L[i];
       var rang = b.rang === 'qora' ? 'qora' : 'yashil';
+      host.style.setProperty('--hdur', Math.max(4, +cfg.sekund || 8) + 's');
+      host.classList.toggle('auto', !manual && !reduce && L.length > 1);
       host.innerHTML = '<div class="hero-s ' + rang + '" aria-live="polite"><div class="hero-t">' +
         (b.belgi ? '<span class="hero-tag">' + esc(b.belgi) + '</span>' : '') +
         (b.ustki ? '<p class="hero-eb">' + esc(b.ustki) + '</p>' : '') +
@@ -1419,7 +1452,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
         (b.matn ? '<p class="hero-m">' + esc(b.matn) + '</p>' : '') +
         '<div class="hero-row">' + (b.tugma ? '<button type="button" class="hero-btn" id="pbGo">' + esc(b.tugma) + ' &rarr;</button>' : '') + (b.chip ? '<span class="hero-chip">' + esc(b.chip) + '</span>' : '') + '</div>' +
         '</div><div class="hero-art">' + (ART[b.rasm] || (b.oldin ? ART.steps : ART.bars)) + '</div></div>' +
-        (L.length > 1 ? '<div class="hero-nav"><div class="hero-dots">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"></button>'; }).join('') + '</div>' +
+        (L.length > 1 ? '<div class="hero-nav"><div class="hero-dots">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"><i></i></button>'; }).join('') + '</div>' +
           '<div class="hero-ar"><button type="button" data-d="-1" aria-label="Oldingi">&lsaquo;</button><button type="button" data-d="1" aria-label="Keyingi">&rsaquo;</button></div></div>' : '');
       var g = $('#pbGo'); if (g) g.onclick = function () { go(b); };
       host.querySelectorAll('.hero-dots button').forEach(function (d) { d.onclick = function () { stop(); i = +d.dataset.k; draw(); }; });
