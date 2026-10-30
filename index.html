@@ -230,13 +230,17 @@ html.xodim .mc-s { display: none; }
 /* phone reading */
 /* hamkorlik banneri */
 section.blk, .sumc { scroll-margin-top: 80px; }
-.pbanner { background: linear-gradient(90deg, #008D4A, #0B6B3A); color: #fff; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
-.pb-in { display: flex; align-items: center; gap: 18px; padding-block: 10px; }
-.pb-num { display: grid; line-height: 1.1; white-space: nowrap; }
-.pb-num small { font-size: 12px; opacity: .85; }
-.pb-num b { font-size: 24px; font-weight: 700; }
-.pb-txt { margin: 0; font-size: 13px; opacity: .92; flex: 1; min-width: 0; }
-.pb-btn { background: #fff; color: #0B6B3A; border: 0; border-radius: 6px; padding: 8px 14px; font-weight: 700; white-space: nowrap; }
+.pbanner { background: #06140D; color: #E6EFEA; position: sticky; top: 0; z-index: 20; border-top: 1px solid #1A2E23; border-bottom: 1px solid #1A2E23; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.pb-in { display: flex; align-items: center; gap: 14px; padding-block: 10px; }
+.pb-tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #7FDDA9; background: #10291C; border: 1px solid #1E4A31; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.pb-num { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; font-family: var(--f-display); }
+.pb-num b { font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.pb-num small { font-size: 13px; color: #93A89C; }
+.pb-txt { margin: 0; font-size: 13px; color: #93A89C; min-width: 0; padding-left: 14px; border-left: 1px solid #23392D; }
+.pb-btn { margin-left: auto; background: #008D4A; color: #fff; border: 0; border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background .15s; }
+.pb-btn:hover { background: #00A257; }
+.pb-btn span { display: inline-block; transition: transform .15s; }
+.pb-btn:hover span { transform: translateX(2px); }
 .sumc { display: grid; grid-template-columns: 1fr 1.4fr 1.6fr; gap: 10px; }
 .sumc > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
 .sumc span { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -253,10 +257,13 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .faq dd { margin: 0 0 6px; }
 @media (max-width: 860px) { .sumc { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {
-  .pb-in { flex-wrap: wrap; gap: 6px 12px; padding-block: 8px; }
-  .pb-num b { font-size: 20px; }
+  .pb-in { gap: 10px; padding-block: 8px; }
+  .pb-tag { font-size: 10px; padding: 2px 6px; letter-spacing: .04em; }
+  .pb-num small { display: none; }
+  .pb-num b::after { content: "/oy"; font-size: 12px; font-weight: 500; color: #93A89C; margin-left: 2px; }
+  .pb-num b { font-size: 19px; }
   .pb-txt { display: none; }
-  .pb-btn { margin-left: auto; padding: 6px 10px; font-size: 13px; }
+  .pb-btn { padding: 7px 12px; font-size: 13px; }
   .mast .meta, .mast .lede { display: none; }
   .jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
   .jump .chip { white-space: nowrap; }
@@ -311,9 +318,10 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 </header>
 <aside class="pbanner" aria-label="Hamkorlik">
   <div class="wrap pb-in">
-    <div class="pb-num"><small>Hamkor bo'lsangiz</small><b class="num">oyiga ~$5,700</b></div>
-    <p class="pb-txt">Haqiqiy raqam, oxirgi 12 oy o'rtachasi. Hamkor do'kon foydasidan ulush oladi.</p>
-    <button type="button" class="pb-btn" id="pbGo">Hisoblab ko'ring</button>
+    <span class="pb-tag">Hamkorlik</span>
+    <div class="pb-num"><b>~$5,700</b><small>oyiga</small></div>
+    <p class="pb-txt">Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.</p>
+    <button type="button" class="pb-btn" id="pbGo">Hisoblab ko'ring <span aria-hidden="true">&rarr;</span></button>
   </div>
 </aside>
 
