@@ -241,6 +241,21 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .pb-btn:hover { background: #00A257; }
 .pb-btn span { display: inline-block; transition: transform .15s; }
 .pb-btn:hover span { transform: translateX(2px); }
+.story { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; margin: 12px 0; justify-items: start; }
+.story h3 { font-size: 18px; }
+.st-e { margin: 0; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.st-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; width: 100%; }
+.st-c { display: grid; gap: 2px; padding: 10px 14px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); min-width: 170px; }
+.st-c span { font-size: 12px; color: var(--muted); font-weight: 600; }
+.st-c b { font-size: 24px; font-family: var(--f-display); font-weight: 800; }
+.st-c small, .st-up small { font-size: 12px; color: var(--muted); }
+.st-c.on { background: var(--accent-soft); border-color: var(--accent); }
+.st-c.on b { color: var(--accent); }
+.st-ar { align-self: center; font-size: 22px; color: var(--muted); }
+.st-up { display: grid; align-content: center; gap: 2px; padding-left: 6px; }
+.st-up b { font-size: 22px; font-family: var(--f-display); font-weight: 800; color: var(--accent); }
+.st-t { margin: 0; font-size: 14px; max-width: 70ch; }
+@media (max-width: 600px) { .st-c { min-width: 0; flex: 1 1 130px; } .st-ar { display: none; } .st-up { flex-basis: 100%; padding-left: 0; display: flex; align-items: baseline; gap: 8px; } }
 .sumc { display: grid; grid-template-columns: 1fr 1.4fr 1.6fr; gap: 10px; }
 .sumc > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
 .sumc span { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -891,6 +906,7 @@ var EDGES = [
     head.innerHTML = '<p class="eyebrow">' + trk.name + (r.track !== 'hamkorlik' ? ' &middot; har darajada kamida ' + months(r) + ' oy' : '') + '</p><h2>' + r.name + '</h2>' + (r.note ? '<p class="rnote">' + r.note + '</p>' : '');
     main.appendChild(head);
     main.appendChild(summaryCard(id, r));
+    if (id === 'unduruvchi' || id === 'kollektor' || id === 'dokon_rahbari') main.appendChild(storyCard(id));
     var nav = el('nav', 'jump');
     main.appendChild(nav);
     if (id === 'partner') investBlock(id, r, main);
@@ -1033,6 +1049,24 @@ var EDGES = [
   }
 
   /* -------- Bir qarashda: fiksa, bonus asosi, keyingi qadam -------- */
+  function storyCard(here) {
+    var b = el('aside', 'story');
+    b.innerHTML = '<p class="st-e">Haqiqiy yo\'l</p>' +
+      '<h3>Unduruvchidan do\'kon rahbariga</h3>' +
+      '<div class="st-row">' +
+        '<div class="st-c"><span>Unduruvchi</span><b class="num">~$420</b><small>oyiga, aprel-iyul 2026 o\'rtachasi</small></div>' +
+        '<div class="st-ar" aria-hidden="true">&rarr;</div>' +
+        '<div class="st-c on"><span>Do\'kon rahbari</span><b class="num">~$737</b><small>oyiga, avgust 2026 (fiksa + KPI)</small></div>' +
+        '<div class="st-up"><b class="num">+75%</b><small>bir lavozim yuqoriga</small></div>' +
+      '</div>' +
+      '<p class="st-t">Xodimimiz unduruvchi bo\'lib ishlagan. Yangi do\'kon ochilganda unga rahbarlik ishonib topshirildi. Birinchi oyidayoq daromadi 1.75 barobar oshdi.</p>';
+    if (here !== 'dokon_rahbari') {
+      var go = el('button', 'btn ghost', "Do'kon rahbari sahifasi");
+      go.type = 'button'; go.onclick = function () { select('dokon_rahbari'); setTab('roles'); window.scrollTo({ top: 0 }); };
+      b.appendChild(go);
+    }
+    return b;
+  }
   function summaryCard(id, r) {
     var c = el('div', 'sumc'), nx = next(id).filter(function (x) { return x.t === 'osish'; })[0] || next(id)[0];
     var fx = r.levels.length > 1 ? r.levels[0][1] + ' &rarr; ' + r.levels[r.levels.length - 1][1] : r.levels[0][1];
@@ -1186,6 +1220,7 @@ var EDGES = [
     apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Hamkor bo\'lsangiz oyiga ~$5,700 (haqiqiy raqam, oxirgi 12 oy o\'rtachasi). Yo\'l: eng yuqori daraja va kompaniya taklifi.</span>'));
     var ar = el('div', 'apex-r'); ar.appendChild(mapCard('partner')); ar.appendChild(mapCard('ceo')); apex.appendChild(ar);
     host.appendChild(apex);
+    host.appendChild(storyCard('map'));
     var cols = el('div', 'cols');
     TRACKS.forEach(function (t) {
       if (!LAYOUT[t.id]) return;
