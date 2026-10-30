@@ -203,6 +203,8 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; }
 .col-h { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); display: flex; justify-content: space-between; border-bottom: 2px solid var(--fg); padding-bottom: 6px; margin-bottom: 10px; }
 .conn { width: 2px; height: 14px; background: var(--accent); margin: 0 auto; }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pair.grp { grid-template-columns: minmax(0, 1fr); border: 1px dashed var(--line); border-radius: 10px; padding: 6px; }
+.grp-l { font-family: var(--f-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 0 2px; }
 .mc { display: grid; gap: 6px; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; color: var(--fg); transition: opacity .15s, border-color .15s; }
 .mc:hover { border-color: var(--accent); }
 .mc.later { border-style: dashed; }
@@ -270,6 +272,13 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .hero-art .spk path { transform-box: fill-box; transform-origin: center; animation: hTw 2.4s ease-in-out infinite; }
 .hero-art .spk path:nth-child(2) { animation-delay: .8s; } .hero-art .spk path:nth-child(3) { animation-delay: 1.6s; }
 @keyframes hTw { 0%, 100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1.1); opacity: 1; } }
+.hero-art .rb { transform-box: fill-box; transform-origin: 50% 60%; animation: hPop .7s cubic-bezier(.2,1.4,.4,1) both, hFloat 4s 0.7s ease-in-out infinite; filter: drop-shadow(0 14px 22px rgba(0,40,20,.35)); }
+@keyframes hPop { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes hFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.hero-art .eyes text { transform-box: fill-box; transform-origin: center; animation: hEye 3.6s 1s ease-in-out infinite; }
+.hero-art .eyes text:nth-child(2) { animation-delay: 1.08s; }
+@keyframes hEye { 0%, 86%, 100% { transform: scaleY(1); } 90% { transform: scaleY(.12); } 94% { transform: scaleY(1); } }
+.hero-art .coin.c2 { animation-delay: .9s; } .hero-art .coin.c3 { animation-delay: 1.7s; }
 .hero-nav { position: absolute; left: 38px; right: 38px; bottom: 18px; display: flex; align-items: center; gap: 10px; z-index: 2; }
 .hero-dots { display: flex; gap: 6px; }
 .hero-dots button { position: relative; width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: rgba(255,255,255,.38); overflow: hidden; transition: width .25s; }
@@ -808,10 +817,22 @@ var ROLES = {
     levels: [['Junior', '$700', "Videograf/Targetolog/SMM/Brand Face Pro 6 oy, CMO va CFO bahosi 3/5+."], ['Pro', '$900', "Marketolog Junior 6 oy, xaridorlar soni va CAC rejasi 6 oyning 4 tasida bajarilgan, CMO va CFO bahosi 3/5+."], ['Dostigator', '$1,100', "Pro 6 oy, xaridorlar va CAC rejasi 6 oyning 5 tasida bajarilgan, CMO va CFO bahosi 4/5+, " + GOAL + "."]],
     kpi: ["Oylik reja: marketingdan kelgan xaridorlar soni va bir xaridor narxi (CAC).", "Ikkisi bajarilsa fiksa x 100%, ortig'i proporsional.", "Lavozim hali ochilmagan."],
     mas: ["Kanallarni muvofiqlashtirish", "Byudjet va CAC nazorati"] },
-  mutaxassis: { track: 'marketing', name: 'Videograf, Targetolog, SMM, Brand Face', order: 3, calcs: ['marketing'],
-    levels: [['Junior', '$400 (BF $300)', "Kirish darajasi."], ['Pro', '$550 (BF $450)', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan."]],
-    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "To'rtovi orasida lateral o'tish mumkin."],
-    mas: ["Videograf: 12 video", "SMM: 30 post va har kuni story", "Targetolog: kampaniyalar uzluksiz", "Brand Face: 8 kontent"] },
+  targetolog: { track: 'marketing', name: 'Targetolog', order: 3, calcs: ['targetolog'],
+    levels: [['Junior', '$400', "Kirish darajasi: reklama kabineti va birinchi kampaniyalar."], ['Pro', '$550', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan, xaridor narxi (CAC) barqaror."]],
+    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "Sizning ulushingiz: fondning 35%.", "Oylik reja: kampaniyalar uzluksiz ishlaydi.", "Targetolog, SMM menejer, Videograf va Brand Face bir darajada: ular orasida lateral o'tish mumkin. Marketologga istalganidan o'tiladi."],
+    mas: ["Digital kanallar uchun targetlangan reklama kampaniyalari", "Auditoriya segmentatsiyasi, A/B test va optimizatsiya", "Reklama byudjetini rejaga ko'ra sarflash"] },
+  smm_menejer: { track: 'marketing', name: 'SMM menejer', order: 3, calcs: ['smm_menejer'],
+    levels: [['Junior', '$400', "Kirish darajasi: kanal boshqaruvi va kontent taqvimi."], ['Pro', '$550', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan."]],
+    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "Sizning ulushingiz: fondning 25%.", "Oylik reja: 30 post va har kuni story.", "Targetolog, SMM menejer, Videograf va Brand Face bir darajada: ular orasida lateral o'tish mumkin. Marketologga istalganidan o'tiladi."],
+    mas: ["Ijtimoiy tarmoq sahifalarini boshqarish va kontent rejalashtirish", "Hamjamiyat bilan muloqot va brendni rivojlantirish", "Kontent taqvimini o'z vaqtida bajarish"] },
+  videograf: { track: 'marketing', name: 'Videograf', order: 3, calcs: ['videograf'],
+    levels: [['Junior', '$400', "Kirish darajasi: texnik ko'nikmalar va birinchi kampaniya."], ['Pro', '$550', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan."]],
+    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "Sizning ulushingiz: fondning 25%.", "Oylik reja: 12 video.", "Targetolog, SMM menejer, Videograf va Brand Face bir darajada: ular orasida lateral o'tish mumkin. Marketologga istalganidan o'tiladi."],
+    mas: ["Mahsulot va kampaniyalar uchun video kontent yaratish", "Montaj, post-prodakshn va kanal uchun moslashtirish", "Videolarni o'z vaqtida topshirish"] },
+  brand_face: { track: 'marketing', name: 'Brand Face', order: 3, calcs: ['brand_face'],
+    levels: [['Junior', '$300', "Kirish darajasi: brendga mosligini ko'rsatish va birinchi kontentlarda qatnashish."], ['Pro', '$450', "Junior 6 oy, ish rejasi 6 oyning 5 tasida bajarilgan, brend standartlariga mos."]],
+    kpi: ["Darvoza: oylik ish rejasi, CMO va CFO birga tasdiqlaydi. Bajarilmasa o'sha oy bonus 0.", "Jamoa fondi: barcha o'z filiallardagi xaridorlar soni. Xaridor = oy ichidagi tashqi sotuvlar: muddatli shartnomalar va naqd sotilgan telefonlar. Ichki sotuvlar kirmaydi.", "Bazagacha har xaridor $1.5, bazadan oshgani $8.", "Baza 801 xaridor. Har chorakda baza o'sishning yarmigacha ko'tariladi: oxirgi 3 oy o'rtachasi 900 bo'lsa, yangi baza 850. Pasaymaydi.", "Fond bo'linishi: Targetolog 35%, SMM 25%, Videograf 25%, Brand Face 15%.", "Sizning ulushingiz: fondning 15%.", "Oylik reja: 8 kontent.", "Targetolog, SMM menejer, Videograf va Brand Face bir darajada: ular orasida lateral o'tish mumkin. Marketologga istalganidan o'tiladi."],
+    mas: ["Reklama roliklari, poster va SMM kontentda brend yuzi bo'lish", "Smartlife qadriyatlarini o'z tasviri orqali ko'rsatish", "Marketing jamoasi bilan birga kontent yaratish"] },
   /* ---------------- E-COMMERCE ---------------- */
   ec_rahbar: { track: 'ecommerce', name: 'E-commerce rahbari', order: 1, calcs: ['ecRahbar'],
     levels: [['Junior', '$1,200', "Online savdo Dostigator yoki Dasturchi Dostigator."], ['Pro', '$1,500', "Junior 12 oy, online savdo 12 oyda 20%+ o'sgan."], ['Dostigator', '$2,000', "Pro 12 oy, online savdo yana 20%+ o'sgan. Partner yo'li ochiladi."]],
@@ -839,13 +860,14 @@ var ROLES = {
   ceo: { track: 'hamkorlik', name: 'CEO', order: 2, calcs: [], appoint: true,
     levels: [['CEO', 'Tayinlov', "Ta'sischilar tayinlaydi. O'sish yo'li orqali emas."]], kpi: ["Alohida kelishuv."], mas: ["Bosh direktor"] }
 };
+var MKT = [{ title: 'Jamoa fondi (baza 801 xaridor)', head: ['Oylik xaridorlar', 'Fond', 'Targetolog 35%', 'SMM 25%', 'Videograf 25%', 'Brand Face 15%'], rows: [['700', '$1,050', '$368', '$263', '$263', '$158'], ['801', '$1,202', '$421', '$300', '$300', '$180'], ['900', '$1,994', '$698', '$498', '$498', '$299'], ['1,000', '$2,794', '$978', '$698', '$698', '$419'], ['1,200', '$4,394', '$1,538', '$1,098', '$1,098', '$659']], note: 'Bazagacha har xaridor $1.5, bazadan oshgan har xaridor $8.' }];
 var TABLES = {
   kassir: [{ title: 'Ball jadvali', head: ['Blok', 'Maksimum', "Qanday o'zgaradi"], rows: [['Kassa farqi', '40', "20 ming so'mdan oshgan har yozilgan farq: -10"], ['Smena va inkassatsiya', '25', 'Har kech qolish: -5'], ['Xizmat', '15', 'Har yozilgan shikoyat: -5'], ['Aksessuar va referral', '20', 'Har $200 savdo: +1']], note: "100 ball = fiksa x 130%. Yozilmagan farq topilsa oy bonusi 0." }],
   unduruvchi: [{ title: 'Stavkalar', head: ['Undiruv turi', 'Stavka'], rows: [['0-10 kunlik', '0.60%'], ['11-30 kunlik', '0.78%'], ['31-90 kunlik va yangi 90+', '1%'], ["Meros ro'yxati, 3 oy o'rtacha $0-10k", '3%'], ['Meros, $10-20k', '4%'], ['Meros, $20k+', '5%']] },
     { title: 'Reja koeffitsienti (0-30 kunlik undiruvga)', head: ['Filial reja bajarilishi', 'Koeffitsient'], rows: [['70% dan past', 'x0'], ['70%', 'x0.30'], ['80%', 'x0.53'], ['90%', 'x0.77'], ['100%', 'x1.00'], ['110%', 'x1.25'], ['120% va yuqori', 'x1.50']] }],
   kollektor: [{ title: 'Stavkalar', head: ['Undiruv turi', 'Stavka'], rows: [['31-90 kunlik va yangi 90+', '1%'], ["Meros ro'yxati, 3 oy o'rtacha $0-10k", '3% butun summaga'], ['Meros, $10-20k', '4% butun summaga'], ['Meros, $20k+', '5% butun summaga'], ['Har bir filial undiruv rejasini bajarsa', '+$100']] }],
   cc_operator: [{ title: 'Haftalik stavkalar', head: ['Daraja', 'Rejadan past', 'Reja va yuqori'], rows: [['Junior', '0.40%', '0.50%'], ['Pro', '0.45%', '0.55%'], ['Dostigator', '0.50%', '0.60%']], note: 'Haftalik reja: birinchi 3 oy $15,000, keyin $20,000. Stavka butun haftalik summaga.' }],
-  mutaxassis: [{ title: 'Jamoa fondi (baza 801 xaridor)', head: ['Oylik xaridorlar', 'Fond', 'Targetolog 35%', 'SMM 25%', 'Videograf 25%', 'Brand Face 15%'], rows: [['700', '$1,050', '$368', '$263', '$263', '$158'], ['801', '$1,202', '$421', '$300', '$300', '$180'], ['900', '$1,994', '$698', '$498', '$498', '$299'], ['1,000', '$2,794', '$978', '$698', '$698', '$419'], ['1,200', '$4,394', '$1,538', '$1,098', '$1,098', '$659']], note: 'Bazagacha har xaridor $1.5, bazadan oshgan har xaridor $8.' }]
+  targetolog: MKT, smm_menejer: MKT, videograf: MKT, brand_face: MKT,
 };
 var EDGES = [
   ['sotuvchi', 'team_lead'], ['sotuvchi', 'dokon_rahbari'], ['team_lead', 'dokon_rahbari'], ['dokon_rahbari', 'rop'], ['dokon_rahbari', 'regional_partner'], ['regional_partner', 'rop'], ['dokon_rahbari', 'partner'],
@@ -853,11 +875,11 @@ var EDGES = [
   ['kassir', 'analitik'], ['kassir', 'bosh_kassir'], ['analitik', 'finansist'], ['bosh_kassir', 'finansist', 'lateral'], ['finansist', 'cfo'], ['cfo', 'partner'], ['kassir', 'dokon_rahbari', 'bridge'], ['kassir', 'unduruvchi', 'bridge'],
   ['unduruvchi', 'kollektor'], ['kollektor', 'undiruv_rahbar'], ['unduruvchi', 'dokon_rahbari', 'bridge'], ['kollektor', 'dokon_rahbari', 'bridge'], ['undiruv_rahbar', 'dokon_rahbari', 'bridge'],
   ['cc_operator', 'cc_teamlead'], ['cc_operator', 'cc_rahbar'], ['cc_teamlead', 'cc_rahbar'], ['cc_rahbar', 'dokon_rahbari', 'bridge'],
-  ['mutaxassis', 'marketolog'], ['marketolog', 'cmo'], ['cmo', 'partner'],
+  ['targetolog', 'marketolog'], ['smm_menejer', 'marketolog'], ['videograf', 'marketolog'], ['brand_face', 'marketolog'], ['marketolog', 'cmo'], ['cmo', 'partner'],
   ['ec_junior', 'online_savdo'], ['ec_junior', 'dasturchi'], ['online_savdo', 'dasturchi', 'lateral'], ['dasturchi', 'online_savdo', 'lateral'], ['online_savdo', 'ec_rahbar'], ['dasturchi', 'ec_rahbar'], ['ec_rahbar', 'partner']
 ];
 
-var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (yashil yoki qora), rasm (bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi.","sekund":8,"bannerlar":[{"belgi":"Hamkorlik","ustki":"Hamkor bo'lsangiz oyiga","raqam":"~70 mln","birlik":"so'm","matn":"Haqiqiy raqam: hamkor oxirgi 12 oyda oyiga o'rtacha shuncha topdi. Yo'l: eng yuqori daraja va kompaniya taklifi.","chip":"Yiliga ~840 mln so'm","tugma":"O'zingiz hisoblang","lavozim":"partner","bolim":"sec-inv","rang":"yashil","rasm":"bars"},{"belgi":"Haqiqiy yo'l","ustki":"Unduruvchidan do'kon rahbariga","oldin":"5 mln","raqam":"15 mln","birlik":"so'm oyiga","matn":"Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Do'kon rahbari bo'ldi. Hozir oyiga ~15 mln so'm oladi.","chip":"3 barobar ko'p","tugma":"Bu yo'lni ko'ring","lavozim":"dokon_rahbari","rang":"qora","rasm":"steps"}]};
+var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (yashil yoki qora), rasm (robot, bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi.","sekund":8,"bannerlar":[{"belgi":"Hamkorlik","ustki":"Hamkor bo'lsangiz oyiga","raqam":"~70 mln","birlik":"so'm","matn":"Haqiqiy raqam: hamkor oxirgi 12 oyda oyiga o'rtacha shuncha topdi. Yo'l: eng yuqori daraja va kompaniya taklifi.","chip":"Yiliga ~840 mln so'm","tugma":"O'zingiz hisoblang","lavozim":"partner","bolim":"sec-inv","rang":"yashil","rasm":"robot"},{"belgi":"Haqiqiy yo'l","ustki":"Unduruvchidan do'kon rahbariga","oldin":"5 mln","raqam":"15 mln","birlik":"so'm oyiga","matn":"Xodimimiz unduruvchi bo'lib oyiga ~5 mln so'm olardi. Do'kon rahbari bo'ldi. Hozir oyiga ~15 mln so'm oladi.","chip":"3 barobar ko'p","tugma":"Bu yo'lni ko'ring","lavozim":"dokon_rahbari","rang":"qora","rasm":"steps"}]};
 /* O'sish yo'li 2.0: interfeys */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -916,6 +938,10 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     hr: { title: 'HR, bitta xodim uchun', fields: [['fiksa', 'Yollangan xodimning fiksasi', 'usd', 250], ['kun', 'Vakansiya necha kunda yopildi', 'n', 18], ['qoldi', '3 oylik sinovdan o\'tdi', 'chk', true]],
       run: function (v) { var r = KPI.hr(v); return { rows: [['Koeffitsient', 'x' + (r.k || 0), v.kun > 21 ? '21 kundan kech' : '21 kun ichida']], total: usd(r.total), note: v.qoldi ? '' : "3 oy ichida ketdi: bonus 0." }; } }
   };
+  [['targetolog', 'Targetolog'], ['smm_menejer', 'SMM menejer'], ['videograf', 'Videograf'], ['brand_face', 'Brand Face']].forEach(function (x) {
+    var m = CALCS.marketing;
+    CALCS[x[0]] = { title: m.title, run: m.run, fields: m.fields.map(function (f) { return f[0] === 'lavozim' ? ['lavozim', 'Lavozim', 'sel', x[1], [x[1]]] : f; }) };
+  });
 
   /* -------- render helpers -------- */
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -1187,9 +1213,16 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     return '~' + v.toLocaleString('ru-RU') + ' mln so\'m';
   }
   function investBlock(id, r, host) {
-    if (r.appoint) return;
+    if (r.appoint || id === 'rop') return;
     var isDR = id === 'dokon_rahbari' || id === 'partner';
     var DRL = ROLES.dokon_rahbari.levels.map(function (l) { return [l[0], salNum(l[1]) * INV.kurs / 1e6]; });
+    var TOP = { moliya: 'cfo', marketing: 'cmo', ecommerce: 'ec_rahbar' };
+    var tgt = (id === 'rop' || id === 'regional_partner') ? id : (TOP[r.track] || 'dokon_rahbari');
+    var TR = ROLES[tgt], TL = TR.levels.map(function (l) { return [l[0], salNum(l[1]) * INV.kurs / 1e6]; });
+    var hasFx = TL.some(function (l) { return l[1] > 0; });
+    var FXDEF = { cmo: 18 }, BONDEF = { dokon_rahbari: 5 };
+    var BONHINT = { dokon_rahbari: 'Filial natijasiga qarab', cfo: 'Profit-pool, kelishuvga ko\'ra', cmo: 'Kelishuvga ko\'ra', ec_rahbar: 'Online savdo natijasiga qarab', rop: 'Kelishuvga ko\'ra', regional_partner: 'Region natijasiga qarab' };
+    var tName = TR.name;
     var inp = function (k, lab, v, hint) { return '<label class="fld"><span class="fl">' + lab + ' <i>mln so\'m</i></span><input type="number" inputmode="decimal" min="0" step="1" data-k="' + k + '" value="' + v + '">' + (hint ? '<small class="fh">' + hint + '</small>' : '') + '</label>'; };
     var b = el('section', 'blk nextp invest');
     b.id = 'sec-inv';
@@ -1204,11 +1237,15 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
         inp('old', 'Eski do\'koningizdan', 6, 'Hozirgidan kam, kelishuvga ko\'ra') +
         inp('cap', 'Tikadigan pulingiz', 120, 'Ixtiyoriy. Tikmasangiz 0 yozing') + '</div>';
     } else {
-      b.innerHTML = '<h3>Hamkorlik kalkulyatori: do\'kon rahbari bo\'lsangiz</h3>' +
-        '<p class="inv-lede">Bu lavozimdan do\'kon rahbarigacha yo\'l bor. Rahbar bo\'lib, do\'konga pul ham tiksangiz, qancha topishingizni ko\'ring.</p>';
+      var self = tgt === id, viaDR = tgt === 'dokon_rahbari';
+      var lede = self ? 'Siz yo\'nalishingizning eng yuqori lavozimidasiz. Hamkor bo\'lsangiz, oyligingiz ustiga tikkan pulingizdan ham foyda olasiz.'
+        : viaDR ? 'Sizning yo\'lingizdan do\'kon rahbariga ko\'prik bor. Do\'kon rahbari yangi do\'kon ochib hamkor bo\'ladi. Shu lavozimda ishlab, pul ham tiksangiz qancha topishingizni ko\'ring.'
+        : 'Sizning yo\'nalishingizda eng yuqori lavozim ' + tName + '. U yerga chiqsangiz, hamkorlikka yo\'l ochiladi. Oylik va tikkan pul bilan qancha topishingizni ko\'ring.';
+      b.innerHTML = '<h3>Hamkorlik kalkulyatori: ' + (self ? 'hamkor bo\'lsangiz' : tName + ' bo\'lsangiz') + '</h3>' + '<p class="inv-lede">' + lede + '</p>';
       form = '<div class="cf">' +
-        '<label class="fld"><span class="fl">Do\'kon rahbari darajasi</span><select data-k="lv">' + DRL.map(function (l, i) { return '<option value="' + i + '"' + (i === 1 ? ' selected' : '') + '>' + l[0] + '</option>'; }).join('') + '</select></label>' +
-        inp('bon', 'O\'rtacha oylik bonus', 5, 'Filial natijasiga qarab') +
+        (hasFx ? (TL.length > 1 ? '<label class="fld"><span class="fl">' + tName + ' darajasi</span><select data-k="lv">' + TL.map(function (l, i) { return '<option value="' + i + '"' + (i === Math.min(1, TL.length - 1) ? ' selected' : '') + '>' + l[0] + '</option>'; }).join('') + '</select><small class="fh">Fiksa shu darajaga qarab</small></label>' : '')
+          : inp('fx', tName + ' oyligi (fiksa)', FXDEF[tgt] || 0, 'Kelishuvga ko\'ra')) +
+        inp('bon', 'O\'rtacha oylik bonus', BONDEF[tgt] || 0, BONHINT[tgt] || '') +
         inp('cap', 'Tikadigan pulingiz', 60, '12 oy ishlagach yoki Dostigator bo\'lgach') + '</div>';
     }
     b.innerHTML += '<div class="inv-grid">' + form + '<div class="inv-out"></div></div>' +
@@ -1227,8 +1264,10 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
         rows.push(['Eski do\'koningizdan', 'Hozirgidan kamroq', num('old')]);
         rows.push(['Tikkan pulingizdan', 'Investor kabi (oyiga ~2.7%)', capM]);
       } else {
-        var lv = DRL[+q('lv').value] || DRL[0];
-        rows.push(['Do\'kon rahbari oyligi', lv[0] + ': fiksa ' + mln(lv[1]).replace('~', '') + ' + bonus', lv[1] + num('bon')]);
+        var fx, lvn;
+        if (hasFx) { var lv = q('lv') ? (TL[+q('lv').value] || TL[0]) : TL[0]; fx = lv[1]; lvn = (TL.length > 1 ? lv[0] + ': ' : '') + 'fiksa ' + mln(fx).replace('~', ''); }
+        else { fx = num('fx'); lvn = 'fiksa ' + mln(fx).replace('~', ''); }
+        rows.push([tName + ' oyligi', lvn + ' + bonus', fx + num('bon')]);
         rows.push(['Tikkan pulingizdan', 'Pulingiz ishlagani uchun (oyiga ~2.7%)', capM]);
       }
       var tot = rows.reduce(function (a, x) { return a + x[2]; }, 0);
@@ -1307,7 +1346,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     moliya: ['cfo', 'finansist', ['analitik', 'bosh_kassir'], 'kassir'],
     undiruv: ['undiruv_rahbar', 'kollektor', 'unduruvchi'],
     cc: ['cc_rahbar', 'cc_teamlead', 'cc_operator'],
-    marketing: ['cmo', 'marketolog', 'mutaxassis'],
+    marketing: ['cmo', 'marketolog', ['targetolog', 'smm_menejer', 'videograf', 'brand_face']],
     ecommerce: ['ec_rahbar', ['online_savdo', 'dasturchi'], 'ec_junior'],
     hr: ['hr_menejer']
   };
@@ -1335,7 +1374,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
       c.appendChild(el('div', 'col-h', t.name + '<span>' + (t.front ? '6' : '12') + ' oy</span>'));
       LAYOUT[t.id].forEach(function (it, i) {
         if (i > 0) c.appendChild(el('div', 'conn'));
-        if (Array.isArray(it)) { var row = el('div', 'pair'); it.forEach(function (x) { row.appendChild(mapCard(x)); }); c.appendChild(row); }
+        if (Array.isArray(it)) { var row = el('div', it.length > 2 ? 'pair grp' : 'pair'); if (it.length > 2) row.appendChild(el('span', 'grp-l', 'Bir daraja, lateral')); it.forEach(function (x) { row.appendChild(mapCard(x)); }); c.appendChild(row); }
         else c.appendChild(mapCard(it));
       });
       cols.appendChild(c);
@@ -1419,6 +1458,14 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
     function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.raqam; }); }
     var ART = {
+      robot: '<svg viewBox="0 0 300 190" aria-hidden="true"><defs><radialGradient id="rbg" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#3BE38C"/><stop offset=".55" stop-color="#12B060"/><stop offset="1" stop-color="#007A3F"/></radialGradient><radialGradient id="rgl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7DFFBC" stop-opacity=".55"/><stop offset="1" stop-color="#7DFFBC" stop-opacity="0"/></radialGradient><radialGradient id="hgc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF3B0"/><stop offset=".6" stop-color="#FFC93C"/><stop offset="1" stop-color="#E09B12"/></radialGradient></defs>' +
+        '<ellipse cx="150" cy="95" rx="140" ry="92" fill="url(#rgl)"/>' +
+        '<g class="rb"><rect x="52" y="38" width="196" height="118" rx="44" fill="#FFFFFF"/><rect x="64" y="50" width="172" height="94" rx="34" fill="url(#rbg)"/><rect x="64" y="50" width="172" height="94" rx="34" fill="none" stroke="#00552C" stroke-opacity=".35" stroke-width="3"/>' +
+        '<g class="eyes" fill="#FFFFFF" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="62" text-anchor="middle"><text x="114" y="119">$</text><text x="186" y="119">$</text></g></g>' +
+        '<g class="coin c1"><circle cx="34" cy="150" r="19" fill="url(#hgc)"/><text x="34" y="157" text-anchor="middle" font-size="18" font-weight="800" fill="#8A5A00" font-family="Arial">$</text></g>' +
+        '<g class="coin c2"><circle cx="274" cy="34" r="15" fill="url(#hgc)"/><text x="274" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#8A5A00" font-family="Arial">$</text></g>' +
+        '<g class="coin c3"><circle cx="268" cy="160" r="11" fill="url(#hgc)"/></g>' +
+        '<g class="spk" fill="#fff"><path d="M40 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/><path d="M226 14 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".8"/><path d="M290 104 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".8"/></g></svg>',
       bars: '<svg viewBox="0 0 300 180" aria-hidden="true"><defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></linearGradient><radialGradient id="hgc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF3B0"/><stop offset=".6" stop-color="#FFC93C"/><stop offset="1" stop-color="#E09B12"/></radialGradient></defs>' +
         '<g class="hb"><rect x="34" y="118" width="40" height="52" rx="9" fill="url(#hg1)" opacity=".45"/><rect x="88" y="90" width="40" height="80" rx="9" fill="url(#hg1)" opacity=".6"/><rect x="142" y="58" width="40" height="112" rx="9" fill="url(#hg1)" opacity=".8"/><rect x="196" y="22" width="40" height="148" rx="9" fill="url(#hg1)"/></g>' +
         '<path class="hl" d="M34 106 L108 78 L162 48 L244 10" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path class="hl2" d="M226 8 L246 9 L242 29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
@@ -1451,7 +1498,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
         '<p class="hero-n">' + (b.oldin ? '<s>' + esc(b.oldin) + '</s><i aria-hidden="true">&rarr;</i>' : '') + '<b>' + esc(b.raqam) + '</b>' + (b.birlik ? '<u>' + esc(b.birlik) + '</u>' : '') + '</p>' +
         (b.matn ? '<p class="hero-m">' + esc(b.matn) + '</p>' : '') +
         '<div class="hero-row">' + (b.tugma ? '<button type="button" class="hero-btn" id="pbGo">' + esc(b.tugma) + ' &rarr;</button>' : '') + (b.chip ? '<span class="hero-chip">' + esc(b.chip) + '</span>' : '') + '</div>' +
-        '</div><div class="hero-art">' + (ART[b.rasm] || (b.oldin ? ART.steps : ART.bars)) + '</div></div>' +
+        '</div><div class="hero-art">' + (ART[b.rasm] || (b.oldin ? ART.steps : ART.robot)) + '</div></div>' +
         (L.length > 1 ? '<div class="hero-nav"><div class="hero-dots">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"><i></i></button>'; }).join('') + '</div>' +
           '<div class="hero-ar"><button type="button" data-d="-1" aria-label="Oldingi">&lsaquo;</button><button type="button" data-d="1" aria-label="Keyingi">&rsaquo;</button></div></div>' : '');
       var g = $('#pbGo'); if (g) g.onclick = function () { go(b); };
