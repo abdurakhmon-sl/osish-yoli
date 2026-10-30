@@ -228,7 +228,33 @@ html.xodim .mc-s { display: none; }
 .mc-l .ar { color: var(--muted); font-size: 12px; font-weight: 400; }
 
 /* phone reading */
+/* hamkorlik banneri */
+section.blk, .sumc { scroll-margin-top: 80px; }
+.pbanner { background: linear-gradient(90deg, #008D4A, #0B6B3A); color: #fff; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.pb-in { display: flex; align-items: center; gap: 18px; padding-block: 10px; }
+.pb-num { display: grid; line-height: 1.1; white-space: nowrap; }
+.pb-num small { font-size: 12px; opacity: .85; }
+.pb-num b { font-size: 24px; font-weight: 700; }
+.pb-txt { margin: 0; font-size: 13px; opacity: .92; flex: 1; min-width: 0; }
+.pb-btn { background: #fff; color: #0B6B3A; border: 0; border-radius: 6px; padding: 8px 14px; font-weight: 700; white-space: nowrap; }
+.sumc { display: grid; grid-template-columns: 1fr 1.4fr 1.6fr; gap: 10px; }
+.sumc > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.sumc span { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.sumc b.num { font-size: 18px; }
+.sumc p { margin: 0; font-size: 14px; }
+.jump { display: flex; flex-wrap: wrap; gap: 6px; }
+.jump .chip { font-size: 12px; padding: 5px 10px; }
+.faq dt { font-weight: 600; margin-top: 6px; }
+.faq dd { margin: 0 0 6px; }
+@media (max-width: 860px) { .sumc { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {
+  .pb-in { flex-wrap: wrap; gap: 6px 12px; padding-block: 8px; }
+  .pb-num b { font-size: 20px; }
+  .pb-txt { display: none; }
+  .pb-btn { margin-left: auto; padding: 6px 10px; font-size: 13px; }
+  .mast .meta, .mast .lede { display: none; }
+  .jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .jump .chip { white-space: nowrap; }
   body { font-size: 16px; line-height: 1.6; }
   .mast .wrap { padding-block: 14px 0; gap: 10px; }
   .logo { height: 24px; }
@@ -278,6 +304,13 @@ html.xodim .mc-s { display: none; }
     </nav>
   </div>
 </header>
+<aside class="pbanner" aria-label="Hamkorlik">
+  <div class="wrap pb-in">
+    <div class="pb-num"><small>Hamkor bo'lsangiz</small><b class="num">oyiga ~$5,700</b></div>
+    <p class="pb-txt">Andijon filiali, oxirgi 12 oy, haqiqiy raqam. Do'konni boshqaradigan hamkor o'z pulini tikmagan, pulni investor tikkan. Hamkor tomoni foydaning ~40% ini oladi.</p>
+    <button type="button" class="pb-btn" id="pbGo">Hisoblab ko'ring</button>
+  </div>
+</aside>
 
 <main class="wrap">
   <section class="pane" id="p-xarita">
@@ -367,6 +400,23 @@ html.xodim .mc-s { display: none; }
         <dt>Do'kon rahbari</dt><dd>Partner bo'lishi uchun yangi do'kon ochilishi kerak. Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi. Rahbar shu do'konga $10,000+ tikadi va o'rniga yangi rahbar tayyorlaydi.</dd>
       </dl>
       <p>Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi. Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi. Filial yopilsa aktivlari sotiladi, zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi, qolgan summa har sherikka ulushiga qarab qaytariladi. Bu tartib AAOIFI 12-standartiga mos.</p>
+    </div>
+    <div class="blk"><h3>Ko'p beriladigan savollar</h3>
+      <dl class="faq">
+        <dt>Hozirgi maoshim kamayadimi?</dt><dd>Yo'q. Hozirgi maosh jadvaldan yuqori bo'lsa saqlanadi. Oktabr-dekabrda eski va yangi tizimdan kattasi to'lanadi.</dd>
+        <dt>Bonusimni qayerdan bilaman?</dt><dd>Har oyning 5-sanasigacha Telegram bot orqali shaxsiy hisob keladi: raqamlaringiz, formula, bonus. Shu sahifadagi kalkulyatorda o'zingiz ham hisoblay olasiz.</dd>
+        <dt>Raqamim noto'g'ri bo'lsa nima qilaman?</dt><dd>3 ish kuni ichida bosh kassir yoki CFO'ga yozasiz. Javob 3 ish kuni ichida beriladi.</dd>
+        <dt>Keyingi darajaga qachon o'taman?</dt><dd>Komissiya (CEO, CFO, rahbaringiz) yiliga 2 marta ko'radi. Har darajada kamida 6 yoki 12 oy ishlash va shartni raqamda bajarish kerak.</dd>
+        <dt>Darajam tushishi mumkinmi?</dt><dd>Ha, 3 oy ketma-ket daraja minimumidan past bo'lsa ogohlantirish beriladi. Yana 3 oy davom etsa bir daraja pastga tushadi.</dd>
+        <dt>Pul tikib hamkor bo'lsam bo'ladimi?</dt><dd>12 oy ishlagan yoki Dostigator bo'lgan xodim tika oladi, undan oldin rahbariyat bilan kelishib. Investor topib do'kon boshqarish ham mumkin.</dd>
+      </dl>
+    </div>
+    <div class="blk"><h3>O'zgarishlar tarixi</h3>
+      <dl class="kv">
+        <dt>30.10.2026</dt><dd>Hamkorlik banneri va kalkulyatori, to'liq stavka jadvallari, investitsiya qoidasi, do'kon rahbarining Partner yo'li, hayot maqsadi kalkulyatori, savollar.</dd>
+        <dt>27.10.2026</dt><dd>Xodimlar fikri bo'yicha: sotuvchi bandi jami savdo bo'yicha, kassir farq qoidasi, unduruvchi silliq koeffitsienti, ROP alohida kelishuv, raqamli o'tish shartlari, o'tish davri kafolati.</dd>
+        <dt>19.10.2026</dt><dd>O'sish yo'li 2.0 birinchi versiyasi.</dd>
+      </dl>
     </div>
     <div class="blk"><h3>Joriy etish</h3>
       <dl class="kv">
@@ -822,9 +872,12 @@ var EDGES = [
     var head = el('header', 'rh');
     head.innerHTML = '<p class="eyebrow">' + trk.name + (r.track !== 'hamkorlik' ? ' &middot; har darajada kamida ' + months(r) + ' oy' : '') + '</p><h2>' + r.name + '</h2>' + (r.note ? '<p class="rnote">' + r.note + '</p>' : '');
     main.appendChild(head);
-    investBlock(id, r, main);
+    main.appendChild(summaryCard(id, r));
+    var nav = el('nav', 'jump');
+    main.appendChild(nav);
+    if (id === 'partner') investBlock(id, r, main);
 
-    var sec = el('section', 'blk'); sec.appendChild(el('h3', null, 'Bonus qanday hisoblanadi'));
+    var sec = el('section', 'blk'); sec.id = 'sec-bonus'; sec.appendChild(el('h3', null, 'Bonus qanday hisoblanadi'));
     sec.appendChild(el('ul', 'steps', r.kpi.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
     if (r.blocks) {
       sec.appendChild(el('div', 'tw', '<table class="bt"><thead><tr><th>Blok</th><th class="num">Ball</th><th>Shart</th></tr></thead><tbody>' + r.blocks.map(function (b) { return '<tr><td>' + b[0] + '</td><td class="num">' + b[1] + '</td><td>' + b[2] + '</td></tr>'; }).join('') + '</tbody></table>'));
@@ -838,7 +891,7 @@ var EDGES = [
     main.appendChild(sec);
 
     if (r.calcs.length) {
-      var cs = el('section', 'blk'); cs.appendChild(el('h3', null, 'Kalkulyator'));
+      var cs = el('section', 'blk'); cs.id = 'sec-calc'; cs.appendChild(el('h3', null, 'Kalkulyator'));
       if (r.calcs.length > 1) {
         var seg = el('div', 'seg'), host = el('div');
         var idx = state.calcIdx[id] || 0;
@@ -853,20 +906,21 @@ var EDGES = [
       main.appendChild(cs);
     }
 
-    var lv = el('section', 'blk'); lv.appendChild(el('h3', null, 'Daraja zinapoyasi'));
+    var lv = el('section', 'blk'); lv.id = 'sec-lv'; lv.appendChild(el('h3', null, 'Daraja zinapoyasi'));
     lv.appendChild(el('div', 'tw', '<table class="lt"><thead><tr><th>Daraja</th><th>Fiksa</th><th>Ko\'tarilish sharti</th></tr></thead><tbody>' + r.levels.map(function (l, i) { return '<tr><td><span class="lvl lv' + i + '">' + l[0] + '</span></td><td class="num">' + l[1] + '</td><td>' + l[2] + '</td></tr>'; }).join('') + '</tbody></table>'));
     lv.appendChild(el('p', 'cn', "Fiksa ustunida joriy jadval. Yakuniy fiksa so'mda, hozirgi haqiqiy maoshlar asosida belgilanadi."));
     main.appendChild(lv);
 
-    var ms = el('section', 'blk'); ms.appendChild(el('h3', null, "Mas'uliyat"));
+    var ms = el('section', 'blk'); ms.id = 'sec-mas'; ms.appendChild(el('h3', null, "Mas'uliyat"));
     ms.appendChild(el('ul', 'dots', r.mas.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
     main.appendChild(ms);
 
     if (r.partner) {
-      var ps = el('section', 'blk'); ps.appendChild(el('h3', null, "Partner yo'li"));
+      var ps = el('section', 'blk'); ps.id = 'sec-partner'; ps.appendChild(el('h3', null, "Partner yo'li"));
       ps.appendChild(el('ul', 'steps', r.partner.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
       main.appendChild(ps);
     }
+    if (id !== 'partner') investBlock(id, r, main);
     goalBlock(id, r, main);
 
     if (r.bridges) {
@@ -887,6 +941,21 @@ var EDGES = [
       pr.innerHTML = '<h3>Keyingi pog\'ona: ' + nr.name + '</h3><p>' + nr.levels[0][2] + '</p><p class="cn">Kirish fiksasi: ' + nr.levels[0][1] + '</p>';
       main.appendChild(pr);
     }
+    main.querySelectorAll('section.blk[id]').forEach(function (s) {
+      var b = el('button', 'chip', s.querySelector('h3').textContent); b.type = 'button';
+      b.onclick = function () { s.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      nav.appendChild(b);
+    });
+  }
+  /* -------- Bir qarashda: fiksa, bonus asosi, keyingi qadam -------- */
+  function summaryCard(id, r) {
+    var c = el('div', 'sumc'), nx = next(id).filter(function (x) { return x.t === 'osish'; })[0] || next(id)[0];
+    var fx = r.levels.length > 1 ? r.levels[0][1] + ' &rarr; ' + r.levels[r.levels.length - 1][1] : r.levels[0][1];
+    var step = r.levels.length > 1 ? '<b>' + r.levels[1][0] + '</b>: ' + r.levels[1][2] : (nx ? '<b>' + ROLES[nx.id].name + '</b>: ' + ROLES[nx.id].levels[0][2] : 'Eng yuqori pog\'ona');
+    c.innerHTML = '<div><span>Fiksa</span><b class="num">' + fx + '</b></div>' +
+      '<div><span>Bonus</span><p>' + r.kpi[0] + '</p></div>' +
+      '<div><span>Keyingi qadam</span><p>' + step + '</p></div>';
+    return c;
   }
   /* -------- Sotuvchi stavkalar jadvali -------- */
   function rateTable(id) {
@@ -920,7 +989,7 @@ var EDGES = [
     var topFx = 0; r.levels.forEach(function (l) { topFx = Math.max(topFx, salNum(l[1])); });
     var inp = function (k, lab, v, u) { return '<label class="fld"><span class="fl">' + lab + (u ? ' <i>' + u + '</i>' : '') + '</span><input type="number" inputmode="decimal" data-k="' + k + '" value="' + v + '"></label>'; };
     var b = el('section', 'blk nextp invest');
-    b.innerHTML = '<h3>Hamkor bo\'lsangiz qancha topasiz</h3>' +
+    b.id = 'sec-inv'; b.innerHTML = '<h3>Hamkorlik kalkulyatori</h3>' +
       '<p><b>Haqiqiy misol, Andijon filiali.</b> Do\'konni boshqaradigan hamkor o\'z pulini tikmagan. Pulni investorlar tikdi: birinchi investor 2024 yil dekabrda $40,000 tikdi. Hamkor tomoni do\'kon foydasining ~40% ini oladi: oxirgi 12 oyda oyiga o\'rtacha $5,714, 23 oyda jami $133,745. Investorlar esa tikkan puliga oyiga o\'rtacha 2.7% foyda oldi, yiliga ~32%.</p>' +
       '<p class="tt"><b>1. Investor topib do\'kon boshqarsangiz</b></p>' +
       '<div class="calc" data-c="h"><div class="cf">' + inp('df', 'Do\'konning oylik sof foydasi', INV.dFoyda, '$') + inp('ul', 'Hamkor ulushi', INV.ulush, '%') + '</div><div class="co"></div></div>' +
@@ -989,7 +1058,7 @@ var EDGES = [
     arr.forEach(function (x) { var b = el('button', 'chip t-' + x.t, ROLES[x.id].name + '<small>' + TLBL[x.t] + '</small>'); b.type = 'button'; b.onclick = function () { select(x.id); }; d.appendChild(b); });
     return d;
   }
-  function select(id) { state.role = id; save(); document.querySelectorAll('.rl').forEach(function (b) { b.classList.toggle('on', b.dataset.id === id); }); $('#roleSel').value = id; renderRole(); if (window.innerWidth < 860) $('#role').scrollIntoView({ block: 'start' }); }
+  function select(id) { state.role = id; save(); try { history.replaceState(null, '', '#' + id); } catch (e) {} document.querySelectorAll('.rl').forEach(function (b) { b.classList.toggle('on', b.dataset.id === id); }); $('#roleSel').value = id; renderRole(); if (window.innerWidth < 860) $('#role').scrollIntoView({ block: 'start' }); }
 
   function setTab(t) {
     state.tab = t;
@@ -1028,7 +1097,7 @@ var EDGES = [
   function buildMap() {
     var host = $('#map'); host.innerHTML = '';
     var apex = el('div', 'apex');
-    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Maosh + kapital ulushi. Faqat eng yuqori darajadan, kompaniya taklifi bilan.</span>'));
+    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Andijonda hamkor tomoni oyiga o\'rtacha ~$5,700 oladi, o\'z pulini tikmasdan. Yo\'l: eng yuqori daraja, kompaniya taklifi, investor yoki o\'z kapitali.</span>'));
     var ar = el('div', 'apex-r'); ar.appendChild(mapCard('partner')); ar.appendChild(mapCard('ceo')); apex.appendChild(ar);
     host.appendChild(apex);
     var cols = el('div', 'cols');
@@ -1114,7 +1183,8 @@ var EDGES = [
   buildNav();
   buildMap();
   $('#showPath').onclick = showPath; $('#clearPath').onclick = clearPath;
-  if (h === 'qoidalar' || h === 'sinov' || h === 'roles') state.tab = h; else if (ROLES[h]) { state.role = h; $('#roleSel').value = h; }
+  var pg = $('#pbGo'); if (pg) pg.onclick = function () { setTab('roles'); select(state.role === 'partner' ? 'partner' : state.role); var t = $('#sec-inv'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  if (h === 'qoidalar' || h === 'sinov' || h === 'roles') state.tab = h; else if (ROLES[h]) { state.role = h; state.tab = 'roles'; $('#roleSel').value = h; }
   setTab(state.tab);
   setMode(state.mode);
   buildNav();
