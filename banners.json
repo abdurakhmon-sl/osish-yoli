@@ -1,0 +1,24 @@
+{
+  "izoh": "Bannerlarni shu yerda o'zgartiring. Har bir banner: belgi (kichik yorliq), oldin (ixtiyoriy, eski raqam), raqam (katta raqam), birlik, matn, tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim), bolim (ixtiyoriy, sahifadagi bo'lim). sekund: bannerlar necha sekundda almashadi.",
+  "sekund": 7,
+  "bannerlar": [
+    {
+      "belgi": "Hamkorlik",
+      "raqam": "~$5,700",
+      "birlik": "oyiga",
+      "matn": "Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.",
+      "tugma": "Hisoblab ko'ring",
+      "lavozim": "partner",
+      "bolim": "sec-inv"
+    },
+    {
+      "belgi": "Haqiqiy yo'l",
+      "oldin": "$420",
+      "raqam": "$737",
+      "birlik": "oyiga",
+      "matn": "Unduruvchidan do'kon rahbariga. Birinchi oyidayoq daromad +75%.",
+      "tugma": "Yo'lni ko'ring",
+      "lavozim": "dokon_rahbari"
+    }
+  ]
+}

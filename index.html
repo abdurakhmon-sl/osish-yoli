@@ -237,6 +237,16 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .pb-num b { font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
 .pb-num small { font-size: 13px; color: #93A89C; }
 .pb-txt { margin: 0; font-size: 13px; color: #93A89C; min-width: 0; padding-left: 14px; border-left: 1px solid #23392D; }
+.pb-in { min-height: 56px; }
+.pb-slide { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; animation: pbIn .35s ease; }
+@keyframes pbIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.pb-num s { color: #6F8579; font-weight: 600; font-size: 16px; text-decoration-thickness: 1px; }
+.pb-num i { font-style: normal; color: #6F8579; font-size: 15px; }
+.pb-num b.up { color: #2FBF78; }
+.pb-dots { display: flex; gap: 6px; margin-left: 6px; }
+.pb-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: #2A4234; }
+.pb-dots button.on { background: #2FBF78; width: 18px; }
+@media (prefers-reduced-motion: reduce) { .pb-slide { animation: none; } }
 .pb-btn { margin-left: auto; background: #008D4A; color: #fff; border: 0; border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px; white-space: nowrap; transition: background .15s; }
 .pb-btn:hover { background: #00A257; }
 .pb-btn span { display: inline-block; transition: transform .15s; }
@@ -278,6 +288,14 @@ section.blk, .sumc { scroll-margin-top: 80px; }
   .pb-num b::after { content: "/oy"; font-size: 12px; font-weight: 500; color: #93A89C; margin-left: 2px; }
   .pb-num b { font-size: 19px; }
   .pb-txt { display: none; }
+  .pb-slide { gap: 8px; }
+  .pb-num s, .pb-num i { font-size: 13px; }
+  .pb-has-old .pb-num b { font-size: 17px; }
+  .pb-btn { padding: 7px 10px; }
+  .pb-dots { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); margin: 0; }
+  .pb-dots button { width: 6px; height: 4px; }
+  .pb-dots button.on { width: 12px; }
+  .pbanner .wrap { position: relative; padding-bottom: 10px; }
   .pb-btn { padding: 7px 12px; font-size: 13px; }
   .mast .meta, .mast .lede { display: none; }
   .jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
@@ -331,13 +349,8 @@ section.blk, .sumc { scroll-margin-top: 80px; }
     </nav>
   </div>
 </header>
-<aside class="pbanner" aria-label="Hamkorlik">
-  <div class="wrap pb-in">
-    <span class="pb-tag">Hamkorlik</span>
-    <div class="pb-num"><b>~$5,700</b><small>oyiga</small></div>
-    <p class="pb-txt">Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.</p>
-    <button type="button" class="pb-btn" id="pbGo">Hisoblab ko'ring <span aria-hidden="true">&rarr;</span></button>
-  </div>
+<aside class="pbanner" aria-label="E'lonlar" aria-roledescription="karusel">
+  <div class="wrap pb-in" id="pbIn"></div>
 </aside>
 
 <main class="wrap">
@@ -782,6 +795,7 @@ var EDGES = [
   ['ec_junior', 'online_savdo'], ['ec_junior', 'dasturchi'], ['online_savdo', 'dasturchi', 'lateral'], ['dasturchi', 'online_savdo', 'lateral'], ['online_savdo', 'ec_rahbar'], ['dasturchi', 'ec_rahbar'], ['ec_rahbar', 'partner']
 ];
 
+var BANNERS_DEFAULT = {"izoh":"Bannerlarni shu yerda o'zgartiring. Har bir banner: belgi (kichik yorliq), oldin (ixtiyoriy, eski raqam), raqam (katta raqam), birlik, matn, tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim), bolim (ixtiyoriy, sahifadagi bo'lim). sekund: bannerlar necha sekundda almashadi.","sekund":7,"bannerlar":[{"belgi":"Hamkorlik","raqam":"~$5,700","birlik":"oyiga","matn":"Hamkor do'kon foydasidan ulush oladi. Oxirgi 12 oy o'rtachasi.","tugma":"Hisoblab ko'ring","lavozim":"partner","bolim":"sec-inv"},{"belgi":"Haqiqiy yo'l","oldin":"$420","raqam":"$737","birlik":"oyiga","matn":"Unduruvchidan do'kon rahbariga. Birinchi oyidayoq daromad +75%.","tugma":"Yo'lni ko'ring","lavozim":"dokon_rahbari"}]};
 /* O'sish yo'li 2.0: interfeys */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -1305,7 +1319,49 @@ var EDGES = [
   buildMap();
   $('#showPath').onclick = showPath; $('#clearPath').onclick = clearPath;
   if ($('#cmpA')) { $('#cmpA').value = 'team_lead'; $('#cmpB').value = 'dokon_rahbari'; $('#cmpA').onchange = drawCompare; $('#cmpB').onchange = drawCompare; drawCompare(); }
-  var pg = $('#pbGo'); if (pg) pg.onclick = function () { setTab('roles'); select(state.role === 'partner' ? 'partner' : state.role); var t = $('#sec-inv'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  (function banner() {
+    var host = $('#pbIn'); if (!host) return;
+    var cfg = BANNERS_DEFAULT, i = 0, timer = null, hold = false;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function esc(x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function list() { return (cfg.bannerlar || []).filter(function (b) { return b && b.raqam; }); }
+    function go(b) {
+      var id = ROLES[b.lavozim] ? b.lavozim : state.role;
+      setTab('roles'); select(id);
+      var t = b.bolim ? $('#' + b.bolim) : null;
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); else window.scrollTo({ top: 0 });
+    }
+    function draw() {
+      var L = list(); if (!L.length) { host.parentNode.hidden = true; return; }
+      host.parentNode.hidden = false;
+      i = (i + L.length) % L.length; var b = L[i];
+      host.innerHTML = '<div class="pb-slide' + (b.oldin ? ' pb-has-old' : '') + '" aria-live="polite">' +
+        (b.belgi ? '<span class="pb-tag">' + esc(b.belgi) + '</span>' : '') +
+        '<div class="pb-num">' + (b.oldin ? '<s>' + esc(b.oldin) + '</s><i aria-hidden="true">&rarr;</i>' : '') + '<b' + (b.oldin ? ' class="up"' : '') + '>' + esc(b.raqam) + '</b>' + (b.birlik ? '<small>' + esc(b.birlik) + '</small>' : '') + '</div>' +
+        (b.matn ? '<p class="pb-txt">' + esc(b.matn) + '</p>' : '') + '</div>' +
+        (b.tugma ? '<button type="button" class="pb-btn" id="pbGo">' + esc(b.tugma) + ' <span aria-hidden="true">&rarr;</span></button>' : '') +
+        (L.length > 1 ? '<div class="pb-dots" role="tablist">' + L.map(function (x, k) { return '<button type="button" aria-label="' + (k + 1) + '-e\'lon" class="' + (k === i ? 'on' : '') + '" data-k="' + k + '"></button>'; }).join('') + '</div>' : '');
+      var g = $('#pbGo'); if (g) g.onclick = function () { go(b); };
+      host.querySelectorAll('.pb-dots button').forEach(function (d) { d.onclick = function () { i = +d.dataset.k; draw(); start(); }; });
+    }
+    function start() {
+      clearInterval(timer); var L = list();
+      if (reduce || L.length < 2) return;
+      timer = setInterval(function () { if (!hold && !document.hidden) { i++; draw(); } }, Math.max(3, +cfg.sekund || 7) * 1000);
+    }
+    host.addEventListener('mouseenter', function () { hold = true; });
+    host.addEventListener('mouseleave', function () { hold = false; });
+    host.addEventListener('focusin', function () { hold = true; });
+    host.addEventListener('focusout', function () { hold = false; });
+    draw(); start();
+    if (location.protocol.indexOf('http') === 0) {
+      try {
+        fetch('banners.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+          if (j && Array.isArray(j.bannerlar)) { cfg = j; i = 0; draw(); start(); }
+        }).catch(function () {});
+      } catch (e) {}
+    }
+  })();
   if (h === 'qoidalar' || h === 'sinov' || h === 'roles') state.tab = h; else if (ROLES[h]) { state.role = h; state.tab = 'roles'; $('#roleSel').value = h; }
   window.addEventListener('hashchange', function () { var k = (location.hash || '').slice(1); if (ROLES[k]) { setTab('roles'); if (k !== state.role) select(k); } else if (k === 'qoidalar' || k === 'xarita') setTab(k); });
   setTab(state.tab);
