@@ -244,6 +244,11 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .sumc p { margin: 0; font-size: 14px; }
 .jump { display: flex; flex-wrap: wrap; gap: 6px; }
 .jump .chip { font-size: 12px; padding: 5px 10px; }
+.bar { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.chk-list { display: grid; gap: 6px; }
+.cmp td, .cmp th { width: auto; }
+.cmp thead th { white-space: nowrap; }
 .faq dt { font-weight: 600; margin-top: 6px; }
 .faq dd { margin: 0 0 6px; }
 @media (max-width: 860px) { .sumc { grid-template-columns: 1fr; } }
@@ -307,7 +312,7 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 <aside class="pbanner" aria-label="Hamkorlik">
   <div class="wrap pb-in">
     <div class="pb-num"><small>Hamkor bo'lsangiz</small><b class="num">oyiga ~$5,700</b></div>
-    <p class="pb-txt">Andijon filiali, oxirgi 12 oy, haqiqiy raqam. Do'konni boshqaradigan hamkor o'z pulini tikmagan, pulni investor tikkan. Hamkor tomoni foydaning ~40% ini oladi.</p>
+    <p class="pb-txt">Haqiqiy raqam, oxirgi 12 oy o'rtachasi. Hamkor do'kon foydasidan ulush oladi.</p>
     <button type="button" class="pb-btn" id="pbGo">Hisoblab ko'ring</button>
   </div>
 </aside>
@@ -322,6 +327,11 @@ section.blk, .sumc { scroll-margin-top: 80px; }
         <div class="fbtn"><button type="button" class="btn" id="showPath">Yo'lni ko'rsat</button><button type="button" class="btn ghost" id="clearPath">Tozalash</button></div>
       </div>
       <div id="pathOut"></div>
+    </div>
+    <div class="blk" id="cmp">
+      <h3>Ikki lavozimni solishtiring</h3>
+      <div class="frow"><label class="fld" for="cmpA"><span class="fl">1-lavozim</span><select id="cmpA"></select></label><label class="fld" for="cmpB"><span class="fl">2-lavozim</span><select id="cmpB"></select></label></div>
+      <div id="cmpOut"></div>
     </div>
     <div class="legend"><span><i class="lg-o"></i>O'sish: shu yo'nalishda yuqoriga</span><span><i class="lg-b"></i>Ko'prik: boshqa yo'nalishdan, alohida shart bilan</span><span><i class="lg-l"></i>Lateral: bir darajada almashish</span></div>
     <div id="map"></div>
@@ -408,7 +418,7 @@ section.blk, .sumc { scroll-margin-top: 80px; }
         <dt>Raqamim noto'g'ri bo'lsa nima qilaman?</dt><dd>3 ish kuni ichida bosh kassir yoki CFO'ga yozasiz. Javob 3 ish kuni ichida beriladi.</dd>
         <dt>Keyingi darajaga qachon o'taman?</dt><dd>Komissiya (CEO, CFO, rahbaringiz) yiliga 2 marta ko'radi. Har darajada kamida 6 yoki 12 oy ishlash va shartni raqamda bajarish kerak.</dd>
         <dt>Darajam tushishi mumkinmi?</dt><dd>Ha, 3 oy ketma-ket daraja minimumidan past bo'lsa ogohlantirish beriladi. Yana 3 oy davom etsa bir daraja pastga tushadi.</dd>
-        <dt>Pul tikib hamkor bo'lsam bo'ladimi?</dt><dd>12 oy ishlagan yoki Dostigator bo'lgan xodim tika oladi, undan oldin rahbariyat bilan kelishib. Investor topib do'kon boshqarish ham mumkin.</dd>
+        <dt>Pul tikib hamkor bo'lsam bo'ladimi?</dt><dd>12 oy ishlagan yoki Dostigator bo'lgan xodim tika oladi, undan oldin rahbariyat bilan kelishib.</dd>
       </dl>
     </div>
     <div class="blk"><h3>O'zgarishlar tarixi</h3>
@@ -910,6 +920,7 @@ var EDGES = [
     lv.appendChild(el('div', 'tw', '<table class="lt"><thead><tr><th>Daraja</th><th>Fiksa</th><th>Ko\'tarilish sharti</th></tr></thead><tbody>' + r.levels.map(function (l, i) { return '<tr><td><span class="lvl lv' + i + '">' + l[0] + '</span></td><td class="num">' + l[1] + '</td><td>' + l[2] + '</td></tr>'; }).join('') + '</tbody></table>'));
     lv.appendChild(el('p', 'cn', "Fiksa ustunida joriy jadval. Yakuniy fiksa so'mda, hozirgi haqiqiy maoshlar asosida belgilanadi."));
     main.appendChild(lv);
+    meBlock(id, r, main);
 
     var ms = el('section', 'blk'); ms.id = 'sec-mas'; ms.appendChild(el('h3', null, "Mas'uliyat"));
     ms.appendChild(el('ul', 'dots', r.mas.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
@@ -947,6 +958,72 @@ var EDGES = [
       nav.appendChild(b);
     });
   }
+  /* -------- Men qayerdaman? (Medium Snowflake g'oyasi): o'z-o'zini baholash -------- */
+  function splitConds(t) {
+    t = String(t).replace(/^[^:]{0,45}:\s*/, '');
+    var out = [], cur = '', d = 0;
+    for (var i = 0; i < t.length; i++) { var ch = t[i]; if (ch === '(') d++; if (ch === ')') d--; if (ch === ',' && d === 0) { out.push(cur); cur = ''; } else cur += ch; }
+    out.push(cur);
+    return out.map(function (x) { return x.trim().replace(/\.$/, ''); }).filter(function (x) { return x.length > 2; });
+  }
+  function meBlock(id, r, host) {
+    if (r.appoint || id === 'partner') return;
+    var key = 'oy2_me_' + id, sv = {};
+    try { sv = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+    var minM = (id === 'regional_partner' || id === 'rop') ? 12 : months(r);
+    var b = el('section', 'blk me'); b.id = 'sec-me';
+    b.innerHTML = '<h3>Men qayerdaman?</h3><p class="cn">Darajangizni va bajargan shartlarni belgilang. Keyingi bosqichgacha qancha qolganini ko\'rasiz. Belgilar faqat sizning brauzeringizda saqlanadi.</p>' +
+      '<div class="calc"><div class="cf"><label class="fld"><span class="fl">Hozirgi darajam</span><select data-k="lvl">' + r.levels.map(function (l, i) { return '<option value="' + i + '">' + l[0] + '</option>'; }).join('') + '</select></label>' +
+      '<label class="fld"><span class="fl">Shu darajada necha oy</span><input type="number" inputmode="decimal" data-k="m" value="' + (sv.m || 0) + '"></label><div class="chk-list" style="grid-column:1/-1"></div></div><div class="co"></div></div>';
+    var sel = b.querySelector('[data-k=lvl]'), mi = b.querySelector('[data-k=m]'), list = b.querySelector('.chk-list'), out = b.querySelector('.co');
+    if (sv.lvl != null && r.levels[sv.lvl]) sel.value = sv.lvl;
+    function target() {
+      var i = +sel.value;
+      if (i < r.levels.length - 1) return { name: r.levels[i + 1][0], cond: r.levels[i + 1][2] };
+      var nx = next(id).filter(function (x) { return x.t === 'osish'; })[0] || next(id)[0];
+      return nx ? { name: ROLES[nx.id].name, cond: stepCond(id, nx.id) } : null;
+    }
+    function build() {
+      var t = target(), chk = (sv.lvl == sel.value && sv.chk) || [];
+      list.innerHTML = t ? '<span class="fl">' + t.name + ' uchun shartlar</span>' + splitConds(t.cond).map(function (c, i) { return '<label class="fld chk"><input type="checkbox" data-i="' + i + '"' + (chk.indexOf(i) >= 0 ? ' checked' : '') + '><span class="fl">' + c + '</span></label>'; }).join('') : '';
+      list.querySelectorAll('input').forEach(function (x) { x.addEventListener('change', calc); });
+      calc();
+    }
+    function calc() {
+      var t = target(), m = parseFloat(mi.value) || 0, boxes = list.querySelectorAll('input'), done = [];
+      boxes.forEach(function (x) { if (x.checked) done.push(+x.dataset.i); });
+      sv = { lvl: sel.value, m: m, chk: done };
+      try { localStorage.setItem(key, JSON.stringify(sv)); } catch (e) {}
+      if (!t) { out.innerHTML = '<p class="cn">Siz shu yo\'nalishning eng yuqori pog\'onasidasiz.</p>'; return; }
+      var tot = boxes.length || 1, pM = Math.min(1, m / minM), pC = done.length / tot, p = Math.round((pM + pC) / 2 * 100);
+      var ready = pM >= 1 && done.length === boxes.length;
+      out.innerHTML = '<div class="bar"><i style="width:' + p + '%"></i></div>' +
+        '<table class="rt"><tbody><tr><th>Muddat</th><td class="num">' + Math.min(m, minM) + ' / ' + minM + ' oy</td><td class="sub"></td></tr><tr><th>Shartlar</th><td class="num">' + done.length + ' / ' + boxes.length + '</td><td class="sub"></td></tr></tbody></table>' +
+        '<div class="tot"><span>' + t.name + ' sari</span><strong class="num">' + p + '%</strong></div>' +
+        '<p class="cn">' + (ready ? 'Hammasi bajarilgan. Komissiya keyingi ko\'rib chiqishda (yiliga 2 marta) qaror qiladi. Rahbaringizga ayting.' : 'Qolgani: ' + (pM < 1 ? (minM - Math.min(m, minM)) + ' oy, ' : '') + (boxes.length - done.length) + ' ta shart.') + '</p>';
+    }
+    sel.addEventListener('change', build); mi.addEventListener('input', calc);
+    build(); host.appendChild(b);
+  }
+
+  /* -------- Ikki lavozimni solishtirish (Engineering Ladders g'oyasi) -------- */
+  function drawCompare() {
+    var a = $('#cmpA'), b2 = $('#cmpB'), out = $('#cmpOut'); if (!a || !out) return;
+    var ids = [a.value, b2.value].filter(Boolean); if (ids.length < 2) { out.innerHTML = ''; return; }
+    var R = ids.map(function (x) { return ROLES[x]; });
+    var tn = function (r) { return (TRACKS.filter(function (t) { return t.id === r.track; })[0] || {}).name; };
+    var rows = [['Yo\'nalish', R.map(tn)], ['Darajalar', R.map(function (r) { return r.levels.map(function (l) { return l[0]; }).join(' &rsaquo; '); })]];
+    if (state.mode === 'full') rows.push(['Fiksa', R.map(salRange)]);
+    rows = rows.concat([
+      ['Har darajada', R.map(function (r) { return 'kamida ' + months(r) + ' oy'; })],
+      ['Bonus', R.map(function (r) { return r.kpi[0]; })],
+      ['Kirish sharti', R.map(function (r) { return r.levels[0][2]; })],
+      ['Keyingi qadam', ids.map(function (x) { var n = next(x); return n.length ? n.map(function (e) { return ROLES[e.id].name; }).join(', ') : '&middot;'; })],
+      ['Partner yo\'li', ids.map(function (x) { return EDGES.some(function (e) { return e[0] === x && e[1] === 'partner'; }) || x === 'partner' ? 'Bor' : 'Yuqori lavozim orqali'; })]
+    ]);
+    out.innerHTML = '<div class="tw"><table class="bt cmp"><thead><tr><th></th><th>' + R[0].name + '</th><th>' + R[1].name + '</th></tr></thead><tbody>' + rows.map(function (rw) { return '<tr><th>' + rw[0] + '</th><td>' + rw[1][0] + '</td><td>' + rw[1][1] + '</td></tr>'; }).join('') + '</tbody></table></div>';
+  }
+
   /* -------- Bir qarashda: fiksa, bonus asosi, keyingi qadam -------- */
   function summaryCard(id, r) {
     var c = el('div', 'sumc'), nx = next(id).filter(function (x) { return x.t === 'osish'; })[0] || next(id)[0];
@@ -982,7 +1059,7 @@ var EDGES = [
     return box;
   }
 
-  /* -------- Hamkorlik: Andijon filialidagi haqiqiy raqamlar (Fondlar varag'i) -------- */
+  /* -------- Hamkorlik kalkulyatori (haqiqiy do'kon raqamlari asosida) -------- */
   var INV = { oyO: 0.027, oyMin: 0.012, oyMax: 0.043, dFoyda: 14000, ulush: 40 };
   function investBlock(id, r, host) {
     if (r.appoint) return;
@@ -990,13 +1067,13 @@ var EDGES = [
     var inp = function (k, lab, v, u) { return '<label class="fld"><span class="fl">' + lab + (u ? ' <i>' + u + '</i>' : '') + '</span><input type="number" inputmode="decimal" data-k="' + k + '" value="' + v + '"></label>'; };
     var b = el('section', 'blk nextp invest');
     b.id = 'sec-inv'; b.innerHTML = '<h3>Hamkorlik kalkulyatori</h3>' +
-      '<p><b>Haqiqiy misol, Andijon filiali.</b> Do\'konni boshqaradigan hamkor o\'z pulini tikmagan. Pulni investorlar tikdi: birinchi investor 2024 yil dekabrda $40,000 tikdi. Hamkor tomoni do\'kon foydasining ~40% ini oladi: oxirgi 12 oyda oyiga o\'rtacha $5,714, 23 oyda jami $133,745. Investorlar esa tikkan puliga oyiga o\'rtacha 2.7% foyda oldi, yiliga ~32%.</p>' +
-      '<p class="tt"><b>1. Investor topib do\'kon boshqarsangiz</b></p>' +
+      '<p>Haqiqiy do\'konda hamkor tomoni oxirgi 12 oyda oyiga o\'rtacha $5,714 oldi, bu do\'kon foydasining ~40% i.</p>' +
+      '<p class="tt"><b>1. Hamkor bo\'lib do\'kon boshqarsangiz</b></p>' +
       '<div class="calc" data-c="h"><div class="cf">' + inp('df', 'Do\'konning oylik sof foydasi', INV.dFoyda, '$') + inp('ul', 'Hamkor ulushi', INV.ulush, '%') + '</div><div class="co"></div></div>' +
       '<p class="tt"><b>2. O\'zingiz pul tiksangiz</b></p>' +
       '<div class="calc" data-c="i"><div class="cf">' + inp('cap', 'Tikadigan pul', 10000, '$') + inp('yil', 'Necha yil', 3) +
       '<label class="fld chk"><input type="checkbox" data-k="re" checked><span class="fl">Foydani qayta tikaman</span></label></div><div class="co"></div></div>' +
-      '<p class="cn">Andijonda oxirgi 12 oyda taqsimlangan foyda oyiga o\'rtacha ~$14,000. Hamkor ulushi har holat uchun shartnomada belgilanadi. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Pul tikish: 12 oy ishlagan yoki Dostigator xodim, undan oldin rahbariyat bilan kelishib. Foyda kafolatlanmaydi: investor yaxshi oyda ~4.3%, yomon oyda ~1.2% olgan. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
+      '<p class="cn">Shu do\'konda oxirgi 12 oyda taqsimlangan foyda oyiga o\'rtacha ~$14,000. Hamkor ulushi har holat uchun shartnomada belgilanadi. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Pul tikish: 12 oy ishlagan yoki Dostigator xodim, undan oldin rahbariyat bilan kelishib. Foyda kafolatlanmaydi: yaxshi oyda ~4.3%, yomon oyda ~1.2%. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
     var q = function (k) { return b.querySelector('[data-k=' + k + ']'); };
     b.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
     function calc() {
@@ -1071,6 +1148,7 @@ var EDGES = [
     document.querySelectorAll('.mode button').forEach(function (b) { b.classList.toggle('on', b.dataset.m === m); b.setAttribute('aria-pressed', b.dataset.m === m); });
     if (m === 'xodim' && state.tab === 'sinov') setTab('roles');
     renderRole();
+    drawCompare();
   }
 
 
@@ -1097,7 +1175,7 @@ var EDGES = [
   function buildMap() {
     var host = $('#map'); host.innerHTML = '';
     var apex = el('div', 'apex');
-    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Andijonda hamkor tomoni oyiga o\'rtacha ~$5,700 oladi, o\'z pulini tikmasdan. Yo\'l: eng yuqori daraja, kompaniya taklifi, investor yoki o\'z kapitali.</span>'));
+    apex.appendChild(el('div', 'apex-h', '<b>Hamkorlik</b><span>Hamkor bo\'lsangiz oyiga ~$5,700 (haqiqiy raqam, oxirgi 12 oy o\'rtachasi). Yo\'l: eng yuqori daraja va kompaniya taklifi.</span>'));
     var ar = el('div', 'apex-r'); ar.appendChild(mapCard('partner')); ar.appendChild(mapCard('ceo')); apex.appendChild(ar);
     host.appendChild(apex);
     var cols = el('div', 'cols');
@@ -1114,7 +1192,7 @@ var EDGES = [
     });
     host.appendChild(cols);
     var g = $('#from'), h2 = $('#to');
-    [g, h2].forEach(function (s, k) {
+    [g, h2, $('#cmpA'), $('#cmpB')].filter(Boolean).forEach(function (s, k) {
       s.innerHTML = k === 0 ? '<option value="">Tanlang</option>' : '<option value="">Tanlang</option>';
       TRACKS.forEach(function (t) {
         var og = document.createElement('optgroup'); og.label = t.name;
@@ -1183,8 +1261,10 @@ var EDGES = [
   buildNav();
   buildMap();
   $('#showPath').onclick = showPath; $('#clearPath').onclick = clearPath;
+  if ($('#cmpA')) { $('#cmpA').value = 'team_lead'; $('#cmpB').value = 'dokon_rahbari'; $('#cmpA').onchange = drawCompare; $('#cmpB').onchange = drawCompare; drawCompare(); }
   var pg = $('#pbGo'); if (pg) pg.onclick = function () { setTab('roles'); select(state.role === 'partner' ? 'partner' : state.role); var t = $('#sec-inv'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   if (h === 'qoidalar' || h === 'sinov' || h === 'roles') state.tab = h; else if (ROLES[h]) { state.role = h; state.tab = 'roles'; $('#roleSel').value = h; }
+  window.addEventListener('hashchange', function () { var k = (location.hash || '').slice(1); if (ROLES[k]) { setTab('roles'); if (k !== state.role) select(k); } else if (k === 'qoidalar' || k === 'xarita') setTab(k); });
   setTab(state.tab);
   setMode(state.mode);
   buildNav();
