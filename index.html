@@ -264,6 +264,35 @@ section.blk, .sumc { scroll-margin-top: 80px; }
 .st-up b { font-size: 22px; font-family: var(--f-display); font-weight: 800; color: var(--accent); }
 .st-t { margin: 0; font-size: 14px; max-width: 70ch; }
 @media (max-width: 600px) { .st-c { min-width: 0; flex: 1 1 130px; } .st-ar { display: none; } .st-up { flex-basis: 100%; padding-left: 0; display: flex; align-items: baseline; gap: 8px; } }
+.invest h3 { font-size: 19px; }
+.inv-lede { font-size: 15px; margin: 4px 0 10px !important; max-width: 70ch; }
+.inv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px; align-items: start; }
+.invest .fld input, .invest .fld select { width: 100%; }
+.fh { font-size: 12px; color: var(--muted); }
+.inv-out { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 6px 14px 10px; }
+.inv-t { width: 100%; border-collapse: collapse; }
+.inv-t th { font-size: 12px; font-weight: 600; color: var(--muted); text-align: left; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.inv-t td { padding: 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.inv-t td b { display: block; font-weight: 600; font-size: 14px; }
+.inv-t td small { display: block; font-size: 12px; color: var(--muted); }
+.inv-t .n { text-align: right; white-space: nowrap; padding-left: 10px; }
+.inv-t tbody td.n { font-size: 14px; }
+.inv-t tfoot td { border-bottom: 0; border-top: 2px solid var(--fg); padding-top: 10px; }
+.inv-t tfoot td.n { font-size: 18px; font-weight: 700; color: var(--accent); }
+.inv-t td.n { font-family: var(--f-display); font-variant-numeric: tabular-nums; font-weight: 600; }
+@media (max-width: 760px) {
+  .inv-grid { grid-template-columns: minmax(0, 1fr); }
+  .inv-out { padding: 4px 12px 8px; }
+  .inv-t thead { display: none; }
+  .inv-t tr { display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px; border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .inv-t td { border: 0; padding: 2px 0; }
+  .inv-t td:first-child { grid-column: 1 / -1; margin-bottom: 4px; }
+  .inv-t td.n { text-align: left; padding-left: 0; }
+  .inv-t td.n::before { content: attr(data-l); display: block; font-size: 11px; font-weight: 500; color: var(--muted); }
+  .inv-t tfoot tr { border-bottom: 0; border-top: 2px solid var(--fg); }
+  .inv-t tfoot td { border: 0; padding-top: 2px; }
+  .inv-t tfoot td.n { font-size: 18px; }
+}
 .sumc { display: grid; grid-template-columns: 1fr 1.4fr 1.6fr; gap: 10px; }
 .sumc > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
 .sumc span { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -432,7 +461,7 @@ section.blk, .sumc { scroll-margin-top: 80px; }
     <div class="blk"><h3>Partner va kapital</h3>
       <dl class="kv">
         <dt>Investitsiya huquqi</dt><dd>Biznesga investitsiya (kapital tikish) uchun xodim kompaniyada kamida 12 oy ishlagan yoki Dostigator darajasiga chiqqan bo'lishi kerak. Imtiyozli holatda rahbariyat bilan kelishib, undan oldin ham kiritish mumkin.</dd>
-        <dt>Do'kon rahbari</dt><dd>Partner bo'lishi uchun yangi do'kon ochilishi kerak. Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi. Rahbar shu do'konga $10,000+ tikadi va o'rniga yangi rahbar tayyorlaydi.</dd>
+        <dt>Do'kon rahbari</dt><dd>Partner bo'lishi uchun yangi do'kon ochilishi kerak. Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi. Rahbar shu do'konga $10,000+ tikadi va o'rniga yangi rahbar tayyorlaydi. Do'konni ochgani uchun yangi do'kon sof foydasining 5% ini hamkorlik bonusi sifatida oladi.</dd>
       </dl>
       <p>Boshlang'ich kapital $10,000, keyin foydadan qayta tikib oshiriladi. Foyda nisbati har holat uchun alohida shartnomada. Zarar kapital ulushiga qarab taqsimlanadi. Filial yopilsa aktivlari sotiladi, zarar barcha sheriklar o'rtasida kapital ulushiga qarab taqsimlanadi, qolgan summa har sherikka ulushiga qarab qaytariladi. Bu tartib AAOIFI 12-standartiga mos.</p>
     </div>
@@ -668,7 +697,7 @@ var ROLES = {
     levels: [['Junior', '$400', "Kirish. Ko'p yo'ldan kelish mumkin, har yo'lning o'z sharti bor (pastda)."], ['Pro', '$600', "Junior'da 6 oy: 6 oyning 4 tasida filial sof foyda va aksessuar rejasi 100%+, overdue filial normasidan past."], ['Dostigator', '$1,000', "Pro'da 6 oy: 6 oyning 5 tasida sof foyda va aksessuar rejasi 100%+, overdue normadan kamida 10% past (norma 28% bo'lsa 25.2%), " + GOAL + ", o'rniga tayyorlagan nomzod komissiyadan o'tgan. Partner yo'lini ochadi."]],
     kpi: ["Filialga qarab 3 xil model bor. Kalkulyatorda filialni tanlang.", "C1, Chorsu, Navoiy, Samarqand 4, Toshkent: 240 ballik model. Bonus = sof foyda x stavka x multiplikator x jamoa koeffitsienti.", "Overdue bali har filialning o'z normasiga nisbatan hisoblanadi.", "Farg'ona: sof foyda x 5/6/7% (overdue'ga qarab).", "Qo'qon va Andijon: alohida kelishuv bo'yicha. Qo'qonda 2027 yil yanvaridan overdue 32.9% dan oshgan oyda sotuv soni premiyasi berilmaydi.", "Filiallar hajmi har xil, shuning uchun filiallarda raqamlar har xil."],
     mas: ["Jamoani boshqarish, xodim olish va rivojlantirish", "Filial P&L uchun to'liq javobgarlik", "Tovar ostatkasi, kassa intizomi, portfel sifati", "Ijtimoiy tarmoqdagi faollik, kunlik hisobot va jamoa motivatsiyasi", "Muammoli holatlarni yashirmaslik", "Sotuvchilar bilan bo'lgan muammoli holatlarni yashirmaslik", "Barcha holatlarni rahbariyatga shaffof ko'rsatib borish"],
-    partner: ["Do'kon rahbari Partner bo'lishi uchun yangi do'kon ochilishi kerak: bitta do'kon boshqasini ochadi.", "Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi.", "Shart: Dostigator darajasida 12+ oy, " + GOAL + ", kompaniya taklifi.", "Yangi do'konga kamida $10,000 kapital tikadi. Kapital ulushi darhol boshlanadi va hech qachon to'xtamaydi, RP yoki ROP bo'lsa ham.", "Boshqaruv ulushi yangi do'kon 3 oy o'rtacha $10,000 sof foyda ko'rsatganda boshlanadi. Regional Partner bo'lganda to'xtaydi. Foizi alohida shartnomada.", "O'rniga yangi Do'kon rahbarini tayyorlab o'tadi (nomzod komissiyadan o'tadi)."],
+    partner: ["Do'kon rahbari Partner bo'lishi uchun yangi do'kon ochilishi kerak: bitta do'kon boshqasini ochadi.", "Kompaniya yangi do'kon ochishni 6 oy oldin Dostigatorlarga e'lon qiladi.", "Shart: Dostigator darajasida 12+ oy, " + GOAL + ", kompaniya taklifi.", "Yangi do'konga kamida $10,000 kapital tikadi. Kapital ulushi darhol boshlanadi va hech qachon to'xtamaydi, RP yoki ROP bo'lsa ham.", "Boshqaruv ulushi yangi do'kon 3 oy o'rtacha $10,000 sof foyda ko'rsatganda boshlanadi. Regional Partner bo'lganda to'xtaydi. Foizi alohida shartnomada.", "Hamkorlik bonusi: yangi do'konni ochgan Do'kon rahbari yangi do'kon sof foydasining 5% ini oladi. Stavka o'zgarmaydi.", "O'rniga yangi Do'kon rahbarini tayyorlab o'tadi (nomzod komissiyadan o'tadi)."],
     bridges: [["Sotuvchi", "Dostigator, 12 oyning 9 tasida shaxsiy reja 100%+"], ["Team Lead", "Pro, 12 oy, mentee'lar 12 oyning 9 tasida rejada"], ["Kassir", "Pro, 3 oy ketma-ket aksessuar va referral $1,500+/oy, 12 oy yozilmagan farq yo'q, 1 kassir o'qitgan, P&L testi 70%+"], ["Unduruvchi", "Pro, 6 oyning 4 tasida filial undiruv rejasi 100%+, P&L testi 70%+"], ["Kollektor", "Pro, 6 oyning 4 tasida qaraydigan filiallar rejasi 100%+, P&L testi 70%+"], ["Undiruv rahbari", "Pro, jamoa rejasi 6 oyning 4 tasida 100%+, hech bir filial 80% dan pastga tushmagan, P&L testi 70%+"], ["CC rahbar", "Pro, CC savdo rejasi 6 oyning 5 tasida 95%+, P&L testi 70%+"], ["Barcha ko'priklar", "Ichki nomzod (ko'prik shartini bajargan) Pro darajadan kiradi; Pro daromadi oldingi 6 oy o'rtachasidan kam bo'lsa, farq 6 oy to'lanadi. P&L testini CFO o'tkazadi."]] },
   team_lead: { track: 'savdo', name: 'Team Lead', order: 4, calcs: ['teamLead'],
     levels: [['Junior', '$400', "Sotuvchi Dostigator, 6 oyning 4 tasida shaxsiy reja 100%+, Do'kon rahbari tavsiyasi."], ['Pro', '$500', "Team Lead Junior 6 oy: 6 oyning 4 tasida shaxsiy reja 100%+, kamida 2 mentee 6 oyning 4 tasida reja 95%+, inventar kamomadi yo'q."]],
@@ -909,10 +938,10 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
     head.innerHTML = '<p class="eyebrow">' + trk.name + (r.track !== 'hamkorlik' ? ' &middot; har darajada kamida ' + months(r) + ' oy' : '') + '</p><h2>' + r.name + '</h2>' + (r.note ? '<p class="rnote">' + r.note + '</p>' : '');
     main.appendChild(head);
     main.appendChild(summaryCard(id, r));
-    if (id === 'unduruvchi' || id === 'kollektor' || id === 'dokon_rahbari') main.appendChild(storyCard(id));
+    investBlock(id, r, main);
     var nav = el('nav', 'jump');
     main.appendChild(nav);
-    if (id === 'partner') investBlock(id, r, main);
+    if (id === 'unduruvchi' || id === 'kollektor' || id === 'dokon_rahbari') main.appendChild(storyCard(id));
 
     var sec = el('section', 'blk'); sec.id = 'sec-bonus'; sec.appendChild(el('h3', null, 'Bonus qanday hisoblanadi'));
     sec.appendChild(el('ul', 'steps', r.kpi.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
@@ -958,7 +987,6 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
       ps.appendChild(el('ul', 'steps', r.partner.map(function (x) { return '<li>' + x + '</li>'; }).join('')));
       main.appendChild(ps);
     }
-    if (id !== 'partner') investBlock(id, r, main);
     goalBlock(id, r, main);
 
     if (r.bridges) {
@@ -980,6 +1008,7 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
       main.appendChild(pr);
     }
     main.querySelectorAll('section.blk[id]').forEach(function (s) {
+      if (s.id === 'sec-inv') return;
       var b = el('button', 'chip', s.querySelector('h3').textContent); b.type = 'button';
       b.onclick = function () { s.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
       nav.appendChild(b);
@@ -1105,33 +1134,62 @@ var BANNERS_DEFAULT = {"izoh":"Bannerni shu faylda o'zgartiring. Har bir e'lon: 
   }
 
   /* -------- Hamkorlik kalkulyatori (haqiqiy do'kon raqamlari asosida) -------- */
-  var INV = { oyO: 0.027, oyMin: 0.012, oyMax: 0.043, dFoyda: 14000, ulush: 40 };
+  var INV = { oyO: 0.027, oyMin: 0.012, oyMax: 0.043, kurs: 12000, bonus: 5 };
+  // mln so'm, yaxlitlangan
+  function mln(x) {
+    if (!isFinite(x) || x <= 0) return '0';
+    if (x >= 1000) return '~' + (Math.round(x / 100) / 10).toLocaleString('ru-RU') + ' mlrd so\'m';
+    var v = x < 10 ? Math.round(x * 10) / 10 : Math.round(x);
+    return '~' + v.toLocaleString('ru-RU') + ' mln so\'m';
+  }
   function investBlock(id, r, host) {
     if (r.appoint) return;
-    var topFx = 0; r.levels.forEach(function (l) { topFx = Math.max(topFx, salNum(l[1])); });
-    var inp = function (k, lab, v, u) { return '<label class="fld"><span class="fl">' + lab + (u ? ' <i>' + u + '</i>' : '') + '</span><input type="number" inputmode="decimal" data-k="' + k + '" value="' + v + '"></label>'; };
+    var isDR = id === 'dokon_rahbari' || id === 'partner';
+    var DRL = ROLES.dokon_rahbari.levels.map(function (l) { return [l[0], salNum(l[1]) * INV.kurs / 1e6]; });
+    var inp = function (k, lab, v, hint) { return '<label class="fld"><span class="fl">' + lab + ' <i>mln so\'m</i></span><input type="number" inputmode="decimal" min="0" step="1" data-k="' + k + '" value="' + v + '">' + (hint ? '<small class="fh">' + hint + '</small>' : '') + '</label>'; };
     var b = el('section', 'blk nextp invest');
-    b.id = 'sec-inv'; b.innerHTML = '<h3>Hamkorlik kalkulyatori</h3>' +
-      '<p>Haqiqiy do\'konda hamkor tomoni oxirgi 12 oyda oyiga o\'rtacha $5,714 oldi, bu do\'kon foydasining ~40% i.</p>' +
-      '<p class="tt"><b>1. Hamkor bo\'lib do\'kon boshqarsangiz</b></p>' +
-      '<div class="calc" data-c="h"><div class="cf">' + inp('df', 'Do\'konning oylik sof foydasi', INV.dFoyda, '$') + inp('ul', 'Hamkor ulushi', INV.ulush, '%') + '</div><div class="co"></div></div>' +
-      '<p class="tt"><b>2. O\'zingiz pul tiksangiz</b></p>' +
-      '<div class="calc" data-c="i"><div class="cf">' + inp('cap', 'Tikadigan pul', 10000, '$') + inp('yil', 'Necha yil', 3) +
-      '<label class="fld chk"><input type="checkbox" data-k="re" checked><span class="fl">Foydani qayta tikaman</span></label></div><div class="co"></div></div>' +
-      '<p class="cn">Shu do\'konda oxirgi 12 oyda taqsimlangan foyda oyiga o\'rtacha ~$14,000. Hamkor ulushi har holat uchun shartnomada belgilanadi. ' + (id === 'dokon_rahbari' ? 'Do\'kon rahbari yangi do\'kon ochilganda Partner bo\'ladi (pastda). ' : '') + 'Pul tikish: 12 oy ishlagan yoki Dostigator xodim, undan oldin rahbariyat bilan kelishib. Foyda kafolatlanmaydi: yaxshi oyda ~4.3%, yomon oyda ~1.2%. Zarar bo\'lsa kapital ulushiga qarab taqsimlanadi (AAOIFI 12).</p>';
+    b.id = 'sec-inv';
+    var form;
+    if (isDR) {
+      b.innerHTML = '<h3>Hamkorlik kalkulyatori: yangi do\'kon ochsangiz</h3>' +
+        '<p class="inv-lede">Siz yangi do\'kon ochasiz va unga pul tikasiz. Shunda sizga 4 joydan pul keladi. Raqamlarni o\'zgartirib ko\'ring.</p>';
+      form = '<div class="cf">' +
+        inp('nf', 'Yangi do\'konning oylik sof foydasi', 120, 'Xarajatlardan keyin qolgan pul') +
+        '<label class="fld"><span class="fl">Yangi do\'kondagi ulushingiz <i>%</i></span><input type="number" inputmode="decimal" min="0" max="100" data-k="ul" value="40"><small class="fh">Shartnomada belgilanadi</small></label>' +
+        inp('old', 'Eski do\'koningizdan oylik', Math.round(DRL[DRL.length - 1][1] + 5), 'Hozirgi fiksa + bonus') +
+        inp('cap', 'Tikadigan pulingiz', 120, 'Kamida ~120 mln so\'m ($10,000)') + '</div>';
+    } else {
+      b.innerHTML = '<h3>Hamkorlik kalkulyatori: do\'kon rahbari bo\'lsangiz</h3>' +
+        '<p class="inv-lede">Bu lavozimdan do\'kon rahbarigacha yo\'l bor. Rahbar bo\'lib, do\'konga pul ham tiksangiz, qancha topishingizni ko\'ring.</p>';
+      form = '<div class="cf">' +
+        '<label class="fld"><span class="fl">Do\'kon rahbari darajasi</span><select data-k="lv">' + DRL.map(function (l, i) { return '<option value="' + i + '"' + (i === 1 ? ' selected' : '') + '>' + l[0] + ' (fiksa ' + mln(l[1]).replace('~', '') + ')</option>'; }).join('') + '</select></label>' +
+        inp('bon', 'O\'rtacha oylik bonus', 5, 'Filial natijasiga qarab') +
+        inp('cap', 'Tikadigan pulingiz', 60, '12 oy ishlagach yoki Dostigator bo\'lgach') + '</div>';
+    }
+    b.innerHTML += '<div class="inv-grid">' + form + '<div class="inv-out"></div></div>' +
+      '<p class="cn">Tikilgan pul o\'rtacha oyiga 2.7% foyda keltiradi (oxirgi 12 oy). Kafolat yo\'q: yaxshi oyda 4.3%, yomon oyda 1.2%. Zarar bo\'lsa, ulushga qarab bo\'linadi. Pul tikish: 12 oy ishlagan yoki Dostigator xodim, undan oldin rahbariyat bilan kelishib.' + (isDR ? ' Hamkorlik bonusi doim yangi do\'kon sof foydasining 5% i.' : '') + '</p>';
     var q = function (k) { return b.querySelector('[data-k=' + k + ']'); };
-    b.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+    var num = function (k) { var e = q(k); return e ? Math.max(0, parseFloat(e.value) || 0) : 0; };
+    b.querySelectorAll('input, select').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
     function calc() {
-      var df = parseFloat(q('df').value) || 0, ul = parseFloat(q('ul').value) || 0, h = df * ul / 100;
-      b.querySelector('[data-c=h] .co').innerHTML = '<table class="rt"><tbody><tr><th>Yiliga</th><td class="num">' + usd(h * 12) + '</td><td class="sub"></td></tr>' +
-        (topFx ? '<tr><th>Eng yuqori darajadagi fiksa bilan</th><td class="num">' + usd(topFx + h) + '/oy</td><td class="sub">KPI\'siz</td></tr>' : '') +
-        '</tbody></table><div class="tot"><span>Oyiga hamkor ulushi</span><strong class="num">' + usd(h) + '</strong></div>';
-      var cap = parseFloat(q('cap').value) || 0, y = Math.max(0, Math.min(30, parseFloat(q('yil').value) || 0)), re = q('re').checked;
-      var m = cap * INV.oyO, n = Math.round(y * 12), endCap = cap * Math.pow(1 + INV.oyO, n), got = m * n;
-      b.querySelector('[data-c=i] .co').innerHTML = '<table class="rt"><tbody>' +
-        '<tr><th>Oylik foyda, o\'rtacha</th><td class="num">' + usd(m) + '</td><td class="sub">2.7%</td></tr>' +
-        '<tr><th>Yomon / yaxshi oy</th><td class="num">' + usd(cap * INV.oyMin) + ' / ' + usd(cap * INV.oyMax) + '</td><td class="sub"></td></tr>' +
-        '</tbody></table><div class="tot"><span>' + (re ? y + ' yildan keyin pulingiz' : y + ' yilda olgan foydangiz') + '</span><strong class="num">' + usd(re ? endCap : got) + '</strong></div>';
+      var rows = [];
+      var capM = num('cap') * INV.oyO;
+      if (isDR) {
+        var nf = num('nf'), ul = Math.min(100, num('ul'));
+        rows.push(['Yangi do\'kondan ulush', 'Yangi do\'konni boshqarganingiz uchun (' + ul + '%)', nf * ul / 100]);
+        rows.push(['Eski do\'koningizdan', 'Hozirgi oylik va bonus', num('old')]);
+        rows.push(['Hamkorlik bonusi 5%', 'Do\'konni o\'zingiz ochganingiz uchun', nf * INV.bonus / 100]);
+        rows.push(['Tikkan pulingizdan', 'Pulingiz ishlagani uchun (oyiga ~2.7%)', capM]);
+      } else {
+        var lv = DRL[+q('lv').value] || DRL[0];
+        rows.push(['Do\'kon rahbari oyligi', lv[0] + ': fiksa ' + mln(lv[1]).replace('~', '') + ' + bonus', lv[1] + num('bon')]);
+        rows.push(['Tikkan pulingizdan', 'Pulingiz ishlagani uchun (oyiga ~2.7%)', capM]);
+      }
+      var tot = rows.reduce(function (a, x) { return a + x[2]; }, 0);
+      b.querySelector('.inv-out').innerHTML =
+        '<table class="inv-t"><thead><tr><th>Qayerdan</th><th class="n">Oyiga</th><th class="n">Yiliga</th></tr></thead><tbody>' +
+        rows.map(function (x) { return '<tr><td><b>' + x[0] + '</b><small>' + x[1] + '</small></td><td class="n" data-l="Oyiga">' + mln(x[2]) + '</td><td class="n" data-l="Yiliga">' + mln(x[2] * 12) + '</td></tr>'; }).join('') +
+        '</tbody><tfoot><tr><td><b>Jami</b><small>hammasi birga</small></td><td class="n" data-l="Oyiga">' + mln(tot) + '</td><td class="n" data-l="Yiliga">' + mln(tot * 12) + '</td></tr></tfoot></table>';
     }
     calc(); host.appendChild(b);
   }
