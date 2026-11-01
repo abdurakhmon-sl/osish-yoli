@@ -21,13 +21,13 @@
           "Siz Dostigatorsiz va o'z do'koningizda qolasiz: fiksa ~12 mln so'm.",
           "Do'koningiz yaxshi ishlaydi: KPI ~10 mln so'm.",
           "Siz ochgan yangi do'kon oyiga ~300 mln so'm sof foyda qiladi (eng kuchli filial avgustda ~$25.9k qildi). Sizga 5%: ~15 mln so'm.",
-          "Yangi do'konga 700 mln so'm tikdingiz: oyiga ~19 mln so'm (o'rtacha 2.7%)."
+          "Yangi do'konga ~667 mln so'm tikdingiz: oyiga ~18 mln so'm (o'rtacha 2.7%)."
         ],
         "qiymat": {
           "lv": 2,
           "okpi": 10,
           "nf": 300,
-          "cap": 700
+          "cap": 667
         }
       }
     },
