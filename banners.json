@@ -1,5 +1,5 @@
 {
-  "izoh": "Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (lux, yashil yoki qora), rasm (robot, bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi. kalkulyator (ixtiyoriy): tugma bosilganda kalkulyatorga qo'yiladigan holat: yol (dokon_rahbari, cfo, cmo, ec_rahbar), sarlavha, holat (tushuntirish qatorlari), qiymat (lv: daraja 0-2, okpi: do'kondagi KPI, nf: yangi do'kon foydasi, cap: tikkan pul, mln so'mda).",
+  "izoh": "Bannerni shu faylda o'zgartiring. Har bir e'lon: belgi (kichik yorliq), ustki (katta raqam ustidagi gap), oldin (ixtiyoriy: eski raqam, ustidan chiziladi), raqam (KATTA raqam), birlik (raqam yonidagi so'z), matn (1-2 gap izoh), chip (ixtiyoriy: yon tomondagi qo'shimcha raqam), tugma (tugma yozuvi), lavozim (tugma ochadigan lavozim kodi: partner, dokon_rahbari, sotuvchi...), bolim (ixtiyoriy: sec-inv = hamkorlik kalkulyatori), rang (lux, yashil yoki qora), rasm (robot, bars yoki steps). sekund: e'lonlar necha sekundda o'zi almashadi. kalkulyator (ixtiyoriy): tugma bosilganda kalkulyatorga qo'yiladigan holat: yol (dokon_rahbari, cfo, cmo, ec_rahbar), sarlavha, holat (tushuntirish qatorlari), qiymat (lv: daraja 0-2, okpi: do'kondagi KPI, nf: yangi do'kon foydasi, cap: tikkan pul, mln so'mda). vakansiyalar: Xaritadagi 'Bizga kerak' bloki; har biri: lavozim (kod), nom (ixtiyoriy), izoh. E'londa tab: 'xarita' bo'lsa, tugma Xarita bo'limini ochadi.",
   "sekund": 8,
   "bannerlar": [
     {
@@ -43,6 +43,38 @@
       "lavozim": "dokon_rahbari",
       "rang": "qora",
       "rasm": "steps"
+    },
+    {
+      "belgi": "Bizga kerak",
+      "ustki": "Hozir ochiq lavozimlar",
+      "raqam": "4 ta",
+      "birlik": "lavozim",
+      "matn": "ROP, HR menejer, Call center ROP va E-commerce rahbari. Avval ichkaridan qidiramiz.",
+      "chip": "Ichkaridan o'sish birinchi",
+      "tugma": "Ko'rish",
+      "tab": "xarita",
+      "bolim": "vak",
+      "rang": "yashil",
+      "rasm": "logo"
+    }
+  ],
+  "vakansiyalar": [
+    {
+      "lavozim": "rop",
+      "izoh": "Butun savdo tarmog'ini boshqaradi: filiallar rejasi, do'kon rahbarlari, yangi filial ochish."
+    },
+    {
+      "lavozim": "hr_menejer",
+      "izoh": "Xodim yollaydi va sinov muddatini kuzatadi."
+    },
+    {
+      "lavozim": "cc_rahbar",
+      "nom": "Call center ROP",
+      "izoh": "Call center savdosini boshqaradi: operatorlar, skript, konversiya."
+    },
+    {
+      "lavozim": "ec_rahbar",
+      "izoh": "Online savdo yo'nalishini quradi."
     }
   ]
 }
